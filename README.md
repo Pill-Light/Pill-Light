@@ -7,7 +7,7 @@
 
 약물 복용 관리 및 OCR을 이용한 약물 검색 어플리케이션
 
----
+
 
 👨‍💻 **MEMBERS** 👨‍💻
 - 강민하
@@ -18,13 +18,13 @@
 - 황수현
 - 현지현
 
----
+
 
 🛠 **Tech Stack** 🛠
 
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/> <img src="https://img.shields.io/badge/React Native-61DAFB?style=flat-square&logo=React&logoColor=black"/>
 
----
+
 
 📜 **Commit Convention** 📜
 - feat: 기능 추가
@@ -34,10 +34,12 @@
 
 예시) feat: ~~~ 액션 추가
 
----
+
 
 ⛔ **Rules** ⛔
 
 1. 커밋은 최대한 자잘하게
 2. 본인이 작성한 코드는 커밋 전 스스로 테스트하기
 3. 게을러지지 않기
+
+![Header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=100&section=footer)
