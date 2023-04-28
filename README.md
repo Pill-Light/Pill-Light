@@ -7,7 +7,7 @@
 
 약물 복용 관리 및 OCR을 이용한 약물 검색 어플리케이션
 
-
+<br>
 
 👨‍💻 **Members** 👨‍💻
 - 강민하
@@ -20,13 +20,13 @@
 - 현지현
 
 <br>
-<br>
+
 
 🛠 **Tech Stack** 🛠
 
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/> <img src="https://img.shields.io/badge/React Native-61DAFB?style=flat-square&logo=React&logoColor=black"/>
 
-
+<br>
 
 📚 **Directory Structure** 📚
 - assets : 이미지나 폰트 등
@@ -40,7 +40,7 @@ ex) screens/MainScreen/MainScreen.js : 메인 스크린 파일 위치
 
 ex) components/AppHeader.js : 앱 헤더 파일 위치
 
-
+<br>
 
 📜 **Commit Convention** 📜
 - feat: 기능 추가
@@ -50,7 +50,7 @@ ex) components/AppHeader.js : 앱 헤더 파일 위치
 
 예시) feat: ~~~ 액션 추가
 
-
+<br>
 
 ⛔ **Rules** ⛔
 
