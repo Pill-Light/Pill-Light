@@ -26,6 +26,20 @@
 
 
 
+📚 **Directory Structure** 📚
+- assets : 이미지나 폰트 등
+- screens : 페이지 단위 컴포넌트
+- components : 재사용하는 컴포넌트들
+
+
+ex) assets/MainIcon.png : 메인 아이콘 파일 위치
+
+ex) screens/MainScreen/MainScreen.js : 메인 스크린 파일 위치
+
+ex) components/AppHeader.js : 앱 헤더 파일 위치
+
+
+
 📜 **Commit Convention** 📜
 - feat: 기능 추가
 - remove: 기능 및 문서 삭제
