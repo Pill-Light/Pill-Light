@@ -57,6 +57,7 @@ ex) components/AppHeader.js : 앱 헤더 파일 위치
 1. 커밋은 최대한 자잘하게
 2. 커밋할 때 App.js는 빼고 하기
 3. 본인이 작성한 코드는 커밋 전 스스로 테스트하기
-4. 게을러지지 않기
+4. 커밋할 때 꼭!!!! 각자 브랜치에서 커밋하고 Pull Request하기 (바로 main에 커밋하면 안돼요)
+5. 게을러지지 않기
 
 ![Header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=100&section=footer)
