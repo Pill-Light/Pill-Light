@@ -55,7 +55,8 @@ ex) components/AppHeader.js : 앱 헤더 파일 위치
 ⛔ **Rules** ⛔
 
 1. 커밋은 최대한 자잘하게
-2. 본인이 작성한 코드는 커밋 전 스스로 테스트하기
-3. 게을러지지 않기
+2. 커밋할 때 App.js는 빼고 하기
+3. 본인이 작성한 코드는 커밋 전 스스로 테스트하기
+4. 게을러지지 않기
 
 ![Header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=100&section=footer)
