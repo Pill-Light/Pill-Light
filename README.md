@@ -59,6 +59,9 @@ ex) components/AppHeader.js : 앱 헤더 파일 위치
 3. expo 실행 및 작업하기
 4. 각자의 브랜치에서 commit -> push -> pull request 까지 하기 (merge는 하지마세요!)
 
+<br>
+
+
 ⛔ **Rules** ⛔
 
 1. 작업 시작 전 꼭 Pull 받기
