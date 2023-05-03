@@ -52,6 +52,13 @@ ex) components/AppHeader.js : 앱 헤더 파일 위치
 
 <br>
 
+✅ **작업하는 법** ✅
+
+1. 원하는 경로에 레포지토리 clone 받기
+2. vscode 터미널에서 cd Pill-Light__App 후 npm install 입력
+3. expo 실행 및 작업하기
+4. 각자의 브랜치에서 commit -> push -> pull request 까지 하기 (merge는 하지마세요!)
+
 ⛔ **Rules** ⛔
 
 1. 작업 시작 전 꼭 Pull 받기
