@@ -38,7 +38,7 @@ const Welcome = () => {
             height: height / 2.5,
           }}
           resizeMode="contain"
-          source={require("./assets/image/welcome-img2.png")}
+          source={require("../assets/icon.png")}
         />
         <View style={styles.container}>
           <TouchableOpacity
