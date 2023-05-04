@@ -3,6 +3,7 @@ import { TextInput } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import SearchTabBar from "../components/SearchTabBar";
 
 const SearchPills = () => {
   return (
@@ -18,17 +19,7 @@ const SearchPills = () => {
       </View>
       <View style={styles.body}></View>
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.homeButton}>
-          <Ionicons name="home" size={80} color="#57C5B6" />
-        </TouchableOpacity>
-        <View style={styles.centerButton}>
-          <TouchableOpacity>
-            <FontAwesome name="camera" size={50} color="#57C5B6" />
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity style={styles.users}>
-          <FontAwesome name="users" size={80} color="#57C5B6" />
-        </TouchableOpacity>
+        <SearchTabBar />
       </View>
     </View>
   );
