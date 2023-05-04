@@ -21,15 +21,17 @@ const Login = () => {
                     }}
                 >
                     <TextInput
-                        placeholder='아이디'
-                        placeholderTextColor="#57C5B6" 
+                        placeholder='Enter id'
+                        placeholderTextColor= "lighterGrey"
                         style={styles.textInput}   
                     >        
                     </TextInput>
                     <TextInput
-                        placeholder='비밀번호'
-                        placeholderTextColor="#57C5B6"
+                        placeholder='Enter password'
+                        placeholderTextColor="lighterGrey"
                         style={styles.textInput}
+                        secureTextEntry={true}
+
                     >
                     </TextInput>
                 </View>
