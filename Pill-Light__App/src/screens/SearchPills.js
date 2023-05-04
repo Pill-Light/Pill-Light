@@ -2,8 +2,7 @@ import { TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import SearchTabBar from "../components/SearchTabBar";
+import SearchTabBar from "../components/Search/SearchTabBar";
 
 const SearchPills = () => {
   return (
@@ -85,47 +84,6 @@ const styles = StyleSheet.create({
     paddingTop: "5%",
     borderTopWidth: "4%",
     borderColor: "#57C5B6",
-  },
-  homeButton: {
-    alignSelf: "flex-start",
-    marginLeft: "7%",
-    marginTop: "2%",
-    marginRight: "5%",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 3.84,
-  },
-  centerButton: {
-    alignSelf: "center",
-    backgroundColor: "white",
-    padding: "5%",
-    marginHorizontal: "3%",
-    borderRadius: "60%",
-    borderColor: "#57C5B6",
-    borderWidth: 6,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 3.84,
-  },
-  users: {
-    alignSelf: "flex-end",
-    marginBottom: "4.5%",
-    marginLeft: "4%",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 3.84,
   },
 });
 
