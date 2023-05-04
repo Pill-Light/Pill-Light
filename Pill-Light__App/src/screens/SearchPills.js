@@ -2,6 +2,7 @@ import { TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 const SearchPills = () => {
   return (
@@ -11,12 +12,24 @@ const SearchPills = () => {
         <View style={styles.searchBar}>
           <TextInput style={styles.inputText}></TextInput>
           <TouchableOpacity style={styles.searchButton}>
-            <FontAwesome name="search" size={56} color="grey" />
+            <FontAwesome name="search" size={56} color="#57C5B6" />
           </TouchableOpacity>
         </View>
       </View>
       <View style={styles.body}></View>
-      <View style={styles.footer}></View>
+      <View style={styles.footer}>
+        <TouchableOpacity style={styles.homeButton}>
+          <Ionicons name="home" size={80} color="#57C5B6" />
+        </TouchableOpacity>
+        <View style={styles.centerButton}>
+          <TouchableOpacity>
+            <FontAwesome name="camera" size={50} color="#57C5B6" />
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity style={styles.users}>
+          <FontAwesome name="users" size={80} color="#57C5B6" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -28,7 +41,9 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1.2,
-    backgroundColor: "#57C5B6",
+    paddingVertical: "2%",
+    borderBottomWidth: "4%",
+    borderColor: "#57C5B6",
   },
   logo: {
     flex: 0.4,
@@ -73,7 +88,53 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 1.1,
-    backgroundColor: "#57C5B6",
+    backgroundColor: "#fff",
+    flexDirection: "row",
+    paddingBottom: "7%",
+    paddingTop: "5%",
+    borderTopWidth: "4%",
+    borderColor: "#57C5B6",
+  },
+  homeButton: {
+    alignSelf: "flex-start",
+    marginLeft: "7%",
+    marginTop: "2%",
+    marginRight: "5%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3.84,
+  },
+  centerButton: {
+    alignSelf: "center",
+    backgroundColor: "white",
+    padding: "5%",
+    marginHorizontal: "3%",
+    borderRadius: "60%",
+    borderColor: "#57C5B6",
+    borderWidth: 6,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3.84,
+  },
+  users: {
+    alignSelf: "flex-end",
+    marginBottom: "4.5%",
+    marginLeft: "4%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3.84,
   },
 });
 
