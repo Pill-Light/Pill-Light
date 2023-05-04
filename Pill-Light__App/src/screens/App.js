@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import Welcome from "./screens/Welcome";
-import SearchPills from "./screens/SearchPills";
+import MyPill from "./MyPill";
 
 export default function App() {
-  return <SearchPills />;
+  return <MyPill />;
 }
