@@ -47,6 +47,7 @@ ex) components/AppHeader.js : 앱 헤더 파일 위치
 - remove: 기능 및 문서 삭제
 - fix: 버그 픽스
 - refactor: 리팩토링 및 최적화
+- design: 디자인 및 UI 수정
 
 예시) feat: ~~~ 액션 추가
 
