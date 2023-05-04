@@ -9,25 +9,25 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 const { height } = Dimensions.get("window");
 
-const Welcome = () => {
+const Welcome = ( {navigation} ) => {
   return (
     <SafeAreaView>
       <View>
         <View style={styles.welcomeText}>
           <Text
             style={{
-              fontSize: 50,
+              fontSize: 44,
               fontWeight: "bold",
+              marginBottom: "2%"
             }}
           >
             필 라이트,
           </Text>
           <Text
             style={{
-              fontSize: 48,
+              fontSize: 40,
             }}
           >
             당신의 건강 모든 것
@@ -35,19 +35,22 @@ const Welcome = () => {
         </View>
         <ImageBackground
           style={{
-            height: height / 2.5,
+            height: height / 2.8,
           }}
           resizeMode="contain"
-          source={require("../assets/icon.png")}
+          source={require("../../assets/icon.png")}
         />
         <View style={styles.container}>
           <TouchableOpacity
-            onPress={() => navigate("Login")}
+            onPress={() => navigation.navigate("Login")}
             style={styles.logintBtn}
           >
             <Text style={styles.login}>로그인</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.signBtn}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Register")}
+            style={styles.signBtn}
+          >
             <Text style={styles.sign}>회원가입</Text>
           </TouchableOpacity>
         </View>
@@ -65,34 +68,37 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   welcomeText: {
-    marginTop: 70,
+    marginTop: "13%",
+    marginBottom: "8%",
     justifyContent: "center",
     alignItems: "center",
   },
   login: {
     fontSize: 24,
+    fontWeight: "bold",
     color: "white",
   },
   sign: {
     fontSize: 24,
+    fontWeight: "bold",
     color: "#57C5B6",
   },
   logintBtn: {
-    marginTop: 250,
+    marginTop: "60%",
     backgroundColor: "#57C5B6",
     width: "90%",
     height: 60,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 5,
+    borderRadius: 10,
   },
   signBtn: {
-    marginTop: 30,
+    marginTop: "8%",
     backgroundColor: "#fafafa",
     width: "90%",
     height: 60,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 5,
+    borderRadius: 10,
   },
 });
