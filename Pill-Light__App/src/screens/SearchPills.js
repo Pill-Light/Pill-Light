@@ -1,8 +1,6 @@
-import { Button } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 
 const SearchPills = () => {
