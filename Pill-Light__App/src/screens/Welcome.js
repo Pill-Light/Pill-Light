@@ -11,11 +11,11 @@ import {
 import React from "react";
 const { height } = Dimensions.get("window");
 
-const Welcome = ( {navigation} ) => {
+const Welcome = ({ navigation }) => {
   return (
     <SafeAreaView>
       <View>
-        <View style={styles.welcomeText}>
+        <View style={styles.titleText}>
           <Text
             style={{
               fontSize: 44,
@@ -59,16 +59,21 @@ const Welcome = ( {navigation} ) => {
   );
 };
 
-export default Welcome;
-
 const styles = StyleSheet.create({
   container: {
+    marginTop: "30%",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
-  welcomeText: {
-    marginTop: "13%",
+  subContainer: {
+    marginTop: "15%",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  titleText: {
+    marginTop: "15%",
     marginBottom: "8%",
     justifyContent: "center",
     alignItems: "center",
@@ -84,7 +89,6 @@ const styles = StyleSheet.create({
     color: "#57C5B6",
   },
   logintBtn: {
-    marginTop: "60%",
     backgroundColor: "#57C5B6",
     width: "90%",
     height: 60,
@@ -93,7 +97,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   signBtn: {
-    marginTop: "8%",
+    marginTop: "6%",
     backgroundColor: "#fafafa",
     width: "90%",
     height: 60,
@@ -101,4 +105,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 10,
   },
+  textInput: {
+    fontSize: 18,
+    width: "90%",
+    backgroundColor: "#fafafa",
+    padding: "6%",
+    margin: "5%",
+    borderRadius: 10,
+    marginVertical: "3%",
+  },
 });
+
+export default Welcome;
