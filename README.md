@@ -66,7 +66,7 @@ ex) components/AppHeader.js : 앱 헤더 파일 위치
 
 ⛔ **Rules** ⛔
 
-1. 작업 시작 전 꼭 Pull 받기
+1. 작업 시작 전 꼭 터미널에 git pull origin main 하기 (pull 받는 작업)
 2. 커밋은 최대한 자잘하게
 3. 커밋할 때 App.js는 빼고 하기
 4. 본인이 작성한 코드는 커밋 전 스스로 테스트하기
