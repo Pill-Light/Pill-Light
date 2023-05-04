@@ -63,7 +63,7 @@ const Register = () => {
                     </TextInput>
                 </View>
                 <View style={{
-                    marginTop: "2%",
+                    marginTop: "4%",
                     }}
                 >
                     <Text
@@ -109,8 +109,70 @@ const Register = () => {
                                 borderBottomRightRadius: 10,
                             }}
                         >
-                            <Text>여자</Text>
+                            <Text >여자</Text>
                         </TouchableOpacity>
+                    </View>
+                </View>
+                <View>
+                    <Text
+                        style={{
+                            marginTop: "4%",
+                            marginLeft: "6%",
+                            fontSize: 18,
+                        }}
+                    >
+                        생년월일
+                    </Text>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            paddingVertical: "2%",
+                        }}
+                    >
+                        <TextInput
+                            placeholder='출생년도'
+                            placeholderTextColor="lighterGrey"
+                            style={{
+                                fontSize: 18,
+                                width: "35%",
+                                backgroundColor: "#fafafa",
+                                padding: "4%",
+                                margin: "1%",
+                                borderRadius: 10,
+                                marginVertical: "1%",
+                            }}
+                        >
+                        </TextInput>
+                        <TextInput
+                            placeholder='월'
+                            placeholderTextColor="lighterGrey"
+                            style={{
+                                fontSize: 18,
+                                width: "25%",
+                                backgroundColor: "#fafafa",
+                                padding: "4%",
+                                margin: "1%",
+                                borderRadius: 10,
+                                marginVertical: "1%",
+                            }}
+                        >
+                        </TextInput>
+                        <TextInput
+                            placeholder='일'
+                            placeholderTextColor="lighterGrey"
+                            style={{
+                                fontSize: 18,
+                                width: "25%",
+                                backgroundColor: "#fafafa",
+                                padding: "4%",
+                                margin: "1%",
+                                borderRadius: 10,
+                                marginVertical: "1%",
+                            }}
+                        >
+                        </TextInput>
                     </View>
                 </View>
                 <View style={styles.subContainer}>
