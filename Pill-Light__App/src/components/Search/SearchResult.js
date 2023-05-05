@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     flexDirection: "row",
     borderBottomWidth: "2%",
-    borderBottomColor: "grey",
+    borderBottomColor: "#57C5B6",
   },
   pillsImage: {
     flex: 1,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   font: {
-    fontSize: 40,
+    fontSize: 33,
     fontWeight: 700,
   },
 });
