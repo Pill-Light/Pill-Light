@@ -15,7 +15,7 @@ const SearchTabBar = () => {
         </TouchableOpacity>
       </View>
       <TouchableOpacity style={styles.users}>
-        <FontAwesome name="users" size={80} color="#57C5B6" />
+        <FontAwesome name="users" size={75} color="#57C5B6" />
       </TouchableOpacity>
     </>
   );
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   users: {
     alignSelf: "flex-end",
     marginBottom: "4.5%",
-    marginLeft: "4%",
+    marginLeft: "5%",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
