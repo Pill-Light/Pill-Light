@@ -1,8 +1,9 @@
-import { TouchableOpacity } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import SearchTabBar from "../components/Search/SearchTabBar";
+import SearchResult from "../components/Search/SearchResult";
 
 const SearchPills = () => {
   return (
@@ -10,13 +11,19 @@ const SearchPills = () => {
       <View style={styles.header}>
         <View style={styles.logo}></View>
         <View style={styles.searchBar}>
-          <TextInput style={styles.inputText}></TextInput>
+          <TextInput
+            placeholder="궁금하신 알약을 검색해주세요"
+            placeholderTextColor="grey"
+            style={styles.inputText}
+          ></TextInput>
           <TouchableOpacity style={styles.searchButton}>
             <FontAwesome name="search" size={56} color="#57C5B6" />
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.body}></View>
+      <View style={styles.body}>
+        <SearchResult />
+      </View>
       <View style={styles.footer}>
         <SearchTabBar />
       </View>
@@ -47,12 +54,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   inputText: {
-    backgroundColor: "#fff",
-    width: "50%",
-    height: "70%",
-    paddingHorizontal: "38%",
-    marginBottom: "0%",
-    borderRadius: "8%",
+    fontSize: 18,
+    width: "70%",
+    backgroundColor: "#fafafa",
+    padding: "6%",
+    margin: "3%",
+    borderRadius: 10,
+    marginVertical: "3%",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -63,7 +71,6 @@ const styles = StyleSheet.create({
   },
   searchButton: {
     alignSelf: "flex-end",
-    marginLeft: "3%",
     marginBottom: "4%",
     shadowColor: "#000",
     shadowOffset: {
