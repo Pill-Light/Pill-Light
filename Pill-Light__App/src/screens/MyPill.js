@@ -5,7 +5,11 @@ import React from 'react';
 const MyPill = () => {
     return (
         <View style={sytles.container}>
-          <View style={sytles.header}></View>
+          <View style={sytles.header}>
+            <View style={sytles.mainTextWrapper}>
+              <Text style={sytles.mainText}>복용 중인 약</Text>
+            </View>
+          </View>
           <View style={sytles.body}>
             <View>
               <Text>MyPill here!</Text>
@@ -23,11 +27,22 @@ const sytles = StyleSheet.create({
   header: {
     flex: 1,
     backgroundColor: "red",
+    alignItems: "center",
   },
+  mainTextWrapper: {
+    flex: 1,
+    paddingTop: "15%",
+  },
+  mainText: {
+    flex: 1,
+    fontSize: "50%",
+  },
+
   body: {
     flex: 4,
     backgroundColor: "blue",
   },
+
   footer: {
     flex: 1,
     backgroundColor: "green",
