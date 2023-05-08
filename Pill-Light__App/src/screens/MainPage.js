@@ -8,6 +8,10 @@ const MainPage = () => {
     <>
       <View style={{ flex: 1 }}>
         <View style={styles.head}>
+          <Image
+            style={styles.logo}
+            source={require("../../assets/메인로고.png")}
+          />
           <TextInput
             placeholder="약 검색"
             placeholderTextColor="grey"
@@ -52,16 +56,26 @@ const styles = StyleSheet.create({
     flex: 1.5,
     borderBottomWidth: "4%",
     borderBottomColor: "grey",
+    flexDirection: "row",
   },
-
+  logo: {
+    margin: "8%",
+    marginTop: "15%",
+    padding: "2%",
+    flex: 1,
+    width: "30%",
+    height: "50%",
+  },
   inputText: {
+    flex: 2.1,
     fontSize: 18,
-    width: "50%",
+    width: "30%",
     height: "30%",
     backgroundColor: "#DCDCDC",
     alignSelf: "flex-end",
     padding: "2%",
     margin: "3%",
+    marginBottom: "5%",
     borderRadius: 10,
     marginVertical: "3%",
     marginTop: "18%",
