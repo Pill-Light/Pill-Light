@@ -53,7 +53,7 @@ const Register = () => {
                     </TextInput>
                 </View>
                 <View style={{
-                    marginTop: "8%",
+                    marginTop: "6%",
                 }}>
                     <TextInput
                         placeholder='이름 입력'
@@ -189,21 +189,10 @@ const Register = () => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        marginTop: "30%",
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
+
     subContainer: {
         marginTop: "15%",
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    titleText: {
-        marginTop: "15%",
-        marginBottom: "8%",
         justifyContent: "center",
         alignItems: "center",
     },
@@ -231,15 +220,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderRadius: 10,
     },
-    signBtn: {
-        marginTop: "6%",
-        backgroundColor: "#fafafa",
-        width: "90%",
-        height: 60,
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 10,
-    },
     textInput: {
         fontSize: 18,
         width: "90%",
@@ -256,25 +236,7 @@ const styles = StyleSheet.create({
         padding: "4%",
         margin: "5%",
         borderRadius: 10,
-        marginVertical: "1%",
-    },
-    manBtn: {
-        backgroundColor: "#fafafa",
-        width: "45%",
-        height: 30,
-        justifyContent: "center",
-        alignItems: "center",
-        borderTopLeftRadius: 10,
-        borderBottomLeftRadius: 10,
-    },
-    girlBtn: {
-        backgroundColor: "#fafafa",
-        width: "45%",
-        height: 30,
-        justifyContent: "center",
-        alignItems: "center",
-        borderTopRightRadius: 10,
-        borderBottomRightRadius: 10,
+        marginVertical: "1.2%",
     },
     cickedBtn: {
         backgroundColor: "#57C5B6",
