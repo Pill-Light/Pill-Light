@@ -20,7 +20,35 @@ const MainPage = () => {
         </View>
         <View style={styles.body}>
           <View style={styles.page}>
-            <View style={styles.list}></View>
+            <View style={styles.list}>
+              <View style={styles.morning}>
+                <View style={styles.TextList}>
+                  <Text style={{ fontSize: 25 }}>아침</Text>
+                </View>
+                <View style={styles.TextList}>
+                  <Text style={{ fontSize: 18 }}>타이레놀</Text>
+                  <Text style={{ fontSize: 18 }}>게보린</Text>
+                </View>
+              </View>
+              <View style={styles.morning}>
+                <View style={styles.TextList}>
+                  <Text style={{ fontSize: 25 }}>점심</Text>
+                </View>
+                <View style={styles.TextList}>
+                  <Text style={{ fontSize: 18 }}>타이레놀</Text>
+                  <Text style={{ fontSize: 18 }}>게보린</Text>
+                </View>
+              </View>
+              <View style={styles.morning}>
+                <View style={styles.TextList}>
+                  <Text style={{ fontSize: 25 }}>저녁</Text>
+                </View>
+                <View style={styles.TextList}>
+                  <Text style={{ fontSize: 18 }}>타이레놀</Text>
+                  <Text style={{ fontSize: 18 }}>게보린</Text>
+                </View>
+              </View>
+            </View>
             <View style={styles.buttonbox}>
               <TouchableOpacity style={styles.button}>
                 <Text style={styles.buttonText}>복용완료!</Text>
@@ -103,12 +131,30 @@ const styles = StyleSheet.create({
     margin: "5%",
     width: "90%",
     height: "20%",
-    padding: "2%",
+    padding: "5%",
     justifyContent: "center",
     alignItems: "center",
     borderWidth: "3%",
     borderColor: "#57C5B6",
     borderRadius: 10,
+  },
+  morning: {
+    borderColor: "black",
+    flexDirection: "row",
+    width: "100%",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    margin: "8%",
+    marginRight: "15%",
+    padding: "5%",
+  },
+  TextList: {
+    flex: 1,
+    flexDirection: "row",
+    margin: "3%",
+    padding: "2%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonbox: {
     width: "100%",
