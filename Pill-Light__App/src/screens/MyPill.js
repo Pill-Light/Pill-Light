@@ -7,7 +7,7 @@ const windowheight = Dimensions.get('window').height;
 
 const MyPill = ({ navigation }) => {
   const [data, setData] = useState([
-    {name: '사리돈', key: '1', image: '../../assets/타미노펜.jpg'},
+    {name: '사리돈', key: '1', image: '../../assets/사리돈.jpg'},
     {name: '써스펜', key: '2', image: '../../assets/써스펜.jpg'},
     {name: '아스피린', key: '3', image: '../../assets/아스피린.jpg'},
     {name: '인데놀정', key: '4', image: '../../assets/인데놀정.jpg'},
