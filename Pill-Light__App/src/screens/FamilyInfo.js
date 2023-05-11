@@ -8,8 +8,15 @@ const FamilyInfo = () =>{
         <View style = {styles.header}>
           <View style = {styles.row1}> 
             <AntDesign name="bars" size={40} marginTop= {30} color="gray" />
-            <AntDesign name="search1" size={40} marginTop= {30} color="gray" />
-            <Text style = {styles.guestName}>이성진님</Text>
+            <AntDesign name="search1" size={40} marginTop= {30} color="gray"  />
+            <Text style = {{
+               color:"white",
+               fontSize: 20,
+               fontWeight: 600,
+               marginTop: 40, 
+              }}>
+                이성진님
+            </Text>
           </View>
           <View style = {styles.row2}>
           <AntDesign name="team" size={50} color="white" />
@@ -18,7 +25,11 @@ const FamilyInfo = () =>{
         </View>
         <View style = {styles.body}>
           <View style = {styles.familyLine}>
-            <Text style = {styles.familyName}>이숙자 (32세) 자녀</Text>
+            <AntDesign name="pluscircleo" size={30} color="black" />
+            <Text style = {styles.familyName}>이숙자 (32세) 자녀</Text></View>
+          <View style = {styles.familyline2}>
+            <AntDesign name="pluscircleo" size={30} color="black" />
+            <Text style = {styles.addFamily}>가족 추가하기</Text>
           </View>
         </View>
         <View style = {styles.footer}>
@@ -67,14 +78,27 @@ const FamilyInfo = () =>{
     },
     familyLine:{
       flex: 0.18,
+      flexDirection: "row",
       backgroundColor: "#159895",
     },
-    FamilyName:{
+    familyName:{
       color: "white",
-      fontSize: 100,
+      fontSize: 20,
       fontWeight: 600,
+      flexDirection: "row",
       alignItems: "center",
-      marginTop: 40,
+      marginTop: 30, 
+    },
+    familyLine2:{
+      flex: 0.18,
+      flexDirection: "row",
+      backgroundColor: "white",
+    },
+    addFamily:{
+      color:"black",
+      fontSize: 20,
+      fontWeight: 600,
+      alignItems: "center", 
     },
     footer:{
       marginTop: 10,
