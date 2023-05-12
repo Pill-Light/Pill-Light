@@ -1,30 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
+import { PillData } from '../store/PillData';
 
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height;
 
 const MyPillDetail = ({ navigation }) => {
-  {/* 약 정보 관련 db 연동 */}
-  const pill = {
-    name: '사리돈',
-    image: '../../사리돈.jpg'
-  }
+
   return (
     <SafeAreaView style={styles.container}>
       {/* header */}
       <View style={styles.header}>
         <View style={styles.mainTextWrapper}>
-          <Text style={styles.mainText}>{pill.name}</Text>
+          <Text style={styles.mainText}>{PillData[0].name}</Text>
         </View>
       </View>
       {/* body */}
       <View style={styles.body}>
         <View style={styles.pillDetailContainer}>
           <ImageBackground style={styles.pillImage}
-          resizeMode=""
-          source={require("../../assets/써스펜.jpg")}>
+          resizeMode="stretch"
+          source={PillData[0].image}>
           </ImageBackground>
           <View style={styles.pillInfoWrapper}>
             <Text style={styles.pillInfoText}>어쩔티비 ㅋzgzgzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋㅋ</Text>
