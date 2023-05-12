@@ -1,154 +1,136 @@
 import { StatusBar } from 'expo-status-bar';
-import { Entypo } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
-import { Dimensions, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView, Image } from 'react-native';
-import React from 'react';
+import { Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { PillData } from '../store/PillData';
+const windowWidth = Dimensions.get('window').width;
+const windowheight = Dimensions.get('window').height;
 
-const MyPill = () => {
-    return(
-        <View style={styles.container}>
-            <View style={styles.top}>
-                <View style={styles.circle}>
-                <View style={{width:70,height:70,
-                    borderRadius:50,
-                    backgroundColor:"#57C5B6"}}>
-                        <Text style={{fontSize:50,textAlign:'center',marginTop:5,fontWeight:'bold'}}>3</Text>
-                </View>
-                </View>
-                <Text style={styles.context}>
-                개의 약이 인식되었습니다.
-                </Text>
+const MyPill = ({ navigation }) => {
+
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+    return (
+        <SafeAreaView style={styles.container}>
+          {/* header */}
+          <View style={styles.header}>
+            <View style={styles.mainTextWrapper}>
+              <Text style={styles.mainText}>복용 중인 약</Text>
             </View>
-            <View style={styles.middle}>
-                <View style =
-                    {{width:350,height:500,
-                    backgroundColor:"#57C5B6"}}>
-                        <ScrollView>
-                            <View style={styles.layout}>
-                            <View style={styles.pill}>
-                            </View>
-                            <View style={styles.inform}>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>약 이름</Text>
-                                <Text>
+          </View>
 
-                                </Text>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>효능-효과 :</Text>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>부작용 :</Text>
-                            </View>
-                            </View>
-                            <View style={styles.line1}>
-                            <View style={{width:500,height:2,
-                                backgroundColor:"#E0E0E0"}}>
-                            </View>
-                            <View style={styles.layout}>
-                                <View style={styles.pill}>
-                                </View>
-                                <View style={styles.inform}>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>약 이름</Text>
-                                <Text>
 
-                                </Text>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>효능-효과 :</Text>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>부작용 :</Text>
-                            </View>
-                            </View>
-                            </View>
-                            <View style={styles.line2}>
-                            <View style={{width:500,height:2,
-                                backgroundColor:"#E0E0E0"}}>
-                            </View>
-                            </View>
-                            <View style={styles.layout}>
-                                <View style={styles.pill}>
-                                </View>
-                                <View style={styles.inform}>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>약 이름</Text>
-                                <Text>
 
-                                </Text>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>효능-효과 :</Text>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>부작용 :</Text>
-                            </View>
-                            </View>
-                            <View style={styles.line3}>
-                            <View style={{width:500,height:2,
-                                backgroundColor:"#E0E0E0"}}>
-                            </View>
-                            </View>
-                        </ScrollView>
-                </View>
-            </View>
-            <View style={styles.bottom}>
-                <View style={styles.camera}>
-                <Entypo name="camera" size={75} color="black" />
-                </View>
-                <View style={styles.home}>
-                <Ionicons name="home" size={75} color="black" />
-                </View>
-            </View>
-        </View>
+          {/* body */}
+          <View style={styles.body}>
+
+            {/* carousel */}
+            <ScrollView
+              horizontal
+              pagingEnabled
+              contentContainerStyle={styles.scrollWrapper}
+              showsHorizontalScrollIndicator={false}>
+                {PillData.map(item =>{
+                  return (
+
+                    <View style={styles.slide} key={item.key}>
+
+                      {/* 시간이랑 스위치 들어가는 부분인 pillOption */}
+                      <View style={styles.pillOption}>
+                        <View style={styles.timeSet}>
+                          <Text>시간 설정하는 곳</Text>
+                        </View>
+                        <Switch
+                          style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }]}}
+                          onValueChange={toggleSwitch}
+                          value={isEnabled}
+                        />
+                      </View>
+                      
+                      {/* 촬영한 알약 이미지 들어가는 부분인 pillImageWrapper */}
+                      <TouchableOpacity
+                        key={PillData.key}
+                        onPress={() => navigation.navigate("MyPillDetail")}
+                        style={styles.pillImageWrapper}
+                      >
+                        <ImageBackground 
+                          style={styles.pillImage}
+                          resizeMode="stretch"
+                          source={item.image}>
+                        </ImageBackground>
+                      </TouchableOpacity>
+                    </View>
+
+                  )
+                })}
+            </ScrollView>
+          </View>
+
+
+
+          {/* footer */}
+          <View style={styles.footer}></View>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
   container: {
-  flex:1
-},
-top:{
-    flex:1,
-    backgroundColor:"#E0E0E0"
-},
-circle:{
-    marginTop:60,
-    marginLeft:35
-},
-context:{
-    marginTop:-50,
-    marginLeft:90,
-    fontSize:28,
-    fontWeight:'bold'
-},
-middle:{
-    flex:4,
-    justifyContent:"center",
-    alignItems:"center",
-},
-layout:{
-    flexDirection:'row'
-},
-pill:{
-    flex:1,
-    marginTop:15,
-    marginLeft:10,
-    width:200,height:115,
-    borderRadius:20,backgroundColor:"white"
-},
-inform:{
-    flex:2,
-    justifyContent:"center",
-    marginLeft:30
-},
-line1:{
-    marginTop:15
-},
-line2:{
-    marginTop:15
-},
-line3:{
-    marginTop:15
-},
-bottom:{
-    flex:1,
-    backgroundColor:"#E0E0E0"
-},
-camera:{
-    marginTop:25,
-    marginLeft:70
-},
-home:{
-    marginTop:-80,
-    marginLeft:240
-}
+    flex: 1,
+  },
+  header: {
+    flex: 1,
+    backgroundColor: "#57C5B6",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  mainTextWrapper: {
+  },
+  mainText: {
+    fontSize: "50%",
+    color: "white",
+  },
+
+  body: {
+    flex: 4,
+    backgroundColor: "blue",
+    alignContent: "center"
+  },
+  scrollWrapper: {
+    backgroundColor: "red",
+  },
+  slide: {
+    backgroundColor: "white",
+    width: windowWidth,
+  },
+  pillOption: {
+    height: "20%",
+    alignItems: "center",
+    justifyContent: "space-around",
+    flexDirection: "row",
+    marginLeft: "10%",
+    marginRight: "10%",
+  },
+  timeSet: {
+    backgroundColor: "skyblue",
+    height: 62,
+  },
+  pillImageWrapper: {
+    alignItems: "center",
+    height: "70%",
+    marginLeft: "10%",
+    marginRight: "10%",
+  },
+  pillImage: {
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+  },
+
+  footer: {
+    flex: 1,
+    backgroundColor: "#57C5B6",
+  },
 });
 
 export default MyPill
