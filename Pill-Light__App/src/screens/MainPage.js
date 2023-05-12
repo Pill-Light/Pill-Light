@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     margin: "3%",
   },
   buttonText: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "bold",
     color: "white",
   },
