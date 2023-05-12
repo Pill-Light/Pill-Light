@@ -1,12 +1,12 @@
-import { Image, TouchableOpacity } from "react-native";
+import { Image, SafeAreaView, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import SearchTabBar from "../components/Search/SearchTabBar";
 
 const MainPage = () => {
   return (
-    <>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
         <View style={styles.head}>
           <Image
@@ -54,6 +54,13 @@ const MainPage = () => {
               <TouchableOpacity style={styles.button}>
                 <Text style={styles.buttonText}>복용완료!</Text>
               </TouchableOpacity>
+              <TouchableOpacity style={styles.plus}>
+                <Text
+                  style={{ fontSize: 30, fontWeight: "bold", color: "#57C5B6" }}
+                >
+                  +
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -62,37 +69,36 @@ const MainPage = () => {
           <SearchTabBar />
         </View>
       </View>
-    </>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
   head: {
-    flex: 1.5,
+    flex: 1,
     borderBottomWidth: "4%",
     borderBottomColor: "#57C5B6",
     flexDirection: "row",
   },
   logo: {
-    margin: "8%",
-    marginTop: "15%",
-    padding: "2%",
+    margin: "3%",
+    padding: "3%",
     flex: 1,
     width: "30%",
-    height: "50%",
+    height: "80%",
   },
   inputText: {
     flex: 2.1,
     fontSize: 18,
     width: "30%",
-    height: "30%",
+    height: "40%",
     backgroundColor: "#DCDCDC",
     alignSelf: "flex-end",
     padding: "2%",
-    margin: "3%",
+    margin: "5%",
     marginBottom: "5%",
     borderRadius: 10,
     marginVertical: "3%",
-    marginTop: "18%",
+    marginTop: "20%",
   },
   body: {
     flex: 6,
@@ -145,22 +151,37 @@ const styles = StyleSheet.create({
   buttonbox: {
     width: "100%",
     flex: 1,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   },
 
   button: {
+    flex: "3",
     backgroundColor: "#57C5B6",
-    width: "90%",
+    width: "60%",
     height: 60,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
+    margin: "3%",
   },
   buttonText: {
     fontSize: 24,
     fontWeight: "bold",
     color: "white",
+  },
+  plus: {
+    flex: "1",
+    backgroundColor: "white",
+    width: "60%",
+    height: 60,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    borderColor: "#57C5B6",
+    borderWidth: "3%",
+    margin: "3%",
   },
   footer: {
     flex: 1.1,
