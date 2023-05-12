@@ -1,17 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
-
+import { PillData } from '../store/PillData';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height;
 
 const MyPill = ({ navigation }) => {
-  const [data, setData] = useState([
-    {name: '사리돈', key: '1', image: '../../assets/사리돈.jpg'},
-    {name: '써스펜', key: '2', image: '../../assets/써스펜.jpg'},
-    {name: '아스피린', key: '3', image: '../../assets/아스피린.jpg'},
-    {name: '인데놀정', key: '4', image: '../../assets/인데놀정.jpg'},
-  ])
 
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
@@ -36,7 +30,7 @@ const MyPill = ({ navigation }) => {
               pagingEnabled
               contentContainerStyle={styles.scrollWrapper}
               showsHorizontalScrollIndicator={false}>
-                {data.map(item =>{
+                {PillData.map(item =>{
                   return (
 
                     <View style={styles.slide} key={item.key}>
@@ -55,13 +49,14 @@ const MyPill = ({ navigation }) => {
                       
                       {/* 촬영한 알약 이미지 들어가는 부분인 pillImageWrapper */}
                       <TouchableOpacity
+                        key={PillData.key}
                         onPress={() => navigation.navigate("MyPillDetail")}
                         style={styles.pillImageWrapper}
                       >
                         <ImageBackground 
                           style={styles.pillImage}
                           resizeMode="stretch"
-                          source={require('../../assets/타미노펜.jpg')}>
+                          source={item.image}>
                         </ImageBackground>
                       </TouchableOpacity>
                     </View>
