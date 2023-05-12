@@ -2,6 +2,7 @@ import { Image, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import SearchTabBar from "../components/Search/SearchTabBar";
 
 const MainPage = () => {
   return (
@@ -27,7 +28,7 @@ const MainPage = () => {
                 </View>
                 <View style={styles.TextList}>
                   <Text style={{ fontSize: 18 }}>타이레놀</Text>
-                  <Text style={{ fontSize: 18 }}>게보린</Text>
+                  <Text style={{ fontSize: 18 }}></Text>
                 </View>
               </View>
               <View style={styles.morning}>
@@ -36,7 +37,7 @@ const MainPage = () => {
                 </View>
                 <View style={styles.TextList}>
                   <Text style={{ fontSize: 18 }}>타이레놀</Text>
-                  <Text style={{ fontSize: 18 }}>게보린</Text>
+                  <Text style={{ fontSize: 18 }}></Text>
                 </View>
               </View>
               <View style={styles.morning}>
@@ -45,7 +46,7 @@ const MainPage = () => {
                 </View>
                 <View style={styles.TextList}>
                   <Text style={{ fontSize: 18 }}>타이레놀</Text>
-                  <Text style={{ fontSize: 18 }}>게보린</Text>
+                  <Text style={{ fontSize: 18 }}></Text>
                 </View>
               </View>
             </View>
@@ -58,22 +59,7 @@ const MainPage = () => {
         </View>
 
         <View style={styles.footer}>
-          <TouchableOpacity style={styles.camera}>
-            <FontAwesome
-              style={styles.pic}
-              name="camera"
-              size={80}
-              color="black"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.mypage}>
-            <FontAwesome
-              style={styles.pic}
-              name="users"
-              size={75}
-              color="#57C5B6"
-            />
-          </TouchableOpacity>
+          <SearchTabBar />
         </View>
       </View>
     </>
@@ -83,7 +69,7 @@ const styles = StyleSheet.create({
   head: {
     flex: 1.5,
     borderBottomWidth: "4%",
-    borderBottomColor: "grey",
+    borderBottomColor: "#57C5B6",
     flexDirection: "row",
   },
   logo: {
@@ -177,10 +163,13 @@ const styles = StyleSheet.create({
     color: "white",
   },
   footer: {
-    flex: 1,
-    borderTopWidth: "4%",
-    borderTopColor: "grey",
+    flex: 1.1,
+    backgroundColor: "#fff",
     flexDirection: "row",
+    paddingBottom: "7%",
+    paddingTop: "5%",
+    borderTopWidth: "4%",
+    borderColor: "#57C5B6",
   },
   camera: {
     flex: 1,
