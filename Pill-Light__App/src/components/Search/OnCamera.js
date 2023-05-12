@@ -1,9 +1,16 @@
 import { Camera, CameraType } from "expo-camera";
 import { useState } from "react";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Button,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
-const OnCamera = () => {
+const OnCamera = ({ navigation }) => {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
 
@@ -25,10 +32,16 @@ const OnCamera = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.topBar}>
-        <TouchableOpacity onPress={this.setSnap}>
-          <Ionicons name="ios-chevron-back-sharp" size={70} color="#57C5B6" />
+        <TouchableOpacity>
+          <Ionicons
+            name="ios-chevron-back-sharp"
+            size={70}
+            color="#57C5B6"
+            style={styles.backButton}
+            onPress={() => navigation.navigate("SearchPills")}
+          />
         </TouchableOpacity>
         <Text style={styles.text}>알약 이미지 검색</Text>
       </View>
@@ -39,7 +52,7 @@ const OnCamera = () => {
           </TouchableOpacity>
         </View>
       </Camera>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -47,6 +60,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
+    backgroundColor: "#fff",
   },
   topBar: {
     flex: 0.1,
@@ -56,15 +70,16 @@ const styles = StyleSheet.create({
     flex: 0.8,
     flexDirection: "column-reverse",
   },
+  backButton: {
+    marginBottom: "5%",
+  },
   text: {
     fontSize: 25,
     fontWeight: 800,
     color: "#57C5B6",
-    marginTop: "5.5%",
     marginLeft: "11%",
   },
   buttonContainer: {
-    flex: 0.2,
     width: "100%",
     backgroundColor: "#fff",
     justifyContent: "center",
@@ -72,8 +87,9 @@ const styles = StyleSheet.create({
   },
   snapButton: {
     color: "#57C5B6",
-    marginTop: "7%",
     padding: "5%",
+    marginTop: "4%",
+    marginBottom: "-4%",
     borderRadius: 50,
     borderWidth: 5,
     borderColor: "#57C5B6",
