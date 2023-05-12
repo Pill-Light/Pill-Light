@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, TextInput } from "react-native";
 import { AntDesign } from '@expo/vector-icons'; 
 import SearchTabBar from "../components/Search/SearchTabBar";
 import SearchResult from "../components/Search/SearchResult";
@@ -8,32 +8,23 @@ import { FontAwesome } from "@expo/vector-icons";
 
 const FamilyInfo = () =>{
   return(
+    <SafeAreaView style={{ flex: 1 }}>
       <View style = {styles.container}>
-        <View style = {styles.header}>
-          <View style = {styles.row1}> 
+        <View style = {styles.header}> 
+          <View style={styles.searchBar}>
+            <Text style = {styles.guestName}>이성진님     (68세)</Text>
             <TouchableOpacity style={styles.searchButton}>
-              <FontAwesome name="search" size={40} marginTop={30} color="#57C5B6" />
+              <FontAwesome name="search" size={50} color="#57C5B6" />
             </TouchableOpacity>
-            <Text style = {{
-               color:"black",
-               fontSize: 20,
-               fontWeight: "bold",
-               marginTop: 40, 
-              }}>
-                이성진님              68세(여)
-            </Text>
-          </View>
-          <View style = {styles.row2}>
-          <AntDesign name="team" size={40} color="#57C5B6" />
-          <AntDesign name="idcard" size={40} color="gray" />
           </View>
         </View>
+      </View>
         <View style = {styles.body}>
           <View style = {styles.familyLine}>
-            <Text style = {styles.familyName}>이숙자 (32세) 자녀</Text></View>
+            <Text style = {styles.familyName}>이숙자(32세)     자녀</Text></View>
             <View style={styles.subContainer}>
                     <TouchableOpacity
-                        onPress={() => navigation.navigate("Login")}
+                        onPress={() => navigation.navigate("")}
                         style={styles.addBtn}
                     >
                         <Text style={styles.add}>가족추가하기</Text>
@@ -43,7 +34,7 @@ const FamilyInfo = () =>{
         <View style={styles.footer}>
           <SearchTabBar />
         </View>
-      </View>
+      </SafeAreaView>
     );
 
   };
@@ -55,25 +46,47 @@ const FamilyInfo = () =>{
     header:{
       flex: 2,
       backgroundColor: "white",
-    },
-    row1:{
-      flex: 1,
       flexDirection: "row",
-      marginTop: 20,
     },
+    searchBar: {
+      flex: 1,
+      height: "70%",
+      width: "100%",
+      justifyContent: "center",
+      alignItems: "center",
+      flexDirection: "row",
+    },
+    inputText: {
+      fontSize: 18,
+      width: "70%",
+      backgroundColor: "#fafafa",
+      padding: "4%",
+      margin: "3%",
+      borderRadius: 10,
+      marginVertical: "3%",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
     searchButton: {
       alignSelf: "flex-end",
       marginBottom: "4%",
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
-        height: 2,
-      }},
+        height: 2,  
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 3.84,
+    },
+  },
     guestName:{
       color:"black",
-      fontSize: 20,
+      fontSize: 25,
       fontWeight: 600,
-      marginTop: 40,
+      marginRight: "10%",
+      alignItems: "center",
     },
     guestInFo:{
       color:"white",
@@ -83,17 +96,12 @@ const FamilyInfo = () =>{
       marginLeft: 10,
       marginTop: 10,
     },
-    row2:{
-      flex:1,
-      flexDirection: "row",
-      marginTop: 20,
-    },
     body: {
       flex: 6,
       backgroundColor: "white", 
     },
     familyLine:{
-      flex: 0.18,
+      flex: 0.25,
       flexDirection: "row",
       backgroundColor: "#159895",
     },
@@ -103,12 +111,7 @@ const FamilyInfo = () =>{
       fontWeight: 600,
       flexDirection: "row",
       alignItems: "center",
-      marginTop: 30, 
-    },
-    familyLine2:{
-      flex: 0.18,
-      flexDirection: "row",
-      backgroundColor: "white",
+      marginTop: 30,
     },
     subContainer: {
       marginTop: "15%",
