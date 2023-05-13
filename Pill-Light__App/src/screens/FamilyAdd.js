@@ -1,9 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground } from "react-native";
+import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground } from "react-native";
 import SearchTabBar from "../components/Search/SearchTabBar";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from '@expo/vector-icons';
+
 
 const FamilyAdd = () =>{
   return(
@@ -14,7 +15,7 @@ const FamilyAdd = () =>{
             <TouchableOpacity style={styles.backButton}>
               <MaterialIcons name="arrow-back" size={40} color="#159895" />
             </TouchableOpacity>
-            <Text style = {styles.guestName}>이성진님           (68세)</Text>
+            <Text style = {styles.guestName}>이성진님                   (68세)</Text>
             <TouchableOpacity style={styles.searchButton}>
               <FontAwesome name="search" size={50} color="#57C5B6" />
             </TouchableOpacity>
@@ -22,11 +23,37 @@ const FamilyAdd = () =>{
         </View>
       </View>
         <View style = {styles.body}>
-            <View style={styles.subContainer}>
+            <View>
+                    <TextInput
+                        placeholder='이름'
+                        placeholderTextColor="lighterGrey"
+                        style={styles.registerInput}
+                    >
+                    </TextInput>
+                    <TextInput
+                        placeholder='나이'
+                        placeholderTextColor="lighterGrey"
+                        style={styles.registerInput}
+                        secureTextEntry={true}
+                    >
+                    </TextInput>
+                    <TextInput
+                        placeholder='전화번호'
+                        placeholderTextColor="lighterGrey"
+                        style={styles.registerInput}
+                        secureTextEntry={true}
+                    >
+                    </TextInput>
+                </View>
+                <View style={{
+                    marginTop: "%",
+                }}>
+                </View>
               <ImageBackground
               style={{
                 height: 200,
                 width: 200,
+                marginLeft: "25%",
              }}
               resizeMode="contain"
               source={require("../../assets/메인로고.png")}
@@ -37,7 +64,6 @@ const FamilyAdd = () =>{
               ><Text style={styles.saveInfo}>저장하기</Text>
               </TouchableOpacity>
           </View>
-        </View>
         <View style={styles.footer}>
           <SearchTabBar />
         </View>
@@ -81,26 +107,29 @@ const FamilyAdd = () =>{
       color:"black",
       fontSize: 23,
       fontWeight: 600,
-      marginLeft: "2%",
-      marginRight: "5%",
+      alignItems: "center",
+      marginLeft: "5%",
+      marginRight: "10%",
     },
     body: {
       flex: 6,
       backgroundColor: "white", 
     },
-    subContainer: {
-      marginTop: "15%",
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-    },
+    registerInput: {
+      fontSize: 18,
+      width: 400,
+      backgroundColor: "#fafafa",
+      padding: "4%",
+      margin: "5%",
+      marginVertical: "1%",
+  },
     saveBtn: {
       backgroundColor: "#159895",
       width: "100%",
       height: 50,
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 100,
+      marginTop: "30%",
       borderRadius: 10,
     },
     saveInfo: {

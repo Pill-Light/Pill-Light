@@ -14,7 +14,7 @@ const FamilyInfo = () =>{
             <TouchableOpacity style={styles.backButton}>
               <MaterialIcons name="arrow-back" size={40} color="#159895" />
             </TouchableOpacity>
-            <Text style = {styles.guestName}>이성진님           (68세)</Text>
+            <Text style = {styles.guestName}>이성진님                     (68세)</Text>
             <TouchableOpacity style={styles.searchButton}>
               <FontAwesome name="search" size={50} color="#57C5B6" />
             </TouchableOpacity>
@@ -23,7 +23,7 @@ const FamilyInfo = () =>{
       </View>
         <View style = {styles.body}>
           <View style = {styles.familyLine}>
-            <Text style = {styles.familyName}>이숙자(32세)     자녀</Text>
+            <Text style = {styles.familyName}>이숙자(32세)         자녀</Text>
             <TouchableOpacity style={styles.minusButton}>
              <FontAwesome name="minus-square" size={40} color="#e6e9ed" />
             </TouchableOpacity>
@@ -87,7 +87,7 @@ const FamilyInfo = () =>{
       color:"black",
       fontSize: 23,
       fontWeight: 600,
-      marginLeft: "2%",
+      marginLeft: "5%",
       marginRight: "5%",
     },
     body: {
@@ -101,17 +101,17 @@ const FamilyInfo = () =>{
     },
     familyName:{
       color: "white",
-      fontSize: 20,
+      fontSize: 25,
       fontWeight: "bold",
       flexDirection: "row",
       alignItems: "center",
-      marginTop: 30,
+      marginTop: "9%",
       marginLeft: "5%",
     },
     minusButton: {
       alignSelf: "flex-end",
       marginBottom: "7%",
-      marginLeft: "30%",
+      marginLeft: "26%",
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -130,7 +130,7 @@ const FamilyInfo = () =>{
       height: 50,
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 100,
+      marginTop: "30%",
       borderRadius: 10,
     },
     add: {
