@@ -7,7 +7,7 @@ const SearchResult = () => {
       <TouchableOpacity style={styles.searchResult}>
         <Image
           style={styles.pillsImage}
-          source={require("../../../assets/타이레놀.jpg")}
+          source={require("../../../assets/타이레놀.png")}
         ></Image>
         <View style={styles.pillName}>
           <Text style={styles.font}>타이레놀</Text>
@@ -16,7 +16,7 @@ const SearchResult = () => {
       <TouchableOpacity style={styles.searchResult}>
         <Image
           style={styles.pillsImage}
-          source={require("../../../assets/사리돈.jpg")}
+          source={require("../../../assets/사리돈.png")}
         ></Image>
         <View style={styles.pillName}>
           <Text style={styles.font}>사리돈</Text>
@@ -25,7 +25,7 @@ const SearchResult = () => {
       <TouchableOpacity style={styles.searchResult}>
         <Image
           style={styles.pillsImage}
-          source={require("../../../assets/타미노펜.jpg")}
+          source={require("../../../assets/타미노펜.png")}
         ></Image>
         <View style={styles.pillName}>
           <Text style={styles.font}>타미노펜</Text>
@@ -34,7 +34,7 @@ const SearchResult = () => {
       <TouchableOpacity style={styles.searchResult}>
         <Image
           style={styles.pillsImage}
-          source={require("../../../assets/써스펜.jpg")}
+          source={require("../../../assets/써스펜.png")}
         ></Image>
         <View style={styles.pillName}>
           <Text style={styles.font}>써스펜</Text>
@@ -43,7 +43,7 @@ const SearchResult = () => {
       <TouchableOpacity style={styles.searchResult}>
         <Image
           style={styles.pillsImage}
-          source={require("../../../assets/아스피린.jpg")}
+          source={require("../../../assets/아스피린.png")}
         ></Image>
         <View style={styles.pillName}>
           <Text style={styles.font}>아스피린</Text>
@@ -52,7 +52,7 @@ const SearchResult = () => {
       <TouchableOpacity style={styles.searchResult}>
         <Image
           style={styles.pillsImage}
-          source={require("../../../assets/인데놀정.jpg")}
+          source={require("../../../assets/인데놀정.png")}
         ></Image>
         <View style={styles.pillName}>
           <Text style={styles.font}>인데놀정</Text>

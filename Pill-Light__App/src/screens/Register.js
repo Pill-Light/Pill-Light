@@ -1,5 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { Dimensions, ImageBackground, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, Button, View } from 'react-native';
+import {
+    Dimensions,
+    SafeAreaView,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+    ScrollView,
+    KeyboardAvoidingView,
+    Platform
+} from 'react-native';
 import React from 'react';
 import { useState } from 'react';
 
@@ -18,178 +29,191 @@ const Register = () => {
     };
 
     return (
-        <SafeAreaView>
-            <View>
-                <View style={styles.registerTitleText}>
-                    <Text style={{
-                        fontSize: 44,
-                        fontWeight: "bold",
-                        marginBottom: "1%"
-                    }}
-                    >
-                        회원가입
-                    </Text>
-                </View>
-                <View>
-                    <TextInput
-                        placeholder='아이디 입력'
-                        placeholderTextColor="lighterGrey"
-                        style={styles.registerInput}
-                    >
-                    </TextInput>
-                    <TextInput
-                        placeholder='비밀번호 입력'
-                        placeholderTextColor="lighterGrey"
-                        style={styles.registerInput}
-                        secureTextEntry={true}
-                    >
-                    </TextInput>
-                    <TextInput
-                        placeholder='비밀번호 확인'
-                        placeholderTextColor="lighterGrey"
-                        style={styles.registerInput}
-                        secureTextEntry={true}
-                    >
-                    </TextInput>
-                </View>
-                <View style={{
-                    marginTop: "6%",
-                }}>
-                    <TextInput
-                        placeholder='이름 입력'
-                        placeholderTextColor="lighterGrey"
-                        style={styles.registerInput}
-                    >
-                    </TextInput>
-                </View>
-                <View style={{
-                    marginTop: "4%",
-                    }}
-                >
-                    <Text
-                        style={{
-                            marginLeft: "6%",
-                            fontSize: 18,
-                        }}
-                    >
-                        성별
-                    </Text>
-
-                    <View
-                        style={{
-                            flexDirection: "row",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            paddingVertical: "2%",
-                        }}
-                    >
-                        <TouchableOpacity
-                            onPress={handleButton1Press}
-                            style={{
-                                backgroundColor: button1Color,
-                                width: "45%",
-                                height: 30,
-                                justifyContent: "center",
-                                alignItems: "center",
-                                borderTopLeftRadius: 10,
-                                borderBottomLeftRadius: 10,
+        <SafeAreaView style={styles.safeArea}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={styles.avoid}
+            >
+                <ScrollView>
+                    <View>
+                        <View style={styles.registerTitleText}>
+                            <Text style={{
+                                fontSize: 44,
+                                fontWeight: "bold",
+                                marginBottom: "1%"
                             }}
-                        >
-                            <Text>남자</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={handleButton2Press}
-                            style={{
-                                backgroundColor: button2Color,
-                                width: "45%",
-                                height: 30,
-                                justifyContent: "center",
-                                alignItems: "center",
-                                borderTopRightRadius: 10,
-                                borderBottomRightRadius: 10,
-                            }}
-                        >
-                            <Text >여자</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View>
-                    <Text
-                        style={{
+                            >
+                                회원가입
+                            </Text>
+                        </View>
+                        <View>
+                            <TextInput
+                                placeholder='아이디 입력'
+                                placeholderTextColor="lighterGrey"
+                                style={styles.registerInput}
+                            >
+                            </TextInput>
+                            <TextInput
+                                placeholder='비밀번호 입력'
+                                placeholderTextColor="lighterGrey"
+                                style={styles.registerInput}
+                                secureTextEntry={true}
+                            >
+                            </TextInput>
+                            <TextInput
+                                placeholder='비밀번호 확인'
+                                placeholderTextColor="lighterGrey"
+                                style={styles.registerInput}
+                                secureTextEntry={true}
+                            >
+                            </TextInput>
+                        </View>
+                        <View style={{
+                            marginTop: "6%",
+                        }}>
+                            <TextInput
+                                placeholder='이름 입력'
+                                placeholderTextColor="lighterGrey"
+                                style={styles.registerInput}
+                            >
+                            </TextInput>
+                        </View>
+                        <View style={{
                             marginTop: "4%",
-                            marginLeft: "6%",
-                            fontSize: 18,
                         }}
-                    >
-                        생년월일
-                    </Text>
-                    <View
-                        style={{
-                            flexDirection: "row",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            paddingVertical: "2%",
-                        }}
-                    >
-                        <TextInput
-                            placeholder='출생년도'
-                            placeholderTextColor="lighterGrey"
-                            style={{
-                                fontSize: 18,
-                                width: "35%",
-                                backgroundColor: "#fafafa",
-                                padding: "4%",
-                                margin: "1%",
-                                borderRadius: 10,
-                                marginVertical: "1%",
-                            }}
                         >
-                        </TextInput>
-                        <TextInput
-                            placeholder='월'
-                            placeholderTextColor="lighterGrey"
-                            style={{
-                                fontSize: 18,
-                                width: "25%",
-                                backgroundColor: "#fafafa",
-                                padding: "4%",
-                                margin: "1%",
-                                borderRadius: 10,
-                                marginVertical: "1%",
-                            }}
-                        >
-                        </TextInput>
-                        <TextInput
-                            placeholder='일'
-                            placeholderTextColor="lighterGrey"
-                            style={{
-                                fontSize: 18,
-                                width: "25%",
-                                backgroundColor: "#fafafa",
-                                padding: "4%",
-                                margin: "1%",
-                                borderRadius: 10,
-                                marginVertical: "1%",
-                            }}
-                        >
-                        </TextInput>
+                            <Text
+                                style={{
+                                    marginLeft: "6%",
+                                    fontSize: 18,
+                                }}
+                            >
+                                성별
+                            </Text>
+
+                            <View
+                                style={{
+                                    flexDirection: "row",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    paddingVertical: "2%",
+                                }}
+                            >
+                                <TouchableOpacity
+                                    onPress={handleButton1Press}
+                                    style={{
+                                        backgroundColor: button1Color,
+                                        width: "45%",
+                                        height: 30,
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        borderTopLeftRadius: 10,
+                                        borderBottomLeftRadius: 10,
+                                    }}
+                                >
+                                    <Text>남자</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={handleButton2Press}
+                                    style={{
+                                        backgroundColor: button2Color,
+                                        width: "45%",
+                                        height: 30,
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        borderTopRightRadius: 10,
+                                        borderBottomRightRadius: 10,
+                                    }}
+                                >
+                                    <Text >여자</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View>
+                            <Text
+                                style={{
+                                    marginTop: "4%",
+                                    marginLeft: "6%",
+                                    fontSize: 18,
+                                }}
+                            >
+                                생년월일
+                            </Text>
+                            <View
+                                style={{
+                                    flexDirection: "row",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    paddingVertical: "2%",
+                                }}
+                            >
+                                <TextInput
+                                    placeholder='출생년도'
+                                    placeholderTextColor="lighterGrey"
+                                    style={{
+                                        fontSize: 18,
+                                        width: "35%",
+                                        backgroundColor: "#fafafa",
+                                        padding: "4%",
+                                        margin: "1%",
+                                        borderRadius: 10,
+                                        marginVertical: "1%",
+                                    }}
+                                >
+                                </TextInput>
+                                <TextInput
+                                    placeholder='월'
+                                    placeholderTextColor="lighterGrey"
+                                    style={{
+                                        fontSize: 18,
+                                        width: "25%",
+                                        backgroundColor: "#fafafa",
+                                        padding: "4%",
+                                        margin: "1%",
+                                        borderRadius: 10,
+                                        marginVertical: "1%",
+                                    }}
+                                >
+                                </TextInput>
+                                <TextInput
+                                    placeholder='일'
+                                    placeholderTextColor="lighterGrey"
+                                    style={{
+                                        fontSize: 18,
+                                        width: "25%",
+                                        backgroundColor: "#fafafa",
+                                        padding: "4%",
+                                        margin: "1%",
+                                        borderRadius: 10,
+                                        marginVertical: "1%",
+                                    }}
+                                >
+                                </TextInput>
+                            </View>
+                        </View>
+                        <View style={styles.subContainer}>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate("Login")}
+                                style={styles.logintBtn}
+                            >
+                                <Text style={styles.login}>회원가입 하기</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.subContainer}>
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate("Login")}
-                        style={styles.logintBtn}
-                    >
-                        <Text style={styles.login}>회원가입 하기</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-
+    safeArea: {
+        backgroundColor: "white",
+        flex: 1
+    },
+    avoid: {
+        flex: 1,
+    },
     subContainer: {
         marginTop: "15%",
         flex: 1,

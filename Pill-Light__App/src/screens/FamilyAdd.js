@@ -5,7 +5,7 @@ import SearchTabBar from "../components/Search/SearchTabBar";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from '@expo/vector-icons';
 
-const FamilyInfo = () =>{
+const FamilyAdd = () =>{
   return(
     <SafeAreaView style={{ flex: 1 }}>
       <View style = {styles.container}>
@@ -22,25 +22,19 @@ const FamilyInfo = () =>{
         </View>
       </View>
         <View style = {styles.body}>
-          <View style = {styles.familyLine}>
-            <Text style = {styles.familyName}>이숙자(32세)     자녀</Text>
-            <TouchableOpacity style={styles.minusButton}>
-             <FontAwesome name="minus-square" size={40} color="#e6e9ed" />
-            </TouchableOpacity>
-          </View>
             <View style={styles.subContainer}>
-            <ImageBackground
+              <ImageBackground
               style={{
-              height: 200,
-              width: 200,
+                height: 200,
+                width: 200,
              }}
               resizeMode="contain"
               source={require("../../assets/메인로고.png")}
               />
               <TouchableOpacity
                 onPress={() => navigation.navigate("")}
-                style={styles.addBtn}
-              ><Text style={styles.add}>가족추가하기</Text>
+                style={styles.saveBtn}
+              ><Text style={styles.saveInfo}>저장하기</Text>
               </TouchableOpacity>
           </View>
         </View>
@@ -94,37 +88,13 @@ const FamilyInfo = () =>{
       flex: 6,
       backgroundColor: "white", 
     },
-    familyLine:{
-      flex: 0.25,
-      flexDirection: "row",
-      backgroundColor: "#57C5B6",
-    },
-    familyName:{
-      color: "white",
-      fontSize: 20,
-      fontWeight: "bold",
-      flexDirection: "row",
-      alignItems: "center",
-      marginTop: 30,
-      marginLeft: "5%",
-    },
-    minusButton: {
-      alignSelf: "flex-end",
-      marginBottom: "7%",
-      marginLeft: "30%",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2,  
-      }
-    },
     subContainer: {
       marginTop: "15%",
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
     },
-    addBtn: {
+    saveBtn: {
       backgroundColor: "#159895",
       width: "100%",
       height: 50,
@@ -133,7 +103,7 @@ const FamilyInfo = () =>{
       marginTop: 100,
       borderRadius: 10,
     },
-    add: {
+    saveInfo: {
       fontSize: 24,
       fontWeight: "bold",
       color: "white",
@@ -148,4 +118,4 @@ const FamilyInfo = () =>{
       borderColor: "#57C5B6",
     },
   });
-  export default FamilyInfo;
+  export default FamilyAdd;
