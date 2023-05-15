@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     signBtn: {
-        marginTop: "6%",
+        marginTop: "20%",
         backgroundColor: "#fafafa",
         width: "90%",
         height: 60,
