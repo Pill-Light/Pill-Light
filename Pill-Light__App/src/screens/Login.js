@@ -1,54 +1,68 @@
 import { StatusBar } from 'expo-status-bar';
-import { Dimensions, ImageBackground, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import React from 'react';
 
 const Login = () => {
     return (
-        <SafeAreaView>
-            <View>
-                <View style={styles.titleText}>
-                    <Text style={{
-                        fontSize: 44,
-                        fontWeight: "bold",
-                        marginBottom: "2%"
+        <SafeAreaView style={styles.safeArea}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={styles.avoid}
+            >
+                <ScrollView>
+                    <View>
+                        <View style={styles.titleText}>
+                            <Text style={{
+                                fontSize: 44,
+                                fontWeight: "bold",
+                                marginBottom: "2%"
+                            }}
+                            >
+                                로그인
+                            </Text>
+                        </View>
+                        <View style={{
+                            marginVertical: "10%",
                         }}
-                    >
-                        로그인
-                    </Text>
-                </View>
-                <View style={{
-                    marginVertical: "10%",
-                    }}
-                >
-                    <TextInput
-                        placeholder='Enter id'
-                        placeholderTextColor= "lighterGrey"
-                        style={styles.textInput}   
-                    >        
-                    </TextInput>
-                    <TextInput
-                        placeholder='Enter password'
-                        placeholderTextColor="lighterGrey"
-                        style={styles.textInput}
-                        secureTextEntry={true}
+                        >
+                            <TextInput
+                                placeholder='Enter id'
+                                placeholderTextColor="lighterGrey"
+                                style={styles.textInput}
+                            >
+                            </TextInput>
+                            <TextInput
+                                placeholder='Enter password'
+                                placeholderTextColor="lighterGrey"
+                                style={styles.textInput}
+                                secureTextEntry={true}
 
-                    >
-                    </TextInput>
-                </View>
-                <View style={styles.subContainer}>
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate("Login")}
-                        style={styles.logintBtn}
-                    >
-                        <Text style={styles.login}>로그인 하기</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+                            >
+                            </TextInput>
+                        </View>
+                        <View style={styles.subContainer}>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate("Login")}
+                                style={styles.logintBtn}
+                            >
+                                <Text style={styles.login}>로그인 하기</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
+    safeArea: {
+        backgroundColor: "white",
+        flex: 1
+    },
+    avoid: {
+        flex: 1,
+    },
     container: {
         marginTop: "30%",
         flex: 1,
