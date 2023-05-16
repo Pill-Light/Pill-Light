@@ -1,23 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
-
+import { PillData } from '../store/PillData';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height;
 
-const MyPill = () => {
-  const [data, setData] = useState([
-    {name: '사리돈', key: '1', image: '../../assets/타미노펜.jpg'},
-    {name: '써스펜', key: '2', image: '../../assets/써스펜.jpg'},
-    {name: '아스피린', key: '3', image: '../../assets/아스피린.jpg'},
-    {name: '인데놀정', key: '4', image: '../../assets/인데놀정.jpg'},
-  ])
+const MyPill = ({ navigation }) => {
 
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
           {/* header */}
           <View style={styles.header}>
             <View style={styles.mainTextWrapper}>
@@ -36,7 +30,7 @@ const MyPill = () => {
               pagingEnabled
               contentContainerStyle={styles.scrollWrapper}
               showsHorizontalScrollIndicator={false}>
-                {data.map(item =>{
+                {PillData.map(item =>{
                   return (
 
                     <View style={styles.slide} key={item.key}>
@@ -47,18 +41,24 @@ const MyPill = () => {
                           <Text>시간 설정하는 곳</Text>
                         </View>
                         <Switch
-                          style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }], marginTop: "20%", marginRight: "8%" }}
+                          style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }]}}
                           onValueChange={toggleSwitch}
                           value={isEnabled}
                         />
                       </View>
                       
                       {/* 촬영한 알약 이미지 들어가는 부분인 pillImageWrapper */}
-                      <View style={styles.pillImageWrapper}>
-                        <Image style={styles.pillImage} source={require('../../assets/타미노펜.jpg')}>
-                          
-                        </Image>
-                      </View>
+                      <TouchableOpacity
+                        key={PillData.key}
+                        onPress={() => navigation.navigate("MyPillDetail")}
+                        style={styles.pillImageWrapper}
+                      >
+                        <ImageBackground 
+                          style={styles.pillImage}
+                          resizeMode="stretch"
+                          source={item.image}>
+                        </ImageBackground>
+                      </TouchableOpacity>
                     </View>
 
                   )
@@ -70,7 +70,7 @@ const MyPill = () => {
 
           {/* footer */}
           <View style={styles.footer}></View>
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -82,18 +82,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#57C5B6",
     alignItems: "center",
+    justifyContent: "center",
   },
   mainTextWrapper: {
   },
   mainText: {
     fontSize: "50%",
-    marginTop: "15%",
     color: "white",
   },
 
   body: {
     flex: 4,
     backgroundColor: "blue",
+    alignContent: "center"
   },
   scrollWrapper: {
     backgroundColor: "red",
@@ -104,27 +105,26 @@ const styles = StyleSheet.create({
   },
   pillOption: {
     height: "20%",
-    justifyContent: "space-between",
+    alignItems: "center",
+    justifyContent: "space-around",
     flexDirection: "row",
     marginLeft: "10%",
     marginRight: "10%",
   },
   timeSet: {
     backgroundColor: "skyblue",
-    height: "50%",
-    marginTop: "15%",
-  },
-  switch: {
+    height: 62,
   },
   pillImageWrapper: {
-    width: "80%",
-    height: "65%",
-    margin: "10%",
-    backgroundColor: "green",
+    alignItems: "center",
+    height: "70%",
+    marginLeft: "10%",
+    marginRight: "10%",
   },
   pillImage: {
     width: "100%",
     height: "100%",
+    alignItems: "center",
   },
 
   footer: {

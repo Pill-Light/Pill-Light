@@ -1,11 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground } from "react-native";
+import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground } from "react-native";
 import SearchTabBar from "../components/Search/SearchTabBar";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from '@expo/vector-icons';
 
-const FamilyInfo = () =>{
+
+const FamilyAdd = () =>{
   return(
     <SafeAreaView style={{ flex: 1 }}>
       <View style = {styles.container}>
@@ -14,7 +15,7 @@ const FamilyInfo = () =>{
             <TouchableOpacity style={styles.backButton}>
               <MaterialIcons name="arrow-back" size={40} color="#159895" />
             </TouchableOpacity>
-            <Text style = {styles.guestName}>이성진님                     (68세)</Text>
+            <Text style = {styles.guestName}>이성진님                   (68세)</Text>
             <TouchableOpacity style={styles.searchButton}>
               <FontAwesome name="search" size={50} color="#57C5B6" />
             </TouchableOpacity>
@@ -22,28 +23,47 @@ const FamilyInfo = () =>{
         </View>
       </View>
         <View style = {styles.body}>
-          <View style = {styles.familyLine}>
-            <Text style = {styles.familyName}>이숙자(32세)         자녀</Text>
-            <TouchableOpacity style={styles.minusButton}>
-             <FontAwesome name="minus-square" size={40} color="#e6e9ed" />
-            </TouchableOpacity>
-          </View>
-            <View style={styles.subContainer}>
-            <ImageBackground
+            <View>
+                    <TextInput
+                        placeholder='이름'
+                        placeholderTextColor="lighterGrey"
+                        style={styles.registerInput}
+                    >
+                    </TextInput>
+                    <TextInput
+                        placeholder='나이'
+                        placeholderTextColor="lighterGrey"
+                        style={styles.registerInput}
+                        secureTextEntry={true}
+                    >
+                    </TextInput>
+                    <TextInput
+                        placeholder='전화번호'
+                        placeholderTextColor="lighterGrey"
+                        style={styles.registerInput}
+                        secureTextEntry={true}
+                    >
+                    </TextInput>
+                </View>
+                <View style={{
+                    marginTop: "%",
+                }}>
+                </View>
+              <ImageBackground
               style={{
-              height: 200,
-              width: 200,
+                height: 200,
+                width: 200,
+                marginLeft: "25%",
              }}
               resizeMode="contain"
               source={require("../../assets/메인로고.png")}
               />
               <TouchableOpacity
                 onPress={() => navigation.navigate("")}
-                style={styles.addBtn}
-              ><Text style={styles.add}>가족추가하기</Text>
+                style={styles.saveBtn}
+              ><Text style={styles.saveInfo}>저장하기</Text>
               </TouchableOpacity>
           </View>
-        </View>
         <View style={styles.footer}>
           <SearchTabBar />
         </View>
@@ -87,44 +107,23 @@ const FamilyInfo = () =>{
       color:"black",
       fontSize: 23,
       fontWeight: 600,
+      alignItems: "center",
       marginLeft: "5%",
-      marginRight: "5%",
+      marginRight: "10%",
     },
     body: {
       flex: 6,
       backgroundColor: "white", 
     },
-    familyLine:{
-      flex: 0.25,
-      flexDirection: "row",
-      backgroundColor: "#57C5B6",
-    },
-    familyName:{
-      color: "white",
-      fontSize: 25,
-      fontWeight: "bold",
-      flexDirection: "row",
-      alignItems: "center",
-      marginTop: "9%",
-      marginLeft: "5%",
-    },
-    minusButton: {
-      alignSelf: "flex-end",
-      marginBottom: "7%",
-      marginLeft: "26%",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2,  
-      }
-    },
-    subContainer: {
-      marginTop: "15%",
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    addBtn: {
+    registerInput: {
+      fontSize: 18,
+      width: 400,
+      backgroundColor: "#fafafa",
+      padding: "4%",
+      margin: "5%",
+      marginVertical: "1%",
+  },
+    saveBtn: {
       backgroundColor: "#159895",
       width: "100%",
       height: 50,
@@ -133,7 +132,7 @@ const FamilyInfo = () =>{
       marginTop: "30%",
       borderRadius: 10,
     },
-    add: {
+    saveInfo: {
       fontSize: 24,
       fontWeight: "bold",
       color: "white",
@@ -148,4 +147,4 @@ const FamilyInfo = () =>{
       borderColor: "#57C5B6",
     },
   });
-  export default FamilyInfo;
+  export default FamilyAdd;
