@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Button, DatePickerIOS, Text, StyleSheet} from 'react-native';
+import { View, Button, DatePickerIOS, Text } from 'react-native';
 
 const TimePickerExample = () => {
   const [selectedTime, setSelectedTime] = useState(new Date());
@@ -29,13 +29,9 @@ const TimePickerExample = () => {
           onConfirm={hideTimePicker}
         />
       )}
-      <Text style={styles.selectedTimeText}>{selectedTime.toLocaleTimeString()}</Text>
+      <Text>{selectedTime.toLocaleTimeString()}</Text>
     </View>
   );
 };
-const styles = StyleSheet.create({
-    selectedTimeText: {
-      fontSize: 14,
-    },
-  });
+
 export default TimePickerExample;
