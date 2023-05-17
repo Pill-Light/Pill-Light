@@ -20,7 +20,7 @@ const Welcome = ({ navigation }) => {
             style={{
               fontSize: 44,
               fontWeight: "bold",
-              marginBottom: "2%"
+              marginBottom: "2%",
             }}
           >
             필 라이트,
