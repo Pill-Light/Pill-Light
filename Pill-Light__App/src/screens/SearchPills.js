@@ -1,10 +1,8 @@
 import { SafeAreaView, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { StyleSheet, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 import SearchResult from "../components/Search/SearchResult";
-import TabNavigator from "../components/TabNavigator";
 
 const SearchPills = () => {
   return (
