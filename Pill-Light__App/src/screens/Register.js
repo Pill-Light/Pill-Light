@@ -10,7 +10,7 @@ const Register = () => {
     const handleButton1Press = () => {
         setButton1Color('#57C5B6');
         setButton2Color('#fafafa');
-    };
+    };innerHeight
 
     const handleButton2Press = () => {
         setButton1Color('#fafafa');

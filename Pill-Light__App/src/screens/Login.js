@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     signBtn: {
-        marginTop: "20%",
+        marginTop: "6%",
         backgroundColor: "#fafafa",
         width: "90%",
         height: 60,
