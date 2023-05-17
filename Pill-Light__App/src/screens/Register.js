@@ -9,12 +9,16 @@ import {
     View,
     ScrollView,
     KeyboardAvoidingView,
-    Platform
+    Platform,
+    Alert
 } from 'react-native';
+import Welcome from './Welcome';
 import React from 'react';
 import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+// npm install @react-native-async-storage/async-storage
 
-const Register = () => {
+const Register = ({ navigation }) => {
     const [button1Color, setButton1Color] = useState('#fafafa');
     const [button2Color, setButton2Color] = useState('#fafafa');
 
@@ -27,6 +31,45 @@ const Register = () => {
         setButton1Color('#fafafa');
         setButton2Color('#57C5B6');
     };
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [gender, setGender] = useState('');
+    const [birthYear, setBirthYear] = useState('');
+    const [birthMonth, setBirthMonth] = useState('');
+    const [birthDay, setBirthDay] = useState('');
+
+
+    const handleRegister = async () => {
+        try {
+            // 기존의 회원 정보 가져오기
+            const storedUsers = await AsyncStorage.getItem('registeredUsers');
+            const parsedUsers = storedUsers ? JSON.parse(storedUsers) : [];
+
+            // 새로운 회원 정보 생성
+            const newUser = {
+                username,
+                password,
+                name,
+                gender,
+                birthYear,
+                birthMonth,
+                birthDay,
+            };
+
+            // 기존 회원 정보에 새로운 회원 추가
+            const updatedUsers = [...parsedUsers, newUser];
+
+            // AsyncStorage에 회원 정보 저장 (key, value)
+            await AsyncStorage.setItem('registeredUsers', JSON.stringify(updatedUsers));
+
+            Alert.alert('회원 가입 성공');
+        } catch (error) {
+            Alert.alert('회원 가입 실패', '회원 가입 중에 오류가 발생했습니다.');
+        }
+    };
+
 
     return (
         <SafeAreaView style={styles.safeArea}>
@@ -50,14 +93,18 @@ const Register = () => {
                             <TextInput
                                 placeholder='아이디 입력'
                                 placeholderTextColor="lighterGrey"
+                                value={username}
+                                onChangeText={setUsername}
                                 style={styles.registerInput}
                             >
                             </TextInput>
                             <TextInput
                                 placeholder='비밀번호 입력'
                                 placeholderTextColor="lighterGrey"
-                                style={styles.registerInput}
+                                value={password}
+                                onChangeText={setPassword}
                                 secureTextEntry={true}
+                                style={styles.registerInput}
                             >
                             </TextInput>
                             <TextInput
@@ -74,6 +121,8 @@ const Register = () => {
                             <TextInput
                                 placeholder='이름 입력'
                                 placeholderTextColor="lighterGrey"
+                                value={name}
+                                onChangeText={setName}
                                 style={styles.registerInput}
                             >
                             </TextInput>
@@ -150,6 +199,8 @@ const Register = () => {
                                 <TextInput
                                     placeholder='출생년도'
                                     placeholderTextColor="lighterGrey"
+                                    value={birthYear}
+                                    onChangeText={setBirthYear}
                                     style={{
                                         fontSize: 18,
                                         width: "35%",
@@ -164,6 +215,8 @@ const Register = () => {
                                 <TextInput
                                     placeholder='월'
                                     placeholderTextColor="lighterGrey"
+                                    value={birthMonth}
+                                    onChangeText={setBirthMonth}
                                     style={{
                                         fontSize: 18,
                                         width: "25%",
@@ -178,6 +231,8 @@ const Register = () => {
                                 <TextInput
                                     placeholder='일'
                                     placeholderTextColor="lighterGrey"
+                                    value={birthDay}
+                                    onChangeText={setBirthDay}
                                     style={{
                                         fontSize: 18,
                                         width: "25%",
@@ -193,7 +248,8 @@ const Register = () => {
                         </View>
                         <View style={styles.subContainer}>
                             <TouchableOpacity
-                                onPress={() => navigation.navigate("Login")}
+                                onPress={() => navigation.navigate("Welcome")}
+                                onPress={handleRegister}
                                 style={styles.logintBtn}
                             >
                                 <Text style={styles.login}>회원가입 하기</Text>
