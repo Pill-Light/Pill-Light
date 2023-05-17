@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   mainTextWrapper: {
   },
   mainText: {
-    fontSize: "50%",
+    fontSize: 50,
     color: "white",
   },
 
