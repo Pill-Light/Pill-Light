@@ -1,8 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
 import React from 'react';
+import { useState } from 'react';
+import { UserInfo } from '../store/UserInfo';
 
 const Login = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLoginPress = () => {
+        const loginSuccess = UserInfo(username, password);
+
+        if (loginSuccess) {
+            Alert.alert('로그인 성공');
+        } else {
+            Alert.alert('로그인 실패', '아이디 또는 비밀번호가 잘못되었습니다.');
+        }
+    };
+
     return (
         <SafeAreaView style={styles.safeArea}>
             <KeyboardAvoidingView
@@ -28,21 +43,25 @@ const Login = () => {
                             <TextInput
                                 placeholder='Enter id'
                                 placeholderTextColor="lighterGrey"
+                                value={username}
+                                onChangeText={setUsername}
                                 style={styles.textInput}
                             >
                             </TextInput>
                             <TextInput
                                 placeholder='Enter password'
                                 placeholderTextColor="lighterGrey"
-                                style={styles.textInput}
                                 secureTextEntry={true}
-
+                                value={password}
+                                onChangeText={setPassword}
+                                style={styles.textInput}
                             >
                             </TextInput>
                         </View>
                         <View style={styles.subContainer}>
                             <TouchableOpacity
                                 onPress={() => navigation.navigate("Login")}
+                                onPress={handleLoginPress}
                                 style={styles.logintBtn}
                             >
                                 <Text style={styles.login}>로그인 하기</Text>
