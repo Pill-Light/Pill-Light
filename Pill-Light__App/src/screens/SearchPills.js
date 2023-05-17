@@ -3,6 +3,7 @@ import { TextInput } from "react-native";
 import { StyleSheet, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import SearchResult from "../components/Search/SearchResult";
+import NavigationBar from "../components/UI/NavigationBar";
 
 const SearchPills = () => {
   return (
@@ -22,6 +23,7 @@ const SearchPills = () => {
       <View style={styles.body}>
         <SearchResult />
       </View>
+      <NavigationBar />
     </SafeAreaView>
   );
 };

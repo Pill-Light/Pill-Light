@@ -1,7 +1,8 @@
 import { Image, SafeAreaView, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import NavigationBar from "../components/UI/NavigationBar";
+
 const MainPage = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -63,7 +64,7 @@ const MainPage = () => {
           </View>
         </View>
 
-        <View style={styles.footer}></View>
+        <NavigationBar />
       </View>
     </SafeAreaView>
   );
@@ -178,15 +179,6 @@ const styles = StyleSheet.create({
     borderColor: "#57C5B6",
     borderWidth: "3%",
     margin: "3%",
-  },
-  footer: {
-    flex: 1.1,
-    backgroundColor: "#fff",
-    flexDirection: "row",
-    paddingBottom: "7%",
-    paddingTop: "5%",
-    borderTopWidth: "4%",
-    borderColor: "#57C5B6",
   },
   camera: {
     flex: 1,
