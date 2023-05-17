@@ -1,23 +1,21 @@
 import { StatusBar } from "expo-status-bar";
-import * as React from "react";
+import React from "react";
 import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground } from "react-native";
 import SearchTabBar from "../components/Search/SearchTabBar";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from '@expo/vector-icons';
-import { CheckBox } from '@rneui/base';
+
 
 const FamilyAdd = () =>{
-  const [checked, setChecked] = React.useState(true);
-
   return(
     <SafeAreaView style={{ flex: 1 }}>
-      <View style = {styles.container}>
-        <View style = {styles.header}> 
+      <View style={styles.container}>
+        <View style={styles.header}>
           <View style={styles.searchBar}>
             <TouchableOpacity style={styles.backButton}>
               <MaterialIcons name="arrow-back" size={40} color="#159895" />
             </TouchableOpacity>
-            <Text style = {styles.guestName}>이성진님                   (68세)</Text>
+            <Text style={styles.guestName}>이성진님 (68세)</Text>
             <TouchableOpacity style={styles.searchButton}>
               <FontAwesome name="search" size={50} color="#57C5B6" />
             </TouchableOpacity>
@@ -47,25 +45,12 @@ const FamilyAdd = () =>{
                     >
                     </TextInput>
                 </View>
-                <CheckBox
-                  checked={checked}
-                  checkedColor="#57C5B6"
-                  checkedTitle="보호자에게 복용알림 보내기"
-                  containerStyle={{ width: "75%" }}
-                  onIconPress={() => setChecked(!checked)}
-                  onLongIconPress={() =>
-                  console.log("onLongIconPress()")
-                }
-                onLongPress={() => console.log("onLongPress()")}
-                onPress={() => console.log("onPress()")}
-                size={30}
-                textStyle={{}}
-                title="보호자에게 복용알림 보내기"
-                titleProps={{}}
-                uncheckedColor="#F159895"
-              />
+                <View style={{
+                    marginTop: "%",
+                }}>
+                </View>
               <ImageBackground
-                style={{
+              style={{
                 height: 200,
                 width: 200,
                 marginLeft: "25%",
@@ -89,10 +74,8 @@ const FamilyAdd = () =>{
 
   const styles = StyleSheet.create({
     container: {
-      flex : 1,
-      alignItems: "center",
-      justifyContent: "center",
-      },
+      flex : 1
+        },
     header:{
       flex: 2,
       backgroundColor: "white",
@@ -139,7 +122,7 @@ const FamilyAdd = () =>{
       padding: "4%",
       margin: "5%",
       marginVertical: "1%",
-    },
+  },
     saveBtn: {
       backgroundColor: "#159895",
       width: "100%",
@@ -153,7 +136,7 @@ const FamilyAdd = () =>{
       fontSize: 24,
       fontWeight: "bold",
       color: "white",
-    },  
+  },  
     footer:{
       flex: 1.1,
       backgroundColor: "#fff",
@@ -164,5 +147,4 @@ const FamilyAdd = () =>{
       borderColor: "#57C5B6",
     },
   });
-
   export default FamilyAdd;

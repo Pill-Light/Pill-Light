@@ -1,54 +1,98 @@
 import { StatusBar } from 'expo-status-bar';
-import { Dimensions, ImageBackground, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
 import React from 'react';
+import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Login = () => {
+
+const Login = ({ navigation }) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = async () => {
+        try {
+            // AsyncStorage에서 저장된 회원 정보 가져오기
+            const storedUsers = await AsyncStorage.getItem('registeredUsers');
+            const parsedUsers = storedUsers ? JSON.parse(storedUsers) : [];
+
+            // 입력된 아이디와 비밀번호와 일치하는 회원 찾기
+            const user = parsedUsers.find(
+                (user) => user.username === username && user.password === password
+            );
+
+            if (user) {
+                Alert.alert('로그인 성공', `사용자 명 : ${user.name}`);
+                navigation.navigate('MainPage');
+            } else {
+                Alert.alert('로그인 실패', '아이디 또는 비밀번호가 잘못되었습니다.');
+            }
+        } catch (error) {
+            Alert.alert('로그인 실패', '로그인 중에 오류가 발생했습니다.');
+        }
+    };
     return (
-        <SafeAreaView>
-            <View>
-                <View style={styles.titleText}>
-                    <Text style={{
-                        fontSize: 44,
-                        fontWeight: "bold",
-                        marginBottom: "2%"
+        <SafeAreaView style={styles.safeArea}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={styles.avoid}
+            >
+                <ScrollView>
+                    <View>
+                        <View style={styles.titleText}>
+                            <Text style={{
+                                fontSize: 44,
+                                fontWeight: "bold",
+                                marginBottom: "2%"
+                            }}
+                            >
+                                로그인
+                            </Text>
+                        </View>
+                        <View style={{
+                            marginVertical: "10%",
                         }}
-                    >
-                        로그인
-                    </Text>
-                </View>
-                <View style={{
-                    marginVertical: "10%",
-                    }}
-                >
-                    <TextInput
-                        placeholder='Enter id'
-                        placeholderTextColor= "lighterGrey"
-                        style={styles.textInput}   
-                    >        
-                    </TextInput>
-                    <TextInput
-                        placeholder='Enter password'
-                        placeholderTextColor="lighterGrey"
-                        style={styles.textInput}
-                        secureTextEntry={true}
-
-                    >
-                    </TextInput>
-                </View>
-                <View style={styles.subContainer}>
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate("Login")}
-                        style={styles.logintBtn}
-                    >
-                        <Text style={styles.login}>로그인 하기</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+                        >
+                            <TextInput
+                                placeholder='Enter id'
+                                placeholderTextColor="lighterGrey"
+                                value={username}
+                                onChangeText={setUsername}
+                                style={styles.textInput}
+                            >
+                            </TextInput>
+                            <TextInput
+                                placeholder='Enter password'
+                                placeholderTextColor="lighterGrey"
+                                secureTextEntry={true}
+                                value={password}
+                                onChangeText={setPassword}
+                                style={styles.textInput}
+                            >
+                            </TextInput>
+                        </View>
+                        <View style={styles.subContainer}>
+                            <TouchableOpacity
+                                onPress={handleLogin}
+                                style={styles.logintBtn}
+                            >
+                                <Text style={styles.login}>로그인 하기</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
+    safeArea: {
+        backgroundColor: "white",
+        flex: 1
+    },
+    avoid: {
+        flex: 1,
+    },
     container: {
         marginTop: "30%",
         flex: 1,
