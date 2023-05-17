@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-import TabNavigator from "../components/TabNavigator";
 
 const FamilyInfo = () => {
   return (
@@ -52,9 +51,7 @@ const FamilyInfo = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.footer}>
-        <TabNavigator />
-      </View>
+      <View style={styles.footer}></View>
     </SafeAreaView>
   );
 };

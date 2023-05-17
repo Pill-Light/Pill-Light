@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-import TabNavigator from "../components/TabNavigator";
 
 const FamilyAdd = () => {
   return (
@@ -70,9 +69,7 @@ const FamilyAdd = () => {
           <Text style={styles.saveInfo}>저장하기</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.footer}>
-        <TabNavigator />
-      </View>
+      <View style={styles.footer}></View>
     </SafeAreaView>
   );
 };

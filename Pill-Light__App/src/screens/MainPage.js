@@ -2,7 +2,6 @@ import { Image, SafeAreaView, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import TabNavigator from "../components/TabNavigator";
 const MainPage = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -64,9 +63,7 @@ const MainPage = () => {
           </View>
         </View>
 
-        <View style={styles.footer}>
-          <TabNavigator />
-        </View>
+        <View style={styles.footer}></View>
       </View>
     </SafeAreaView>
   );
