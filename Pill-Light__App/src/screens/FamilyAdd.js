@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import NavigationBar from "../components/UI/NavigationBar";
 
 const FamilyAdd = () => {
   return (
@@ -69,7 +70,7 @@ const FamilyAdd = () => {
           <Text style={styles.saveInfo}>저장하기</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.footer}></View>
+      <NavigationBar />
     </SafeAreaView>
   );
 };
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flex: 2,
+    flex: 1.5,
     backgroundColor: "white",
     flexDirection: "row",
   },
@@ -138,15 +139,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     color: "white",
-  },
-  footer: {
-    flex: 1.1,
-    backgroundColor: "#fff",
-    flexDirection: "row",
-    paddingBottom: "7%",
-    paddingTop: "5%",
-    borderTopWidth: "4%",
-    borderColor: "#57C5B6",
   },
 });
 export default FamilyAdd;
