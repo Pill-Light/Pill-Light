@@ -3,6 +3,7 @@ import React from "react";
 import {
   View,
   Text,
+  TextInput,
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
@@ -10,8 +11,9 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import NavigationBar from "../components/UI/NavigationBar";
 
-const FamilyInfo = () => {
+const FamilyAdd = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
@@ -28,30 +30,47 @@ const FamilyInfo = () => {
         </View>
       </View>
       <View style={styles.body}>
-        <View style={styles.familyLine}>
-          <Text style={styles.familyName}>이숙자(32세) 자녀</Text>
-          <TouchableOpacity style={styles.minusButton}>
-            <FontAwesome name="minus-square" size={40} color="#e6e9ed" />
-          </TouchableOpacity>
+        <View>
+          <TextInput
+            placeholder="이름"
+            placeholderTextColor="lighterGrey"
+            style={styles.registerInput}
+          ></TextInput>
+          <TextInput
+            placeholder="나이"
+            placeholderTextColor="lighterGrey"
+            style={styles.registerInput}
+            secureTextEntry={true}
+          ></TextInput>
+          <TextInput
+            placeholder="전화번호"
+            placeholderTextColor="lighterGrey"
+            style={styles.registerInput}
+            secureTextEntry={true}
+          ></TextInput>
         </View>
-        <View style={styles.subContainer}>
-          <ImageBackground
-            style={{
-              height: 200,
-              width: 200,
-            }}
-            resizeMode="contain"
-            source={require("../../assets/메인로고.png")}
-          />
-          <TouchableOpacity
-            onPress={() => navigation.navigate("")}
-            style={styles.addBtn}
-          >
-            <Text style={styles.add}>가족추가하기</Text>
-          </TouchableOpacity>
-        </View>
+        <View
+          style={{
+            marginTop: "%",
+          }}
+        ></View>
+        <ImageBackground
+          style={{
+            height: 200,
+            width: 200,
+            marginLeft: "25%",
+          }}
+          resizeMode="contain"
+          source={require("../../assets/메인로고.png")}
+        />
+        <TouchableOpacity
+          onPress={() => navigation.navigate("")}
+          style={styles.saveBtn}
+        >
+          <Text style={styles.saveInfo}>저장하기</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.footer}></View>
+      <NavigationBar />
     </SafeAreaView>
   );
 };
@@ -61,7 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flex: 2,
+    flex: 1.5,
     backgroundColor: "white",
     flexDirection: "row",
   },
@@ -91,44 +110,23 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 23,
     fontWeight: 600,
+    alignItems: "center",
     marginLeft: "5%",
-    marginRight: "5%",
+    marginRight: "10%",
   },
   body: {
     flex: 6,
     backgroundColor: "white",
   },
-  familyLine: {
-    flex: 0.25,
-    flexDirection: "row",
-    backgroundColor: "#57C5B6",
+  registerInput: {
+    fontSize: 18,
+    width: 400,
+    backgroundColor: "#fafafa",
+    padding: "4%",
+    margin: "5%",
+    marginVertical: "1%",
   },
-  familyName: {
-    color: "white",
-    fontSize: 25,
-    fontWeight: "bold",
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: "9%",
-    marginLeft: "5%",
-  },
-  minusButton: {
-    alignSelf: "flex-end",
-    marginBottom: "7%",
-    marginLeft: "26%",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-  },
-  subContainer: {
-    marginTop: "15%",
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  addBtn: {
+  saveBtn: {
     backgroundColor: "#159895",
     width: "100%",
     height: 50,
@@ -137,19 +135,10 @@ const styles = StyleSheet.create({
     marginTop: "30%",
     borderRadius: 10,
   },
-  add: {
+  saveInfo: {
     fontSize: 24,
     fontWeight: "bold",
     color: "white",
   },
-  footer: {
-    flex: 1.1,
-    backgroundColor: "#fff",
-    flexDirection: "row",
-    paddingBottom: "7%",
-    paddingTop: "5%",
-    borderTopWidth: "4%",
-    borderColor: "#57C5B6",
-  },
 });
-export default FamilyInfo;
+export default FamilyAdd;
