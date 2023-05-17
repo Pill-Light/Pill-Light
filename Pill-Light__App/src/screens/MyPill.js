@@ -10,6 +10,10 @@ const MyPill = ({ navigation }) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
+  const handleSlidePress = (key) => {
+    navigation.navigate("MyPillDetail", {pillKey: key});
+  };
+
     return (
         <SafeAreaView style={styles.container}>
           {/* header */}
@@ -49,8 +53,7 @@ const MyPill = ({ navigation }) => {
                       
                       {/* 촬영한 알약 이미지 들어가는 부분인 pillImageWrapper */}
                       <TouchableOpacity
-                        key={PillData.key}
-                        onPress={() => navigation.navigate("MyPillDetail")}
+                        onPress={() => handleSlidePress(item.key)}
                         style={styles.pillImageWrapper}
                       >
                         <ImageBackground 
