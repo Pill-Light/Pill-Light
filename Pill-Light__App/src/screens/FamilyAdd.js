@@ -1,12 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground } from "react-native";
-import SearchTabBar from "../components/Search/SearchTabBar";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from '@expo/vector-icons';
 
 
 const FamilyAdd = () =>{
+  const [isChecked, setIsChecked] = useState(false);
+
   return(
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
@@ -44,28 +45,27 @@ const FamilyAdd = () =>{
                         secureTextEntry={true}
                     >
                     </TextInput>
+                    <View style={styles.checkboxContainer}>
+                <TouchableOpacity
+                  style={[styles.checkbox, isChecked && styles.checkboxChecked]}
+                  onPress={() => setIsChecked(!isChecked)} >
+                  {isChecked && <FontAwesome name="check" size={20} color="white" />}
+                </TouchableOpacity>
+              <Text style={styles.checkboxLabel}>동의합니다.</Text>           
+                <ImageBackground
+                  style={styles.image}
+                  resizeMode="contain"
+                  source={require("../../assets/메인로고.png")}
+                />
                 </View>
-                <View style={{
-                    marginTop: "%",
-                }}>
-                </View>
-              <ImageBackground
-              style={{
-                height: 200,
-                width: 200,
-                marginLeft: "25%",
-             }}
-              resizeMode="contain"
-              source={require("../../assets/메인로고.png")}
-              />
-              <TouchableOpacity
-                onPress={() => navigation.navigate("")}
-                style={styles.saveBtn}
-              ><Text style={styles.saveInfo}>저장하기</Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("")}
+                  style={styles.saveBtn}
+                ><Text style={styles.saveInfo}>저장하기</Text>
+                </TouchableOpacity>
+            </View>
           </View>
         <View style={styles.footer}>
-          <SearchTabBar />
         </View>
       </SafeAreaView>
     );
@@ -108,12 +108,43 @@ const FamilyAdd = () =>{
       fontSize: 23,
       fontWeight: 600,
       alignItems: "center",
-      marginLeft: "5%",
-      marginRight: "10%",
+      marginLeft: "20%",
+      marginRight: "15%",
     },
     body: {
       flex: 6,
       backgroundColor: "white", 
+    },
+    imageContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    },
+    image: {
+    height: 200,
+    width: 200,
+    },    
+    checkboxContainer: {
+      flexDirection: "row",
+      marginVertical: "2%",
+      marginLeft: "5%",
+    },
+    checkbox: {
+      width: 20,
+      height: 20,
+      borderRadius: 5,
+      borderWidth: 2,
+      borderColor: "#159895",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    checkboxChecked: {
+      backgroundColor: "#159895",
+    },
+    checkboxLabel: {
+      marginLeft: "2%",
+      fontSize: 18,
+      color: "#159895",
     },
     registerInput: {
       fontSize: 18,
@@ -129,7 +160,7 @@ const FamilyAdd = () =>{
       height: 50,
       justifyContent: "center",
       alignItems: "center",
-      marginTop: "30%",
+      marginTop: "25%",
       borderRadius: 10,
     },
     saveInfo: {
