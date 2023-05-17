@@ -20,7 +20,7 @@ const Welcome = ({ navigation }) => {
             style={{
               fontSize: 44,
               fontWeight: "bold",
-              marginBottom: "2%"
+              marginBottom: "2%",
             }}
           >
             필 라이트,
@@ -62,7 +62,7 @@ const Welcome = ({ navigation }) => {
 const styles = StyleSheet.create({
   safeArea: {
     backgroundColor: "white",
-    flex: 1
+    flex: 1,
   },
   container: {
     marginTop: "30%",
