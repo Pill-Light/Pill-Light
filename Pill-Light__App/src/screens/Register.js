@@ -18,7 +18,7 @@ import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // npm install @react-native-async-storage/async-storage
 
-const Register = () => {
+const Register = ({ navigation }) => {
     const [button1Color, setButton1Color] = useState('#fafafa');
     const [button2Color, setButton2Color] = useState('#fafafa');
 

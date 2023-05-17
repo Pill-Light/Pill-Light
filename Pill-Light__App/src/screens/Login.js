@@ -2,18 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
 import React from 'react';
 import { useState } from 'react';
-import { UserInfo } from '../store/UserInfo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const Login = () => {
+const Login = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleLogin = async () => {
-        // 로그인 처리 로직을 구현합니다.
-        // AsyncStorage에서 저장된 회원 정보와 비교합니다.
-
         try {
             // AsyncStorage에서 저장된 회원 정보 가져오기
             const storedUsers = await AsyncStorage.getItem('registeredUsers');
@@ -25,8 +21,8 @@ const Login = () => {
             );
 
             if (user) {
-                Alert.alert('로그인 성공', `로그인한 아이디: ${user.username}`);
-                // 로그인에 성공했을 때, 추가적인 동작을 수행하거나 다른 화면으로 이동할 수 있습니다.
+                Alert.alert('로그인 성공', `사용자 명 : ${user.name}`);
+                navigation.navigate('MainPage');
             } else {
                 Alert.alert('로그인 실패', '아이디 또는 비밀번호가 잘못되었습니다.');
             }
@@ -76,7 +72,6 @@ const Login = () => {
                         </View>
                         <View style={styles.subContainer}>
                             <TouchableOpacity
-                                onPress={() => navigation.navigate("Login")}
                                 onPress={handleLogin}
                                 style={styles.logintBtn}
                             >
