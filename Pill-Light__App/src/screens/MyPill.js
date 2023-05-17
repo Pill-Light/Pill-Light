@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { Platform,Button, Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
-import TimePickerExample from '../components/TimePickerExample';
+
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height;
 
 const MyPill = ({ navigation }) => {
   const [data, setData] = useState([
-    {name: '사리돈', key: '1', image: '../../assets/사리돈.jpg'},
+    {name: '사리돈', key: '1', image: '../../assets/타미노펜.jpg'},
     {name: '써스펜', key: '2', image: '../../assets/써스펜.jpg'},
     {name: '아스피린', key: '3', image: '../../assets/아스피린.jpg'},
     {name: '인데놀정', key: '4', image: '../../assets/인데놀정.jpg'},
@@ -15,7 +15,8 @@ const MyPill = ({ navigation }) => {
 
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  return (
+
+    return (
         <SafeAreaView style={styles.container}>
           {/* header */}
           <View style={styles.header}>
@@ -42,12 +43,10 @@ const MyPill = ({ navigation }) => {
 
                       {/* 시간이랑 스위치 들어가는 부분인 pillOption */}
                       <View style={styles.pillOption}>
-                      <View>
-                         {/* 다른 컴포넌트들과 함께 사용 가능 */}
-                             <TimePickerExample  style={{ transform: [{ scaleX: 5 }, { scaleY: 5 }]}}/>
-                             {/* 다른 컴포넌트들과 함께 사용 가능 */}
-                       </View>
-                          <Switch
+                        <View style={styles.timeSet}>
+                          <Text>시간 설정하는 곳</Text>
+                        </View>
+                        <Switch
                           style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }]}}
                           onValueChange={toggleSwitch}
                           value={isEnabled}
@@ -62,7 +61,7 @@ const MyPill = ({ navigation }) => {
                         <ImageBackground 
                           style={styles.pillImage}
                           resizeMode="stretch"
-                          source={require('../../assets/타미노펜.png')}>
+                          source={require('../../assets/타미노펜.jpg')}>
                         </ImageBackground>
                       </TouchableOpacity>
                     </View>
@@ -93,7 +92,7 @@ const styles = StyleSheet.create({
   mainTextWrapper: {
   },
   mainText: {
-    fontSize: 50,
+    fontSize: "50%",
     color: "white",
   },
 

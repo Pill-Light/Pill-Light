@@ -1,12 +1,11 @@
-import { Image, SafeAreaView, TouchableOpacity } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import SearchTabBar from "../components/Search/SearchTabBar";
 
 const MainPage = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <>
       <View style={{ flex: 1 }}>
         <View style={styles.head}>
           <Image
@@ -21,84 +20,65 @@ const MainPage = () => {
         </View>
         <View style={styles.body}>
           <View style={styles.page}>
-            <View style={styles.list}>
-              <View style={styles.morning}>
-                <View style={styles.TextList}>
-                  <Text style={{ fontSize: 25 }}>아침</Text>
-                </View>
-                <View style={styles.TextList}>
-                  <Text style={{ fontSize: 18 }}>타이레놀</Text>
-                  <Text style={{ fontSize: 18 }}></Text>
-                </View>
-              </View>
-              <View style={styles.morning}>
-                <View style={styles.TextList}>
-                  <Text style={{ fontSize: 25 }}>점심</Text>
-                </View>
-                <View style={styles.TextList}>
-                  <Text style={{ fontSize: 18 }}>타이레놀</Text>
-                  <Text style={{ fontSize: 18 }}></Text>
-                </View>
-              </View>
-              <View style={styles.morning}>
-                <View style={styles.TextList}>
-                  <Text style={{ fontSize: 25 }}>저녁</Text>
-                </View>
-                <View style={styles.TextList}>
-                  <Text style={{ fontSize: 18 }}>타이레놀</Text>
-                  <Text style={{ fontSize: 18 }}></Text>
-                </View>
-              </View>
-            </View>
+            <View style={styles.list}></View>
             <View style={styles.buttonbox}>
               <TouchableOpacity style={styles.button}>
                 <Text style={styles.buttonText}>복용완료!</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.plus}>
-                <Text
-                  style={{ fontSize: 30, fontWeight: "bold", color: "#57C5B6" }}
-                >
-                  +
-                </Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
 
         <View style={styles.footer}>
-          <SearchTabBar />
+          <TouchableOpacity style={styles.camera}>
+            <FontAwesome
+              style={styles.pic}
+              name="camera"
+              size={80}
+              color="black"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.mypage}>
+            <FontAwesome
+              style={styles.pic}
+              name="users"
+              size={75}
+              color="#57C5B6"
+            />
+          </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView>
+    </>
   );
 };
 const styles = StyleSheet.create({
   head: {
-    flex: 1,
+    flex: 1.5,
     borderBottomWidth: "4%",
-    borderBottomColor: "#57C5B6",
+    borderBottomColor: "grey",
     flexDirection: "row",
   },
   logo: {
-    margin: "3%",
-    padding: "3%",
+    margin: "8%",
+    marginTop: "15%",
+    padding: "2%",
     flex: 1,
     width: "30%",
-    height: "80%",
+    height: "50%",
   },
   inputText: {
     flex: 2.1,
     fontSize: 18,
     width: "30%",
-    height: "40%",
+    height: "30%",
     backgroundColor: "#DCDCDC",
     alignSelf: "flex-end",
     padding: "2%",
-    margin: "5%",
+    margin: "3%",
     marginBottom: "5%",
     borderRadius: 10,
     marginVertical: "3%",
-    marginTop: "20%",
+    marginTop: "18%",
   },
   body: {
     flex: 6,
@@ -123,74 +103,38 @@ const styles = StyleSheet.create({
     margin: "5%",
     width: "90%",
     height: "20%",
-    padding: "5%",
+    padding: "2%",
     justifyContent: "center",
     alignItems: "center",
     borderWidth: "3%",
     borderColor: "#57C5B6",
     borderRadius: 10,
   },
-  morning: {
-    borderColor: "black",
-    flexDirection: "row",
-    width: "100%",
-    alignItems: "flex-start",
-    justifyContent: "center",
-    margin: "8%",
-    marginRight: "15%",
-    padding: "5%",
-  },
-  TextList: {
-    flex: 1,
-    flexDirection: "row",
-    margin: "3%",
-    padding: "2%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   buttonbox: {
     width: "100%",
     flex: 1,
-    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   },
 
   button: {
-    flex: "3",
     backgroundColor: "#57C5B6",
-    width: "60%",
+    width: "90%",
     height: 60,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    margin: "3%",
   },
   buttonText: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: "bold",
     color: "white",
   },
-  plus: {
-    flex: "1",
-    backgroundColor: "white",
-    width: "60%",
-    height: 60,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    borderColor: "#57C5B6",
-    borderWidth: "3%",
-    margin: "3%",
-  },
   footer: {
-    flex: 1.1,
-    backgroundColor: "#fff",
-    flexDirection: "row",
-    paddingBottom: "7%",
-    paddingTop: "5%",
+    flex: 1,
     borderTopWidth: "4%",
-    borderColor: "#57C5B6",
+    borderTopColor: "grey",
+    flexDirection: "row",
   },
   camera: {
     flex: 1,
