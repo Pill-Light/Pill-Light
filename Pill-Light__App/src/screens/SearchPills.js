@@ -16,7 +16,7 @@ const SearchPills = () => {
             style={styles.inputText}
           ></TextInput>
           <TouchableOpacity style={styles.searchButton}>
-            <FontAwesome name="search" size={56} color="#fff" />
+            <FontAwesome name="search" size={56} color="#57C5B6" />
           </TouchableOpacity>
         </View>
       </View>
@@ -31,7 +31,7 @@ const SearchPills = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#57C5B6",
+    backgroundColor: "#fff",
   },
   header: {
     flex: 1,
