@@ -13,7 +13,7 @@ const { height } = Dimensions.get("window");
 
 const Welcome = ({ navigation }) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.safeArea}>
       <View>
         <View style={styles.titleText}>
           <Text
@@ -38,7 +38,7 @@ const Welcome = ({ navigation }) => {
             height: height / 2.8,
           }}
           resizeMode="contain"
-          source={require("../../assets/icon.png")}
+          source={require("../../assets/메인로고.png")}
         />
         <View style={styles.container}>
           <TouchableOpacity
@@ -60,6 +60,10 @@ const Welcome = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  safeArea: {
+    backgroundColor: "white",
+    flex: 1,
+  },
   container: {
     marginTop: "30%",
     flex: 1,
