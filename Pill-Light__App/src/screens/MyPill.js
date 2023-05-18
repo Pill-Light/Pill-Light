@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import { PillData } from '../store/PillData';
+import TimePickerExample from '../components/TimePickerExample';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height;
 
@@ -41,8 +42,9 @@ const MyPill = ({ navigation }) => {
 
                       {/* 시간이랑 스위치 들어가는 부분인 pillOption */}
                       <View style={styles.pillOption}>
-                        <View style={styles.timeSet}>
-                          <Text>시간 설정하는 곳</Text>
+                        <View >
+                          <TimePickerExample
+                          style={{ transform: [{ scaleX: 4 }, { scaleY: 4 }]}}/>
                         </View>
                         <Switch
                           style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }]}}
@@ -113,10 +115,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginLeft: "10%",
     marginRight: "10%",
-  },
-  timeSet: {
-    backgroundColor: "skyblue",
-    height: 62,
   },
   pillImageWrapper: {
     alignItems: "center",
