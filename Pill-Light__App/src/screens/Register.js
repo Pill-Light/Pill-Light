@@ -19,18 +19,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // npm install @react-native-async-storage/async-storage
 
 const Register = ({ navigation }) => {
-    const [button1Color, setButton1Color] = useState('#fafafa');
-    const [button2Color, setButton2Color] = useState('#fafafa');
-
-    const handleButton1Press = () => {
-        setButton1Color('#57C5B6');
-        setButton2Color('#fafafa');
-    };
-
-    const handleButton2Press = () => {
-        setButton1Color('#fafafa');
-        setButton2Color('#57C5B6');
-    };
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -39,7 +27,20 @@ const Register = ({ navigation }) => {
     const [birthYear, setBirthYear] = useState('');
     const [birthMonth, setBirthMonth] = useState('');
     const [birthDay, setBirthDay] = useState('');
+    const [button1Color, setButton1Color] = useState('#fafafa');
+    const [button2Color, setButton2Color] = useState('#fafafa');
 
+    const handleButton1Press = () => {
+        setButton1Color('#57C5B6');
+        setButton2Color('#fafafa');
+        setGender('남자');
+    };
+
+    const handleButton2Press = () => {
+        setButton1Color('#fafafa');
+        setButton2Color('#57C5B6');
+        setGender('여자');
+    };
 
     const handleRegister = async () => {
         try {
@@ -124,6 +125,8 @@ const Register = ({ navigation }) => {
                             <TextInput
                                 placeholder='이름 입력'
                                 placeholderTextColor="lighterGrey"
+                                autoCorrect={true}
+                                autoCapitalize="none"
                                 value={name}
                                 onChangeText={setName}
                                 style={styles.registerInput}
