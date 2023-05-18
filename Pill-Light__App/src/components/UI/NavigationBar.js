@@ -24,27 +24,25 @@ const NavigationBar = () => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <TouchableOpacity
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => {
-                setModalVisible(!modalVisible);
-                navigation.navigate("OnCamera");
-              }}
-            >
-              <Text style={styles.textStyle}>이미지 검색</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => {
-                setModalVisible(!modalVisible);
-                navigation.navigate("SearchPills");
-              }}
-            >
-              <Text style={styles.textStyle}>이름으로 검색</Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.modalView}>
+          <TouchableOpacity
+            style={[styles.button, styles.buttonClose]}
+            onPress={() => {
+              setModalVisible(!modalVisible);
+              navigation.navigate("OnCamera");
+            }}
+          >
+            <Text style={styles.textStyle}>이미지 검색</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, styles.buttonClose]}
+            onPress={() => {
+              setModalVisible(!modalVisible);
+              navigation.navigate("SearchPills");
+            }}
+          >
+            <Text style={styles.textStyle}>이름으로 검색</Text>
+          </TouchableOpacity>
         </View>
       </Modal>
 
