@@ -63,11 +63,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   topBar: {
-    flex: 0.1,
+    flex: 1,
     flexDirection: "row",
   },
   camera: {
-    flex: 0.8,
+    flex: 8,
     flexDirection: "column-reverse",
   },
   backButton: {
@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 800,
     color: "#57C5B6",
-    marginLeft: "11%",
+    marginLeft: "12%",
+    marginTop: "5%",
   },
   buttonContainer: {
     width: "100%",
