@@ -55,6 +55,7 @@ const Login = ({ navigation }) => {
                             <TextInput
                                 placeholder='Enter id'
                                 placeholderTextColor="lighterGrey"
+                                autoCapitalize='none'
                                 value={username}
                                 onChangeText={setUsername}
                                 style={styles.textInput}
@@ -63,6 +64,7 @@ const Login = ({ navigation }) => {
                             <TextInput
                                 placeholder='Enter password'
                                 placeholderTextColor="lighterGrey"
+                                autoCapitalize='none'
                                 secureTextEntry={true}
                                 value={password}
                                 onChangeText={setPassword}
