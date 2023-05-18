@@ -25,7 +25,7 @@ const Register = ({ navigation }) => {
     const handleButton1Press = () => {
         setButton1Color('#57C5B6');
         setButton2Color('#fafafa');
-    };innerHeight
+    };
 
     const handleButton2Press = () => {
         setButton1Color('#fafafa');
@@ -93,6 +93,7 @@ const Register = ({ navigation }) => {
                             <TextInput
                                 placeholder='아이디 입력'
                                 placeholderTextColor="lighterGrey"
+                                autoCapitalize='none'
                                 value={username}
                                 onChangeText={setUsername}
                                 style={styles.registerInput}
@@ -101,6 +102,7 @@ const Register = ({ navigation }) => {
                             <TextInput
                                 placeholder='비밀번호 입력'
                                 placeholderTextColor="lighterGrey"
+                                autoCapitalize='none'
                                 value={password}
                                 onChangeText={setPassword}
                                 secureTextEntry={true}
@@ -110,6 +112,7 @@ const Register = ({ navigation }) => {
                             <TextInput
                                 placeholder='비밀번호 확인'
                                 placeholderTextColor="lighterGrey"
+                                autoCapitalize='none'
                                 style={styles.registerInput}
                                 secureTextEntry={true}
                             >
