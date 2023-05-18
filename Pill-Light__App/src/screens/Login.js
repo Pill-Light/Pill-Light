@@ -4,7 +4,6 @@ import React from 'react';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
 const Login = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -30,6 +29,7 @@ const Login = ({ navigation }) => {
             Alert.alert('로그인 실패', '로그인 중에 오류가 발생했습니다.');
         }
     };
+
     return (
         <SafeAreaView style={styles.safeArea}>
             <KeyboardAvoidingView
@@ -77,6 +77,12 @@ const Login = ({ navigation }) => {
                             >
                                 <Text style={styles.login}>로그인 하기</Text>
                             </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate("MainPage")}
+                                style={styles.signBtn}
+                            >
+                                <Text style={styles.sign}>건너뛰기</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </ScrollView>
@@ -100,7 +106,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     subContainer: {
-        marginTop: "15%",
+        marginTop: "10%",
         flex: 1,
         justifyContent: "center",
         alignItems: "center",

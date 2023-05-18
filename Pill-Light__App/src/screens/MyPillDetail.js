@@ -6,14 +6,16 @@ import { PillData } from '../store/PillData';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height;
 
-const MyPillDetail = ({ navigation }) => {
+const MyPillDetail = ({ route }) => {
+
+  const { pillKey } = route.params;
 
   return (
     <SafeAreaView style={styles.container}>
       {/* header */}
       <View style={styles.header}>
         <View style={styles.mainTextWrapper}>
-          <Text style={styles.mainText}>{PillData[0].name}</Text>
+          <Text style={styles.mainText}>{PillData[pillKey - 1].name}</Text>
         </View>
       </View>
       {/* body */}
@@ -21,10 +23,10 @@ const MyPillDetail = ({ navigation }) => {
         <View style={styles.pillDetailContainer}>
           <ImageBackground style={styles.pillImage}
           resizeMode="stretch"
-          source={PillData[0].image}>
+          source={PillData[pillKey - 1].image}>
           </ImageBackground>
           <View style={styles.pillInfoWrapper}>
-            <Text style={styles.pillInfoText}>어쩔티비 ㅋzgzgzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋㅋzgzgzzzgzggzㅇㄴㅋㅎㅋㅇㅎㅋㅇㅎㅋㅋ</Text>
+            <Text style={styles.pillInfoText}>{PillData[pillKey - 1].info}</Text>
           </View>
         </View>
 
