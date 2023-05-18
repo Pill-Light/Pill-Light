@@ -4,9 +4,11 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import NavigationBar from "../components/UI/NavigationBar";
+import { NavigationContainer } from "@react-navigation/native";
 
 const FamilyInfo = () => {
   return (
+    <NavigationContainer>
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.header}>
@@ -45,8 +47,9 @@ const FamilyInfo = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.footer}></View>
+    <NavigationBar />
     </SafeAreaView>
+    </NavigationContainer>
   );
 };
 
@@ -135,15 +138,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     color: "white",
-  },
-  footer: {
-    flex: 1.1,
-    backgroundColor: "#fff",
-    flexDirection: "row",
-    paddingBottom: "7%",
-    paddingTop: "5%",
-    borderTopWidth: "4%",
-    borderColor: "#57C5B6",
   },
 });
 export default FamilyInfo;
