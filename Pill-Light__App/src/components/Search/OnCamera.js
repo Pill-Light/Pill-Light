@@ -47,7 +47,7 @@ const OnCamera = ({ navigation }) => {
       </View>
       <Camera style={styles.camera} type={type}>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={this.setSnap}>
+          <TouchableOpacity onPress={() => navigation.navigate("Recognition")}>
             <FontAwesome name="camera" style={styles.snapButton} size={60} />
           </TouchableOpacity>
         </View>
