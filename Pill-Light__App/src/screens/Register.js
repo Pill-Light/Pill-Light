@@ -19,33 +19,52 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // npm install @react-native-async-storage/async-storage
 
 const Register = ({ navigation }) => {
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [name, setName] = useState('');
+    const [gender, setGender] = useState('');
+    const [birthYear, setBirthYear] = useState('');
+    const [birthMonth, setBirthMonth] = useState('');
+    const [birthDay, setBirthDay] = useState('');
     const [button1Color, setButton1Color] = useState('#fafafa');
     const [button2Color, setButton2Color] = useState('#fafafa');
 
     const handleButton1Press = () => {
         setButton1Color('#57C5B6');
         setButton2Color('#fafafa');
-    };innerHeight
+        setGender('남자');
+    };
 
     const handleButton2Press = () => {
         setButton1Color('#fafafa');
         setButton2Color('#57C5B6');
+        setGender('여자');
     };
-
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const [gender, setGender] = useState('');
-    const [birthYear, setBirthYear] = useState('');
-    const [birthMonth, setBirthMonth] = useState('');
-    const [birthDay, setBirthDay] = useState('');
-
 
     const handleRegister = async () => {
         try {
+            if (!username || !password || !name || !gender || !birthYear || !birthMonth || !birthDay) {
+                Alert.alert('회원 가입 실패', '모든 항목을 입력해주세요.');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                Alert.alert('회원 가입 실패', '비밀번호가 일치하는지 확인해주세요.');
+                return;
+            }
+
             // 기존의 회원 정보 가져오기
             const storedUsers = await AsyncStorage.getItem('registeredUsers');
             const parsedUsers = storedUsers ? JSON.parse(storedUsers) : [];
+
+            // 아이디 중복 체크
+            const isUsernameExists = parsedUsers.some(user => user.username === username);
+            if (isUsernameExists) {
+                Alert.alert('회원 가입 실패', '이미 존재하는 아이디입니다.');
+                return;
+            }
 
             // 새로운 회원 정보 생성
             const newUser = {
@@ -65,6 +84,7 @@ const Register = ({ navigation }) => {
             await AsyncStorage.setItem('registeredUsers', JSON.stringify(updatedUsers));
 
             Alert.alert('회원 가입 성공');
+            navigation.navigate('Welcome');
         } catch (error) {
             Alert.alert('회원 가입 실패', '회원 가입 중에 오류가 발생했습니다.');
         }
@@ -93,6 +113,7 @@ const Register = ({ navigation }) => {
                             <TextInput
                                 placeholder='아이디 입력'
                                 placeholderTextColor="lighterGrey"
+                                autoCapitalize='none'
                                 value={username}
                                 onChangeText={setUsername}
                                 style={styles.registerInput}
@@ -101,6 +122,7 @@ const Register = ({ navigation }) => {
                             <TextInput
                                 placeholder='비밀번호 입력'
                                 placeholderTextColor="lighterGrey"
+                                autoCapitalize='none'
                                 value={password}
                                 onChangeText={setPassword}
                                 secureTextEntry={true}
@@ -110,6 +132,9 @@ const Register = ({ navigation }) => {
                             <TextInput
                                 placeholder='비밀번호 확인'
                                 placeholderTextColor="lighterGrey"
+                                autoCapitalize='none'
+                                value={confirmPassword}
+                                onChangeText={setConfirmPassword}
                                 style={styles.registerInput}
                                 secureTextEntry={true}
                             >
@@ -121,6 +146,8 @@ const Register = ({ navigation }) => {
                             <TextInput
                                 placeholder='이름 입력'
                                 placeholderTextColor="lighterGrey"
+                                autoCorrect={true}
+                                autoCapitalize="none"
                                 value={name}
                                 onChangeText={setName}
                                 style={styles.registerInput}
@@ -330,3 +357,4 @@ const styles = StyleSheet.create({
 });
 
 export default Register
+
