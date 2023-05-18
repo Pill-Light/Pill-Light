@@ -52,7 +52,7 @@ const Login = ({ navigation }) => {
                             </Text>
                         </View>
                         <View style={{
-                            marginVertical: "10%",
+                            marginVertical: "6%",
                         }}
                         >
                             <TextInput
