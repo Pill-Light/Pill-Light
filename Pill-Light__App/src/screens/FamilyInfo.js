@@ -3,6 +3,7 @@ import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground, } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import NavigationBar from "../components/UI/NavigationBar";
 
 const FamilyInfo = () => {
   return (

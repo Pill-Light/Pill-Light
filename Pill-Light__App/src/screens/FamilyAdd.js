@@ -3,14 +3,25 @@ import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from '@expo/vector-icons';
-
+import NavigationBar from "../components/UI/NavigationBar";
+import Modal from "react-native-modal";
+import { NavigationContainer } from "@react-navigation/native";
 
 const FamilyAdd = () =>{
+  const [modalVisible, setModalVisible] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   return(
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.container}>
+    <NavigationContainer>
+    <SafeAreaView style={styles.container}>
         <View style={styles.header}>
           <View style={styles.searchBar}>
             <TouchableOpacity style={styles.backButton}>
@@ -20,12 +31,11 @@ const FamilyAdd = () =>{
             <TouchableOpacity style={styles.searchButton}>
               <FontAwesome name="search" size={50} color="#57C5B6" />
             </TouchableOpacity>
-          </View>
         </View>
       </View>
         <View style = {styles.body}>
             <View>
-                    <TextInput
+                <TextInput
                         placeholder='이름'
                         placeholderTextColor="lighterGrey"
                         style={styles.registerInput}
@@ -35,39 +45,43 @@ const FamilyAdd = () =>{
                         placeholder='나이'
                         placeholderTextColor="lighterGrey"
                         style={styles.registerInput}
-                        secureTextEntry={true}
                     >
                     </TextInput>
                     <TextInput
                         placeholder='전화번호'
                         placeholderTextColor="lighterGrey"
                         style={styles.registerInput}
-                        secureTextEntry={true}
                     >
-                    </TextInput>
-                    <View style={styles.checkboxContainer}>
+                    </TextInput>                
+                <View style={styles.checkboxContainer}>
                 <TouchableOpacity
                   style={[styles.checkbox, isChecked && styles.checkboxChecked]}
                   onPress={() => setIsChecked(!isChecked)} >
                   {isChecked && <FontAwesome name="check" size={20} color="white" />}
                 </TouchableOpacity>
-              <Text style={styles.checkboxLabel}>동의합니다.</Text>           
-                <ImageBackground
+                <Text style={styles.checkboxLabel}>동의합니다.</Text>           
+                 <ImageBackground
                   style={styles.image}
                   resizeMode="contain"
                   source={require("../../assets/메인로고.png")}
                 />
+                  <Modal isVisible={modalVisible} onBackdropPress={closeModal}>
+                    <View style={styles.modalContainer}>
+                      <Text style={styles.modalText}>모달 내용</Text>
+                      {"저장되었습니다."}
+                    </View>
+                  </Modal>
                 </View>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("")}
-                  style={styles.saveBtn}
-                ><Text style={styles.saveInfo}>저장하기</Text>
-                </TouchableOpacity>
+                <View style={styles.saveBtnContainer}>
+                  <TouchableOpacity onPress={openModal} style={styles.saveBtn}>
+                  <Text style={styles.saveInfo}>저장하기</Text>
+                  </TouchableOpacity>
+                </View>
+                </View>
             </View>
-          </View>
-        <View style={styles.footer}>
-        </View>
+          <NavigationBar />
       </SafeAreaView>
+    </NavigationContainer>
     );
 
   };
@@ -94,7 +108,7 @@ const FamilyAdd = () =>{
     },
     searchButton: {
       alignSelf: "flex-end",
-      marginBottom: "5%",
+      marginBottom: "16%",
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -109,7 +123,7 @@ const FamilyAdd = () =>{
       fontWeight: 600,
       alignItems: "center",
       marginLeft: "20%",
-      marginRight: "15%",
+      marginRight: "20%",
     },
     body: {
       flex: 6,
@@ -153,15 +167,20 @@ const FamilyAdd = () =>{
       padding: "4%",
       margin: "5%",
       marginVertical: "1%",
-  },
+    },
+    saveBtnContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom: 20,
+    },
     saveBtn: {
       backgroundColor: "#159895",
       width: "100%",
       height: 50,
       justifyContent: "center",
       alignItems: "center",
-      marginTop: "25%",
       borderRadius: 10,
+      marginTop: "20%",
     },
     saveInfo: {
       fontSize: 24,

@@ -3,6 +3,8 @@ import { useNavigation } from "@react-navigation/core";
 import MainPage from "../../screens/MainPage";
 import SearchPills from "../../screens/SearchPills";
 import MyPage from "../../screens/MyPage";
+import FamilyAdd from "../../screens/FamilyAdd";
+import FamilyInfo from "../../screens/FamilyInfo";
 import { Entypo, Ionicons, FontAwesome } from "@expo/vector-icons";
 
 const NavigationBar = () => {
