@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   searchButton: {
     alignSelf: "flex-end",
-    marginBottom: "4%",
+    marginBottom: "5%",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
