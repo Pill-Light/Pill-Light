@@ -1,22 +1,29 @@
+import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Dimensions, ImageBackground, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground, } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
+import NavigationBar from "../components/UI/NavigationBar";
 
 const MyPage = () =>{
   
 
   return(
+    <>
     <SafeAreaView style={styles.safeArea}>
       <View style = {styles.container}>
         <View style = {styles.header}>
+        <View style={styles.searchBar}>
+            <TouchableOpacity style={styles.backButton}>
+              <MaterialIcons name="arrow-back" size={40} color="#159895" />
+            </TouchableOpacity>
           <View style={styles.row1Content}>
-            <AntDesign name="bars" size={40} color="gray" />
-            <Text style = {styles.guestName}>이성민 님(남,24세)</Text>
-          </View>
-          <View style = {styles.row2Content}>
-            <AntDesign name="team" size={40} color="white" />
-            <AntDesign name="idcard" size={40} color="gray" />
+            <Text style = {styles.guestName}>이성민 님(24세)</Text>
+            </View>
+            <TouchableOpacity style={styles.searchButton}>
+              <FontAwesome name="search" size={50} color="white" />
+            </TouchableOpacity>
           </View>
         </View>
         <View style = {styles.body}>
@@ -26,16 +33,16 @@ const MyPage = () =>{
           <Text style={styles.value}>tjdals2243</Text>
         </View>
         <View style={styles.detail}>
-          <Text style={styles.label}>이메일 확인:</Text>
-          <Text style={styles.value}>alalfhsk@naver.com</Text>
+          <Text style={styles.label}>이름:</Text>
+          <Text style={styles.value}>이성민</Text>
+        </View>
+        <View style={styles.detail}>
+          <Text style={styles.label}>성별:</Text>
+          <Text style={styles.value}>남자</Text>
         </View>
         <View style={styles.detail}>
           <Text style={styles.label}>생년월일:</Text>
           <Text style={styles.value}>2000년 11월 20일</Text>
-        </View>
-        <View style={styles.detail}>
-          <Text style={styles.label}>전화번호:</Text>
-          <Text style={styles.value}>010 - 8939 - 1288</Text>
         </View>
         </View>
         <View style={styles.buttonsContainer}>
@@ -50,13 +57,11 @@ const MyPage = () =>{
             </TouchableOpacity>
           </View>
         </View>
-        <View style = {styles.footer}>
-          <AntDesign name="home" size={60} color="white" />
-        </View>
-        <View style={{ paddingVertical: 16, paddingHorizontal: 16, flexDirection: 'row', justifyContent: 'space-between' }}>
-      </View>
       </View>
       </SafeAreaView>
+
+
+      </>
   );
 };
 
@@ -69,8 +74,30 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flex: 2,
+    flex: 1.5,
     backgroundColor: "#57C5B6",
+  },
+  backButton: {
+    fontWeight: 500,
+  },
+  searchBar: {
+    flex: 1,
+    heighft: "70%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  searchButton: {
+    alignSelf: "flex-end",
+    marginBottom: "7%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 1.0,
+    shadowRadius: 4.0,
   },
   row1Content: {
     flex: 1,
@@ -81,16 +108,10 @@ const styles = StyleSheet.create({
   },
   guestName: {
     color: "white",
-    fontSize: 23,
-    fontWeight: "600",
-    marginRight: 80,
-  },
-   row2Content: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 60,
-    alignItems: "center",
+    fontSize: 35,
+    fontWeight: 600,
+    marginLeft: "5%",
+    marginRight: "5%",
   },
   body: {
     flex: 6,
@@ -148,9 +169,8 @@ const styles = StyleSheet.create({
   },
   footer: {
     marginTop: "10%",
-    flex: 1.5,
+    flex: 1,
     backgroundColor: "#57C5B6",
-    alignItems: "center",
   },
 });
 
