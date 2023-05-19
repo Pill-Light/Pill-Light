@@ -1,93 +1,75 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  TouchableOpacity,
-} from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { AntDesign } from "@expo/vector-icons";
-import NavigationBar from "../components/UI/NavigationBar";
+import { Dimensions, ImageBackground, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
-const MyPage = () => {
-  const navigation = useNavigation();
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.row1Content}>
-          <AntDesign name="bars" size={40} color="gray" />
-          <Text style={styles.guestName}>김민호(남,68세)</Text>
+const MyPage = () =>{
+  
+
+  return(
+    <SafeAreaView style={styles.safeArea}>
+      <View style = {styles.container}>
+        <View style = {styles.header}>
+          <View style={styles.row1Content}>
+            <AntDesign name="bars" size={40} color="gray" />
+            <Text style = {styles.guestName}>이성민 님(남,24세)</Text>
+          </View>
+          <View style = {styles.row2Content}>
+            <AntDesign name="team" size={40} color="white" />
+            <AntDesign name="idcard" size={40} color="gray" />
+          </View>
         </View>
-        <TouchableOpacity style={styles.row2Content}>
-          <AntDesign name="team" size={40} color="white" />
-          <AntDesign
-            name="idcard"
-            size={40}
-            color="gray"
-            onPress={() => navigation.navigate("FamilyAdd")}
-          />
-        </TouchableOpacity>
+        <View style = {styles.body}>
+      <View style={styles.details}>
+        <View style={styles.detail}>
+          <Text style={styles.label}>아이디 확인:</Text>
+          <Text style={styles.value}>tjdals2243</Text>
+        </View>
+        <View style={styles.detail}>
+          <Text style={styles.label}>이메일 확인:</Text>
+          <Text style={styles.value}>alalfhsk@naver.com</Text>
+        </View>
+        <View style={styles.detail}>
+          <Text style={styles.label}>생년월일:</Text>
+          <Text style={styles.value}>2000년 11월 20일</Text>
+        </View>
+        <View style={styles.detail}>
+          <Text style={styles.label}>전화번호:</Text>
+          <Text style={styles.value}>010 - 8939 - 1288</Text>
+        </View>
+        </View>
+        <View style={styles.buttonsContainer}>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>알약 정보 페이지</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>가족 정보 페이지</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.logoutButton}>
+              <Text style={styles.logoutButtonText}>로그아웃</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style = {styles.footer}>
+          <AntDesign name="home" size={60} color="white" />
+        </View>
+        <View style={{ paddingVertical: 16, paddingHorizontal: 16, flexDirection: 'row', justifyContent: 'space-between' }}>
       </View>
-      <View style={styles.body}>
-        <View style={styles.details}>
-          <View style={styles.detail}>
-            <Text style={styles.label}>입력된 질환</Text>
-            <Text style={styles.value}>고혈압</Text>
-          </View>
-          <View style={styles.detail}>
-            <Text style={styles.label}>복용중인 약</Text>
-            <Text style={styles.value}>타이레놀</Text>
-          </View>
-          <View style={styles.detail}>
-            <Text style={styles.label}>약 복용 확인</Text>
-            <Text style={styles.value}>아침: 복용완료</Text>
-            <Text style={styles.value}>점심: 복용전</Text>
-            <Text style={styles.value}>저녁: 복용전</Text>
-          </View>
-        </View>
-        <View style={styles.details}>
-          <View style={styles.detail}>
-            <Text style={styles.label}>이메일</Text>
-            <Text style={styles.value}>내 이메일 주소</Text>
-          </View>
-          <View style={styles.detail}>
-            <Text style={styles.label}>전화번호</Text>
-            <Text style={styles.value}>내 전화번호</Text>
-          </View>
-          <View style={styles.detail}>
-            <Text style={styles.label}>생일</Text>
-            <Text style={styles.value}>내 생일</Text>
-          </View>
-        </View>
-        <View style={styles.details}>
-          <View style={styles.detail}>
-            <Text style={styles.label}>이메일</Text>
-            <Text style={styles.value}>내 이메일 주소</Text>
-          </View>
-          <View style={styles.detail}>
-            <Text style={styles.label}>전화번호</Text>
-            <Text style={styles.value}>내 전화번호</Text>
-          </View>
-          <View style={styles.detail}>
-            <Text style={styles.label}>생일</Text>
-            <Text style={styles.value}>내 생일</Text>
-          </View>
-        </View>
       </View>
-      <NavigationBar />
-    </SafeAreaView>
+      </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeArea: {
+    backgroundColor: "white",
+    flex: 1,
+  },
   container: {
     flex: 1,
-    backgroundColor: "#57C5B6",
   },
   header: {
-    flex: 1.5,
+    flex: 2,
     backgroundColor: "#57C5B6",
   },
   row1Content: {
@@ -99,11 +81,11 @@ const styles = StyleSheet.create({
   },
   guestName: {
     color: "white",
-    fontSize: 20,
-    fontWeight: "500",
-    marginRight: 90,
+    fontSize: 23,
+    fontWeight: "600",
+    marginRight: 80,
   },
-  row2Content: {
+   row2Content: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -116,25 +98,59 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   details: {
-    borderWidth: 1,
-    borderColor: "#ccc",
+    borderWidth: 5,
+    borderColor: '#rgb(87,197,182)',
     borderRadius: 10,
     padding: 5,
   },
   detail: {
-    flexDirection: "column",
-    alignItems: "center",
-    marginBottom: 5,
+    borderWidth: 2,
+    borderColor: '#rgb(87,197,182)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
   },
   label: {
     flex: 1,
-    fontSize: 14,
-    fontWeight: "bold",
+    fontSize: 22,
+    fontWeight: 'bold',
   },
   value: {
     flex: 2,
-    fontSize: 16,
-    marginLeft: 10,
+    fontSize: 20,
+    marginLeft: 5,
+  },
+  buttonsContainer: {
+    marginTop: 30,
+  },
+  button: {
+    backgroundColor: "#57C5B6",
+    padding: 15,
+    borderRadius: 5,
+    marginBottom: 15,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  logoutButton: {
+    backgroundColor: "red",
+    padding: 15,
+    borderRadius: 5,
+  },
+  logoutButtonText: {
+    color: "white",
+    fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  footer: {
+    marginTop: "10%",
+    flex: 1.5,
+    backgroundColor: "#57C5B6",
+    alignItems: "center",
   },
 });
 
