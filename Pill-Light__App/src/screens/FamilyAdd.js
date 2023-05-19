@@ -67,8 +67,7 @@ const FamilyAdd = () =>{
                 />
                   <Modal isVisible={modalVisible} onBackdropPress={closeModal}>
                     <View style={styles.modalContainer}>
-                      <Text style={styles.modalText}>모달 내용</Text>
-                      {"저장되었습니다."}
+                      <Text style={styles.modalText}>저장되었습니다.</Text>
                     </View>
                   </Modal>
                 </View>
@@ -91,11 +90,13 @@ const FamilyAdd = () =>{
       flex : 1
         },
     header:{
-      flex: 2,
+      flex: 1,
       backgroundColor: "white",
       flexDirection: "row",
     },
     backButton:{
+      alignSelf: "inline-flex",
+      marginTop: "3%",
       fontWeight: 500,
     },
     searchBar: {
@@ -107,7 +108,7 @@ const FamilyAdd = () =>{
       flexDirection: "row",
     },
     searchButton: {
-      alignSelf: "flex-end",
+      alignSelf: "inline-flex",
       marginBottom: "16%",
       shadowColor: "#000",
       shadowOffset: {
@@ -118,12 +119,13 @@ const FamilyAdd = () =>{
       shadowRadius: 3.84,
     },
     guestName:{
+      alignSelf: "inline-flex",
       color:"black",
       fontSize: 23,
       fontWeight: 600,
-      alignItems: "center",
+      marginTop: "5%",
       marginLeft: "20%",
-      marginRight: "20%",
+      marginRight: "15%",
     },
     body: {
       flex: 6,
@@ -168,15 +170,28 @@ const FamilyAdd = () =>{
       margin: "5%",
       marginVertical: "1%",
     },
+    modalContainer: {
+      width: 200,
+      height: 200,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    modalText: {
+      fontSize: 24,
+      fontWeight: "bold",
+      color: "white",
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
     saveBtnContainer: {
       justifyContent: 'center',
       alignItems: 'center',
-      marginBottom: 20,
+      marginBottom: "5%",
     },
     saveBtn: {
       backgroundColor: "#159895",
       width: "100%",
-      height: 50,
+      height: "25%",
       justifyContent: "center",
       alignItems: "center",
       borderRadius: 10,
@@ -186,15 +201,6 @@ const FamilyAdd = () =>{
       fontSize: 24,
       fontWeight: "bold",
       color: "white",
-  },  
-    footer:{
-      flex: 1.1,
-      backgroundColor: "#fff",
-      flexDirection: "row",
-      paddingBottom: "7%",
-      paddingTop: "5%",
-      borderTopWidth: "4%",
-      borderColor: "#57C5B6",
-    },
+  }, 
   });
   export default FamilyAdd;
