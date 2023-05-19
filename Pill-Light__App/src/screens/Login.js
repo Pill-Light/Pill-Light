@@ -19,7 +19,10 @@ const Login = ({ navigation }) => {
                 (user) => user.username === username && user.password === password
             );
 
-            if (user) {
+            if (!username || !password) {
+                Alert.alert('로그인 실패', '아이디 또는 비밀번호를 입력해주세요.');
+                return;
+            } else if (user) {
                 Alert.alert('로그인 성공', `사용자 명 : ${user.name}`);
                 navigation.navigate('MainPage');
             } else {
@@ -49,20 +52,22 @@ const Login = ({ navigation }) => {
                             </Text>
                         </View>
                         <View style={{
-                            marginVertical: "10%",
+                            marginVertical: "6%",
                         }}
                         >
                             <TextInput
-                                placeholder='Enter id'
+                                placeholder='아이디 입력'
                                 placeholderTextColor="lighterGrey"
+                                autoCapitalize='none'
                                 value={username}
                                 onChangeText={setUsername}
                                 style={styles.textInput}
                             >
                             </TextInput>
                             <TextInput
-                                placeholder='Enter password'
+                                placeholder='비밀번호 입력'
                                 placeholderTextColor="lighterGrey"
+                                autoCapitalize='none'
                                 secureTextEntry={true}
                                 value={password}
                                 onChangeText={setPassword}
