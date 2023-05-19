@@ -1,8 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
-import { MaterialIcons } from '@expo/vector-icons';
+import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity,} from "react-native";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import NavigationBar from "../components/UI/NavigationBar";
 import Modal from "react-native-modal";
 import { NavigationContainer } from "@react-navigation/native";
@@ -24,9 +23,15 @@ const FamilyAdd = () =>{
     <SafeAreaView style={styles.container}>
         <View style={styles.header}>
           <View style={styles.searchBar}>
-            <TouchableOpacity style={styles.backButton}>
-              <MaterialIcons name="arrow-back" size={40} color="#159895" />
-            </TouchableOpacity>
+          <TouchableOpacity>
+          <Ionicons
+            name="ios-chevron-back-sharp"
+            size={50}
+            color="#57C5B6"
+            style={styles.backButton}
+            onPress={() => navigation.navigate("MyPage")}
+          />
+        </TouchableOpacity>
             <Text style={styles.guestName}>이성진님 (68세)</Text>
             <TouchableOpacity style={styles.searchButton}>
               <FontAwesome name="search" size={50} color="#57C5B6" />
@@ -95,10 +100,8 @@ const FamilyAdd = () =>{
       backgroundColor: "white",
       flexDirection: "row",
     },
-    backButton:{
-      alignSelf: "inline-flex",
-      marginTop: "3%",
-      fontWeight: 500,
+    backButton: {
+      marginBottom: "5%",
     },
     searchBar: {
       flex: 1,
@@ -110,7 +113,7 @@ const FamilyAdd = () =>{
     },
     searchButton: {
       alignSelf: "inline-flex",
-      marginTop: "1%",
+      marginTop: "2%",
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -125,8 +128,8 @@ const FamilyAdd = () =>{
       fontSize: 25,
       fontWeight: 600,
       marginTop: "5%",
-      marginLeft: "15%",
-      marginRight: "12%",
+      marginLeft: "12%",
+      marginRight: "15%",
     },
     body: {
       flex: 6,
