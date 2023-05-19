@@ -109,7 +109,7 @@ const FamilyAdd = () =>{
     },
     searchButton: {
       alignSelf: "inline-flex",
-      marginBottom: "16%",
+      marginTop: "1%",
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -121,11 +121,11 @@ const FamilyAdd = () =>{
     guestName:{
       alignSelf: "inline-flex",
       color:"black",
-      fontSize: 23,
+      fontSize: 25,
       fontWeight: 600,
       marginTop: "5%",
-      marginLeft: "20%",
-      marginRight: "15%",
+      marginLeft: "15%",
+      marginRight: "12%",
     },
     body: {
       flex: 6,
@@ -138,7 +138,7 @@ const FamilyAdd = () =>{
     },
     image: {
     height: 200,
-    width: 200,
+    width: 100,
     },    
     checkboxContainer: {
       flexDirection: "row",
@@ -186,16 +186,16 @@ const FamilyAdd = () =>{
     saveBtnContainer: {
       justifyContent: 'center',
       alignItems: 'center',
-      marginBottom: "5%",
+      marginBottom: "10%",
     },
     saveBtn: {
       backgroundColor: "#159895",
       width: "100%",
       height: "25%",
+      marginBottom:"10%",
       justifyContent: "center",
       alignItems: "center",
       borderRadius: 10,
-      marginTop: "20%",
     },
     saveInfo: {
       fontSize: 24,
