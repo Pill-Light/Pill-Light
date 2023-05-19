@@ -31,14 +31,11 @@ const FamilyInfo = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.subContainer}>
-          <ImageBackground
-            style={{
-              height: 200,
-              width: 200,
-            }}
-            resizeMode="contain"
-            source={require("../../assets/메인로고.png")}
-          />
+        <ImageBackground
+                  style={styles.image}
+                  resizeMode="contain"
+                  source={require("../../assets/메인로고.png")}
+                />
           <TouchableOpacity
             onPress={() => navigation.navigate("")}
             style={styles.addBtn}
@@ -88,8 +85,8 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 23,
     fontWeight: 600,
-    marginLeft: "5%",
-    marginRight: "5%",
+    marginLeft: "15%",
+    marginRight: "12%",
   },
   body: {
     flex: 6,
@@ -106,19 +103,24 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     flexDirection: "row",
     alignItems: "center",
-    marginTop: "9%",
+    justifyContent: "center",
+    marginTop: "7%",
     marginLeft: "5%",
   },
   minusButton: {
     alignSelf: "flex-end",
-    marginBottom: "7%",
-    marginLeft: "26%",
-    shadowColor: "#000",
+    marginBottom: "5%",
+    marginLeft: "28%",
+    shadowColor: "white",
     shadowOffset: {
       width: 0,
       height: 2,
     },
   },
+    image: {
+    height: 200,
+    width: 200,
+    },
   subContainer: {
     marginTop: "15%",
     flex: 1,
@@ -131,7 +133,7 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "30%",
+    marginTop: "20%",
     borderRadius: 10,
   },
   add: {
