@@ -1,1 +1,2 @@
 AsyncStorage 설치 : npm install @react-native-async-storage/async-storage
+Modal 설치 : npm install react-native-modal
