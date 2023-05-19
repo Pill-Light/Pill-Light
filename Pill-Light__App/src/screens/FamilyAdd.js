@@ -51,6 +51,12 @@ const FamilyAdd = () =>{
                         placeholder='전화번호'
                         placeholderTextColor="lighterGrey"
                         style={styles.registerInput}
+                    >  
+                    </TextInput>                  
+                    <TextInput
+                      placeholder='가족관계'
+                      placeholderTextColor="lighterGrey"
+                      style={styles.registerInput}
                     >
                     </TextInput>                
                 <View style={styles.checkboxContainer}>
@@ -66,11 +72,6 @@ const FamilyAdd = () =>{
                     </View>
                   </Modal>
                 </View>
-                <ImageBackground
-                  style={styles.image}
-                  resizeMode="contain"
-                  source={require("../../assets/메인로고.png")}
-                />
                 <View style={styles.saveBtnContainer}>
                   <TouchableOpacity onPress={openModal} style={styles.saveBtn}>
                   <Text style={styles.saveInfo}>저장하기</Text>
@@ -130,15 +131,7 @@ const FamilyAdd = () =>{
     body: {
       flex: 6,
       backgroundColor: "white", 
-    },
-    imageContainer:{
-      flex: 1,
-    },
-    image: {
-    height: 200,
-    width: 200,
-    marginLeft: "25%",
-    },    
+    }, 
     checkboxContainer: {
       flexDirection: "row",
       marginVertical: "2%",
@@ -184,13 +177,13 @@ const FamilyAdd = () =>{
     },
     saveBtnContainer: {
       alignItems: 'center',
-      marginTop: "5%",
+      marginTop: "40%",
     },
     saveBtn: {
       backgroundColor: "#159895",
       width: "100%",
-      height: "25%",
-      marginBottom: "10%",
+      height: "30%",
+      marginBottom: "12%",
       justifyContent: "center",
       alignItems: "center",
       borderRadius: 10,
