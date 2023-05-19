@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
 import React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }) => {
@@ -24,7 +24,7 @@ const Login = ({ navigation }) => {
                 return;
             } else if (user) {
                 Alert.alert('로그인 성공', `사용자 명 : ${user.name}`);
-                navigation.navigate('MainPage');
+                navigation.navigate('MyPage', { userInfo: user }); // 회원 정보 전달
             } else {
                 Alert.alert('로그인 실패', '아이디 또는 비밀번호가 잘못되었습니다.');
             }
@@ -32,7 +32,6 @@ const Login = ({ navigation }) => {
             Alert.alert('로그인 실패', '로그인 중에 오류가 발생했습니다.');
         }
     };
-
     return (
         <SafeAreaView style={styles.safeArea}>
             <KeyboardAvoidingView

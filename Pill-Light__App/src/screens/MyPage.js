@@ -3,65 +3,102 @@ import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground, } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-
+import { useEffect, useState } from 'react';
 import NavigationBar from "../components/UI/NavigationBar";
+import { AsyncStorage } from "react-native";
 
-const MyPage = () =>{
-  
+const MyPage = ({ navigation, route }) => {
+  const { userInfo } = route.params;
 
-  return(
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // AsyncStorage에서 저장된 회원 정보 가져오기
+        const storedUsers = await AsyncStorage.getItem('registeredUsers');
+        const parsedUsers = storedUsers ? JSON.parse(storedUsers) : [];
+
+        // 현재 로그인한 회원 정보 가져오기
+        const currentUser = parsedUsers.find(user => user.loggedIn === true);
+
+        if (currentUser) {
+          setUserInfo(currentUser);
+        }
+      } catch (error) {
+        console.log('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  if (!userInfo) {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <Text>No user information available</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  const { username, name, gender, birthYear, birthMonth, birthDay } = userInfo;
+
+  return (
     <>
-    <SafeAreaView style={styles.safeArea}>
-      <View style = {styles.container}>
-        <View style = {styles.header}>
-        <View style={styles.searchBar}>
-            <TouchableOpacity style={styles.backButton}>
-              <MaterialIcons name="arrow-back" size={40} color="#159895" />
-            </TouchableOpacity>
-          <View style={styles.row1Content}>
-            <Text style = {styles.guestName}>이성민 님(24세)</Text>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <View style={styles.searchBar}>
+              <TouchableOpacity style={styles.backButton}>
+                <MaterialIcons name="arrow-back" size={40} color="#159895" />
+              </TouchableOpacity>
+              <View style={styles.row1Content}>
+                <Text style={styles.guestName}>{name} 님</Text>
+              </View>
+              <TouchableOpacity style={styles.searchButton}>
+                <FontAwesome name="search" size={50} color="white" />
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.searchButton}>
-              <FontAwesome name="search" size={50} color="white" />
-            </TouchableOpacity>
+          </View>
+          <View style={styles.body}>
+            <View style={styles.details}>
+              <View style={styles.detail}>
+                <Text style={styles.label}>아이디</Text>
+                <Text style={styles.value}>{username}</Text>
+              </View>
+              <View style={styles.detail}>
+                <Text style={styles.label}>이름</Text>
+                <Text style={styles.value}>{name}</Text>
+              </View>
+              <View style={styles.detail}>
+                <Text style={styles.label}>성별</Text>
+                <Text style={styles.value}>{gender}</Text>
+              </View>
+              <View style={styles.detail}>
+                <Text style={styles.label}>생년월일</Text>
+                <Text style={styles.value}>{birthYear}년 {birthMonth}월 {birthDay}일</Text>
+              </View>
+            </View>
+            <View style={styles.buttonsContainer}>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>알약 정보 페이지</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>가족 정보 페이지</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Welcome")}
+                style={styles.logoutButton}
+              >
+                <Text style={styles.logoutButtonText}>로그아웃</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-        <View style = {styles.body}>
-      <View style={styles.details}>
-        <View style={styles.detail}>
-          <Text style={styles.label}>아이디 확인:</Text>
-          <Text style={styles.value}>tjdals2243</Text>
-        </View>
-        <View style={styles.detail}>
-          <Text style={styles.label}>이름:</Text>
-          <Text style={styles.value}>이성민</Text>
-        </View>
-        <View style={styles.detail}>
-          <Text style={styles.label}>성별:</Text>
-          <Text style={styles.value}>남자</Text>
-        </View>
-        <View style={styles.detail}>
-          <Text style={styles.label}>생년월일:</Text>
-          <Text style={styles.value}>2000년 11월 20일</Text>
-        </View>
-        </View>
-        <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>알약 정보 페이지</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>가족 정보 페이지</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.logoutButton}>
-              <Text style={styles.logoutButtonText}>로그아웃</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
       </SafeAreaView>
 
 
-      </>
+    </>
   );
 };
 
