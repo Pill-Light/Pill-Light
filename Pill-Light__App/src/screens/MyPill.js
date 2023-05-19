@@ -2,7 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import { Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import { PillData } from '../store/PillData';
+//timePicker
 import TimePickerExample from '../components/TimePickerExample';
+//하단바
+import { Entypo } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height;
 
@@ -73,8 +77,15 @@ const MyPill = ({ navigation }) => {
 
 
 
-          {/* footer */}
-          <View style={styles.footer}></View>
+          {/* 하단바 */}
+      <View style={styles.bottom}>
+        <View style={styles.camera}>
+          <Entypo name="camera" size={75} color="black" />
+        </View>
+        <View style={styles.home}>
+          <Ionicons name="home" size={75} color="black" />
+        </View>
+      </View>
         </SafeAreaView>
     );
 };
@@ -92,7 +103,7 @@ const styles = StyleSheet.create({
   mainTextWrapper: {
   },
   mainText: {
-    fontSize: "50%",
+    fontSize: 50,
     color: "white",
   },
 
@@ -128,9 +139,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  footer: {
+  bottom: {
     flex: 1,
-    backgroundColor: "#57C5B6",
+    backgroundColor: "#E0E0E0",
+  },
+  camera: {
+    marginTop: 25,
+    marginLeft: 70,
+  },
+  home: {
+    marginTop: -80,
+    marginLeft: 240,
   },
 });
 

@@ -1,12 +1,11 @@
 import { StyleSheet, View, TouchableOpacity, Text, Modal } from "react-native";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
-import {
-  Entypo,
-  Ionicons,
-  FontAwesome,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+import MainPage from "../../screens/MainPage";
+import SearchPills from "../../screens/SearchPills";
+import MyPage from "../../screens/MyPage";
+import { Entypo, Ionicons, FontAwesome } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const NavigationBar = () => {
   const navigation = useNavigation();
