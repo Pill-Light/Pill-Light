@@ -60,17 +60,17 @@ const FamilyAdd = () =>{
                   {isChecked && <FontAwesome name="check" size={20} color="white" />}
                 </TouchableOpacity>
                 <Text style={styles.checkboxLabel}>동의합니다.</Text>           
-                 <ImageBackground
-                  style={styles.image}
-                  resizeMode="contain"
-                  source={require("../../assets/메인로고.png")}
-                />
                   <Modal isVisible={modalVisible} onBackdropPress={closeModal}>
                     <View style={styles.modalContainer}>
                       <Text style={styles.modalText}>저장되었습니다.</Text>
                     </View>
                   </Modal>
                 </View>
+                <ImageBackground
+                  style={styles.image}
+                  resizeMode="contain"
+                  source={require("../../assets/메인로고.png")}
+                />
                 <View style={styles.saveBtnContainer}>
                   <TouchableOpacity onPress={openModal} style={styles.saveBtn}>
                   <Text style={styles.saveInfo}>저장하기</Text>
@@ -131,14 +131,13 @@ const FamilyAdd = () =>{
       flex: 6,
       backgroundColor: "white", 
     },
-    imageContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    imageContainer:{
+      flex: 1,
     },
     image: {
     height: 200,
-    width: 100,
+    width: 200,
+    marginLeft: "25%",
     },    
     checkboxContainer: {
       flexDirection: "row",
@@ -184,15 +183,14 @@ const FamilyAdd = () =>{
       justifyContent: 'center',
     },
     saveBtnContainer: {
-      justifyContent: 'center',
       alignItems: 'center',
-      marginBottom: "10%",
+      marginTop: "5%",
     },
     saveBtn: {
       backgroundColor: "#159895",
       width: "100%",
       height: "25%",
-      marginBottom:"10%",
+      marginBottom: "10%",
       justifyContent: "center",
       alignItems: "center",
       borderRadius: 10,
