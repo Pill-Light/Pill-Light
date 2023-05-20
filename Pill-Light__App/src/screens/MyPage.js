@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground, } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useEffect, useState } from 'react';
 import NavigationBar from "../components/UI/NavigationBar";
@@ -48,17 +48,21 @@ const MyPage = ({ navigation, route }) => {
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <View style={styles.header}>
-            <View style={styles.searchBar}>
-              <TouchableOpacity style={styles.backButton}>
-                <MaterialIcons name="arrow-back" size={40} color="#159895" />
+              <TouchableOpacity>
+                <Ionicons
+                  name="ios-chevron-back-sharp"
+                  size={70}
+                  color="#57C5B6"
+                  style={styles.backButton}
+                  onPress={() => navigation.navigate("MainPage")}
+                />
               </TouchableOpacity>
               <View style={styles.row1Content}>
                 <Text style={styles.guestName}>{name} 님</Text>
               </View>
               <TouchableOpacity style={styles.searchButton}>
-                <FontAwesome name="search" size={50} color="white" />
+                <FontAwesome name="search" size={50} color="#57C5B6" />
               </TouchableOpacity>
-            </View>
           </View>
           <View style={styles.body}>
             <View style={styles.details}>
@@ -80,7 +84,9 @@ const MyPage = ({ navigation, route }) => {
               </View>
             </View>
             <View style={styles.buttonsContainer}>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity style={styles.button}
+                onPress={() => navigation.navigate("MyPill")}
+              >
                 <Text style={styles.buttonText}>알약 정보 페이지</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.button}>
@@ -111,44 +117,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flex: 1.5,
-    backgroundColor: "#57C5B6",
-  },
-  backButton: {
-    fontWeight: 500,
-  },
-  searchBar: {
     flex: 1,
-    heighft: "70%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
     flexDirection: "row",
+    backgroundColor: "white",
+    alignItems: 'center',
+    justifyContent: "space-between",
   },
   searchButton: {
-    alignSelf: "flex-end",
-    marginBottom: "7%",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 2,
-      height: 2,
-    },
-    shadowOpacity: 1.0,
-    shadowRadius: 4.0,
-  },
-  row1Content: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 20,
+    width: 70.5,
+    height: 70.5,
     alignItems: "center",
+    justifyContent: "center",
   },
   guestName: {
-    color: "white",
+    color: "#57C5B6",
     fontSize: 35,
     fontWeight: 600,
-    marginLeft: "5%",
-    marginRight: "5%",
   },
   body: {
     flex: 6,

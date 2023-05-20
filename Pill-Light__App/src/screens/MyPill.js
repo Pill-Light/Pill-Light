@@ -24,9 +24,19 @@ const MyPill = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       {/* header */}
       <View style={styles.header}>
+        <TouchableOpacity>
+          <Ionicons
+            name="ios-chevron-back-sharp"
+            size={70}
+            color="#57C5B6"
+            style={styles.backButton}
+            onPress={() => navigation.navigate("MyPage")}
+          />
+        </TouchableOpacity>
         <View style={styles.mainTextWrapper}>
           <Text style={styles.mainText}>복용 중인 약</Text>
         </View>
+        <View style={{ width: 70.5, height: 70.5 }}></View>
       </View>
 
       {/* body */}
@@ -109,24 +119,28 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    backgroundColor: "#57C5B6",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: "row",
+    backgroundColor: "white",
+    alignItems: 'center',
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    borderColor: "#57C5B6",
+  },
+  backButton: {
   },
   mainTextWrapper: {
   },
   mainText: {
     fontSize: 50,
-    color: "white",
+    color: "#57C5B6",
   },
 
   body: {
-    flex: 4,
+    flex: 6,
     backgroundColor: "white",
     alignContent: "center",
   },
   scrollWrapper: {
-    backgroundColor: "red",
   },
   slide: {
     backgroundColor: "white",
@@ -142,7 +156,8 @@ const styles = StyleSheet.create({
   },
   pillImageWrapper: {
     alignItems: "center",
-    height: "70%",
+    height: "65%",
+    marginTop: "5%",
     marginLeft: "10%",
     marginRight: "10%",
   },
