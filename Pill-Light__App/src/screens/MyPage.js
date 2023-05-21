@@ -5,47 +5,41 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useEffect, useState } from 'react';
 import NavigationBar from "../components/UI/NavigationBar";
+import { getUserInfo, logoutUser} from "../components/UserManger";
 import { AsyncStorage } from "react-native";
 
-const MyPage = ({ navigation, route }) => {
-  const { userInfo } = route.params;
+const MyPage = ({ navigation }) => {
+  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // AsyncStorage에서 저장된 회원 정보 가져오기
-        const storedUsers = await AsyncStorage.getItem('registeredUsers');
-        const parsedUsers = storedUsers ? JSON.parse(storedUsers) : [];
-
-        // 현재 로그인한 회원 정보 가져오기
-        const currentUser = parsedUsers.find(user => user.loggedIn === true);
-
-        if (currentUser) {
-          setUserInfo(currentUser);
-        }
+        const loggedInUser = await getUserInfo();
+        setUserInfo(loggedInUser);
       } catch (error) {
         console.log('Error fetching user data:', error);
       }
     };
-
     fetchUserData();
   }, []);
 
-  if (!userInfo) {
-    return (
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.container}>
-          <Text>No user information available</Text>
-        </View>
-      </SafeAreaView>
-    );
-  }
-
   const { username, name, gender, birthYear, birthMonth, birthDay } = userInfo;
+
+  const handleLogout = async () => {
+    try {
+      if (userInfo.loggedIn) {
+        await logoutUser(userInfo.username);
+      }
+      navigation.navigate('Welcome');
+    } catch (error) {
+      console.log('로그아웃 실패:', error);
+    }
+  };
 
   return (
     <>
-      <SafeAreaView style={styles.safeArea}>
+      <SafeAreaView style={{ flex: 0, backgroundColor: 'white' }} />
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#57C5B6' }}>
         <View style={styles.container}>
           <View style={styles.header}>
               <TouchableOpacity>
@@ -93,13 +87,15 @@ const MyPage = ({ navigation, route }) => {
                 <Text style={styles.buttonText}>가족 정보 페이지</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => navigation.navigate("Welcome")}
+                onPress={() => handleLogout(userInfo.username)}
                 style={styles.logoutButton}
               >
                 <Text style={styles.logoutButtonText}>로그아웃</Text>
               </TouchableOpacity>
             </View>
           </View>
+          <NavigationBar />
+
         </View>
       </SafeAreaView>
 
