@@ -18,7 +18,7 @@ const Login = ({ navigation }) => {
                 return;
             } else {
                 Alert.alert('로그인 성공', `사용자 명 : ${user.name}`);
-                navigation.navigate('MyPage');
+                navigation.navigate('MainPage');
             }
         } catch (error) {
             Alert.alert('로그인 실패', error.message);

@@ -6,8 +6,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useEffect, useState } from 'react';
 import NavigationBar from "../components/UI/NavigationBar";
 import { getUserInfo } from "../components/UserManger";
-import UserManger from "../components/UserManger";
-
+import { logoutUser } from "../components/UserManger";
 import { AsyncStorage } from "react-native";
 
 const MyPage = ({ navigation }) => {
@@ -25,18 +24,16 @@ const MyPage = ({ navigation }) => {
     fetchUserData();
   }, []);
 
-
-  if (!userInfo) {
-    return (
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.container}>
-          <Text>No user information available</Text>
-        </View>
-      </SafeAreaView>
-    );
-  }
-
   const { username, name, gender, birthYear, birthMonth, birthDay } = userInfo;
+
+  const handleLogout = async (username) => {
+    try {
+      await logoutUser(username);
+      navigation.navigate('Welcome');
+    } catch (error) {
+      console.log('로그아웃 실패:', error);
+    }
+  };
 
   return (
     <>
@@ -88,7 +85,7 @@ const MyPage = ({ navigation }) => {
                 <Text style={styles.buttonText}>가족 정보 페이지</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => navigation.navigate("Welcome")}
+                onPress={() => handleLogout(userInfo.username)}
                 style={styles.logoutButton}
               >
                 <Text style={styles.logoutButtonText}>로그아웃</Text>
