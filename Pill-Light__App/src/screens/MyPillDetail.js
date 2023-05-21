@@ -3,6 +3,7 @@ import { Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleShee
 import React, { useState } from 'react';
 import { PillData } from '../store/PillData';
 import { Ionicons } from '@expo/vector-icons';
+import NavigationBar from '../components/UI/NavigationBar';
 
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height;
@@ -44,7 +45,7 @@ const MyPillDetail = ({ navigation, route }) => {
       </View>
 
       {/* footer */}
-      <View style={styles.footer}></View>
+      <NavigationBar />
 
     </SafeAreaView>
   );
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   mainTextWrapper: {
   },
   mainText: {
-    fontSize: 50,
+    fontSize: 35,
     color: "#57C5B6",
   },
 

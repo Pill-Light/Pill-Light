@@ -1,19 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { PillData } from '../store/PillData';
 //timePicker
 import TimePickerExample from '../components/TimePickerExample';
 //하단바
 import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import NavigationBar from '../components/UI/NavigationBar';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const MyPill = ({ navigation }) => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const [pillData, setPillData] = useState(PillData);
+  const toggleSwitch = (index) => {
+    const updatedPillData = [...PillData];
+    updatedPillData[index].notice = !updatedPillData[index].notice;
+    setPillData(updatedPillData);
+  };
+
   const [currentPage, setCurrentPage] = useState(0);
 
   const handleSlidePress = (key) => {
@@ -21,7 +27,9 @@ const MyPill = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Fragment style={styles.container}>
+      <SafeAreaView style={{ flex: 0, backgroundColor: "white"}} />
+      <StatusBar />
       {/* header */}
       <View style={styles.header}>
         <TouchableOpacity>
@@ -64,8 +72,8 @@ const MyPill = ({ navigation }) => {
                   </View>
                   <Switch
                     style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }] }}
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
+                    onValueChange={() => toggleSwitch(index)}
+                    value={item.notice}
                   />
                 </View>
 
@@ -101,16 +109,9 @@ const MyPill = ({ navigation }) => {
       </View>
 
       {/* 하단바 */}
-      <View style={styles.bottom}>
-        <View style={styles.camera}>
-          <Entypo name="camera" size={75} color="black" />
-        </View>
-        <View style={styles.home}>
-          <Ionicons name="home" size={75} color="black" />
-        </View>
-      </View>
-        </SafeAreaView>
-    );
+      <NavigationBar />
+    </Fragment>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
   mainTextWrapper: {
   },
   mainText: {
-    fontSize: 50,
+    fontSize: 35,
     color: "#57C5B6",
   },
 
@@ -184,20 +185,6 @@ const styles = StyleSheet.create({
   },
   inactiveDot: {
     backgroundColor: '#e9e9e9', // 비활성화된 dot의 색상을 설정합니다.
-  },
-  
-
-  bottom: {
-    flex: 1,
-    backgroundColor: "#E0E0E0",
-  },
-  camera: {
-    marginTop: 25,
-    marginLeft: 70,
-  },
-  home: {
-    marginTop: -80,
-    marginLeft: 240,
   },
 });
 
