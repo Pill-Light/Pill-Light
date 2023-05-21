@@ -38,7 +38,8 @@ const MyPage = ({ navigation }) => {
 
   return (
     <>
-      <SafeAreaView style={styles.safeArea}>
+      <SafeAreaView style={{ flex: 0, backgroundColor: 'white' }} />
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#57C5B6' }}>
         <View style={styles.container}>
           <View style={styles.header}>
               <TouchableOpacity>
@@ -93,6 +94,8 @@ const MyPage = ({ navigation }) => {
               </TouchableOpacity>
             </View>
           </View>
+          <NavigationBar />
+
         </View>
       </SafeAreaView>
 
