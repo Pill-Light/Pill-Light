@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, Keyb
 import React from 'react';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { loginUser } from '../components/UserManger';
 
 const Login = ({ navigation }) => {
     const [username, setUsername] = useState('');
@@ -10,28 +11,20 @@ const Login = ({ navigation }) => {
 
     const handleLogin = async () => {
         try {
-            // AsyncStorage에서 저장된 회원 정보 가져오기
-            const storedUsers = await AsyncStorage.getItem('registeredUsers');
-            const parsedUsers = storedUsers ? JSON.parse(storedUsers) : [];
-
-            // 입력된 아이디와 비밀번호와 일치하는 회원 찾기
-            const user = parsedUsers.find(
-                (user) => user.username === username && user.password === password
-            );
+            const user = await loginUser(username, password);
 
             if (!username || !password) {
                 Alert.alert('로그인 실패', '아이디 또는 비밀번호를 입력해주세요.');
                 return;
-            } else if (user) {
-                Alert.alert('로그인 성공', `사용자 명 : ${user.name}`);
-                navigation.navigate('MyPage', { userInfo: user }); // 회원 정보 전달
             } else {
-                Alert.alert('로그인 실패', '아이디 또는 비밀번호가 잘못되었습니다.');
+                Alert.alert('로그인 성공', `사용자 명 : ${user.name}`);
+                navigation.navigate('MyPage');
             }
         } catch (error) {
-            Alert.alert('로그인 실패', '로그인 중에 오류가 발생했습니다.');
+            Alert.alert('로그인 실패', error.message);
         }
     };
+
     return (
         <SafeAreaView style={styles.safeArea}>
             <KeyboardAvoidingView
