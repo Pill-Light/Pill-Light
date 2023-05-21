@@ -1,9 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { Entypo } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
-import { FontAwesome } from "@expo/vector-icons";
 import { Dimensions, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import NavigationBar from "../components/UI/NavigationBar";
 
 const Recognition = () => {
     return(
@@ -28,14 +27,16 @@ const Recognition = () => {
                             <View style={styles.layout}>
                             <ImageBackground
                             style={{width:100,height:100,marginTop:22,marginLeft:20}}
-                            source={require('../../assets/사리돈.jpg')}
+                            source={require('../../assets/사리돈.png')}
                             ></ImageBackground>
                             <View style={styles.inform}>
                                 <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>사리돈</Text>
                                 <Text>
                                 </Text>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>효능-효과 : 진통,오한,발열시의 해열</Text>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>용법 : 성인 1회 1정 1일 3회 복용간격 4시간 이상, 15세 미만 복용 불가</Text>
+                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>
+                                  효능-효과 : 진통,오한,발열시의 해열</Text>
+                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>
+                                  용법 : 성인 1회 1정 1일 3회 복용간격 4시간 이상, 15세 미만 복용 불가</Text>
                             </View>
                             </View>
                             <View style={styles.line}>
@@ -45,15 +46,17 @@ const Recognition = () => {
                             <View style={styles.layout}>
                             <ImageBackground
                             style={{width:100,height:100,marginTop:22,marginLeft:20}}
-                            source={require('../../assets/써스펜.jpg')}
+                            source={require('../../assets/써스펜.png')}
                             ></ImageBackground>
                                 <View style={styles.inform}>
                                 <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>써스펜</Text>
                                 <Text>
 
                                 </Text>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>효능-효과 : 해열, 감기 의한 통증 완화</Text>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>용법 : 12세 이상 소아 및 성인 매 8시간마다 2정씩 복용</Text>
+                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>
+                                  효능-효과 : 해열, 감기 의한 통증 완화</Text>
+                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>
+                                  용법 : 12세 이상 소아 및 성인 매 8시간마다 2정씩 복용</Text>
                             </View>
                             </View>
                             </View>
@@ -65,15 +68,17 @@ const Recognition = () => {
                             <View style={styles.layout}>
                             <ImageBackground
                             style={{width:100,height:100,marginTop:22,marginLeft:20}}
-                            source={require('../../assets/아스피린.jpg')}
+                            source={require('../../assets/아스피린.png')}
                             ></ImageBackground>
                                 <View style={styles.inform}>
                                 <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>아스피린</Text>
                                 <Text>
 
                                 </Text>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>효능-효과 : 혈전 생성 억제, 심혈관계 위험성 감소</Text>
-                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>용법 : 성인 1일 1회 1정, 의사 처방 없이 고용량 복용 불가</Text>
+                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>
+                                  효능-효과 : 혈전 생성 억제, 심혈관계 위험성 감소</Text>
+                                <Text style={{fontSize:15,color:'white',fontWeight:'bold'}}>
+                                  용법 : 성인 1일 1회 1정, 의사 처방 없이 고용량 복용 불가</Text>
                             </View>
                             </View>
                             <View style={styles.line}>
@@ -85,19 +90,9 @@ const Recognition = () => {
                 </View>
             </View>
             <View style={styles.bottom}>
-            <>
-      <TouchableOpacity style={styles.homeButton}>
-        <Ionicons name="home" size={80} color="#57C5B6" />
-      </TouchableOpacity>
-      <View style={styles.centerButton}>
-        <TouchableOpacity>
-          <FontAwesome name="camera" size={50} color="#57C5B6" />
-        </TouchableOpacity>
-      </View>
-      <TouchableOpacity style={styles.users}>
-        <FontAwesome name="users" size={80} color="#57C5B6" />
-      </TouchableOpacity>
-    </>
+              <NavigationContainer>
+            <NavigationBar />
+            </NavigationContainer>
         </View>
         </View>
     );
@@ -108,11 +103,11 @@ const styles = StyleSheet.create({
   flex:1
 },
 top:{
-    flex:1,
+    flex:1.1,
     backgroundColor:"#E0E0E0"
 },
 circle:{
-    marginTop:60,
+    marginTop:67,
     marginLeft:35
 },
 context:{
@@ -141,7 +136,6 @@ line:{
 },
 bottom:{
     flex:1,
-    backgroundColor:"#E0E0E0"
 },
 homeButton: {
     alignSelf: "flex-start",
