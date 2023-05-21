@@ -5,12 +5,11 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useEffect, useState } from 'react';
 import NavigationBar from "../components/UI/NavigationBar";
-import { getUserInfo } from "../components/UserManger";
-import { logoutUser } from "../components/UserManger";
+import { getUserInfo, logoutUser} from "../components/UserManger";
 import { AsyncStorage } from "react-native";
 
 const MyPage = ({ navigation }) => {
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -26,9 +25,11 @@ const MyPage = ({ navigation }) => {
 
   const { username, name, gender, birthYear, birthMonth, birthDay } = userInfo;
 
-  const handleLogout = async (username) => {
+  const handleLogout = async () => {
     try {
-      await logoutUser(username);
+      if (userInfo.loggedIn) {
+        await logoutUser(userInfo.username);
+      }
       navigation.navigate('Welcome');
     } catch (error) {
       console.log('로그아웃 실패:', error);
