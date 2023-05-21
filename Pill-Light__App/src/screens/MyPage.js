@@ -5,31 +5,26 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useEffect, useState } from 'react';
 import NavigationBar from "../components/UI/NavigationBar";
+import { getUserInfo } from "../components/UserManger";
+import UserManger from "../components/UserManger";
+
 import { AsyncStorage } from "react-native";
 
-const MyPage = ({ navigation, route }) => {
-  const { userInfo } = route.params;
+const MyPage = ({ navigation }) => {
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // AsyncStorage에서 저장된 회원 정보 가져오기
-        const storedUsers = await AsyncStorage.getItem('registeredUsers');
-        const parsedUsers = storedUsers ? JSON.parse(storedUsers) : [];
-
-        // 현재 로그인한 회원 정보 가져오기
-        const currentUser = parsedUsers.find(user => user.loggedIn === true);
-
-        if (currentUser) {
-          setUserInfo(currentUser);
-        }
+        const loggedInUser = await getUserInfo();
+        setUserInfo(loggedInUser);
       } catch (error) {
         console.log('Error fetching user data:', error);
       }
     };
-
     fetchUserData();
   }, []);
+
 
   if (!userInfo) {
     return (
