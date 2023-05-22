@@ -1,19 +1,38 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity,} from "react-native";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import NavigationBar from "../components/UI/NavigationBar";
 import Modal from "react-native-modal";
 import { NavigationContainer } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 const FamilyAdd = () =>{
+  const navigation = useNavigation();
+
   const [modalVisible, setModalVisible] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+
+ 
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [phoneNum, setPhoneNum] = useState('');
+  const [familyRealtion, setFamilyRelation] = useState('');
+
+  const handleSave = () => {
+    navigation.navigate('FamilyInfo',{ name, age, phoneNum, familyRealtion });
+  }
+
+  const saveData = () => {
+    console.log('이름:',name);
+    console.log('나이:',age);
+    console.log('전하번호:',phoneNum);
+    console.log('가족관계:',familyRealtion);
+  };
+
 
   const openModal = () => {
     setModalVisible(true);
   };
-
   const closeModal = () => {
     setModalVisible(false);
   };
@@ -44,24 +63,32 @@ const FamilyAdd = () =>{
                         placeholder='이름'
                         placeholderTextColor="lighterGrey"
                         style={styles.registerInput}
+                        value={name}
+                        onChangeText={text => setName(text)}
                     >
                     </TextInput>
                     <TextInput
                         placeholder='나이'
                         placeholderTextColor="lighterGrey"
                         style={styles.registerInput}
+                        value={age}
+                        onChangeText={text => setAge(text)}
                     >
                     </TextInput>
                     <TextInput
                         placeholder='전화번호'
                         placeholderTextColor="lighterGrey"
                         style={styles.registerInput}
+                        value={phoneNum}
+                        onChangeText={text => setPhoneNum(text)}
                     >  
                     </TextInput>                  
                     <TextInput
                       placeholder='가족관계'
                       placeholderTextColor="lighterGrey"
                       style={styles.registerInput}
+                      value={familyRealtion}
+                      onChangeText={text => setFamilyRelation(text)}
                     >
                     </TextInput>                
                 <View style={styles.checkboxContainer}>
@@ -78,7 +105,7 @@ const FamilyAdd = () =>{
                   </Modal>
                 </View>
                 <View style={styles.saveBtnContainer}>
-                  <TouchableOpacity onPress={openModal} style={styles.saveBtn}>
+                  <TouchableOpacity onPress={handleSave} style={styles.saveBtn}>
                   <Text style={styles.saveInfo}>저장하기</Text>
                   </TouchableOpacity>
                 </View>
