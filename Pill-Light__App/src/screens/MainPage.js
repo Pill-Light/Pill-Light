@@ -1,11 +1,49 @@
-import { Image, SafeAreaView, TouchableOpacity } from "react-native";
-import { TextInput } from "react-native";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+  Modal,
+  TextInput,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { useState } from "react";
 import NavigationBar from "../components/UI/NavigationBar";
 
 const MainPage = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      {/*modal*/}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.modalView}>
+          <View style={styles.modalHeader}>
+            <Text>알림</Text>
+          </View>
+          <View style={styles.modalBody}>
+            <Text>복용을 완료하셨습니다!</Text>
+          </View>
+          <View style={styles.modalFooter}>
+            <TouchableOpacity
+              style={styles.confirmButton}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={{ color: "#000" }}>확인!</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
       <View style={{ flex: 1 }}>
         <View style={styles.head}>
           <Image
@@ -50,7 +88,10 @@ const MainPage = () => {
               </View>
             </View>
             <View style={styles.buttonbox}>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => setModalVisible(true)}
+              >
                 <Text style={styles.buttonText}>복용완료!</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.plus}>
@@ -96,6 +137,45 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: "3%",
     marginTop: "20%",
+  },
+  modalView: {
+    flex: 0.5,
+    width: "75%",
+    height: "100%",
+    marginTop: "60%",
+    backgroundColor: "white",
+    borderRadius: 20,
+    alignItems: "center",
+    alignSelf: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+  },
+  modalHeader: {
+    flex: 1,
+    width: "100%",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    backgroundColor: "#57C5B6",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalBody: { flex: 4 },
+  modalFooter: {
+    flex: 1,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  confirmButton: {
+    borderRadius: 20,
+    padding: "10%",
+    backgroundColor: "#57C5B6",
+    marginBottom: "10%",
   },
   body: {
     flex: 6,
