@@ -7,8 +7,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 
-const FamilyInfo = ({route}) => {
+const FamilyInfo = () => {
+  const route = useRoute();
   const { name, age, familyRelation } = route.params;
+  
   return (
     <NavigationContainer>
     <StatusBar style="auto" />
