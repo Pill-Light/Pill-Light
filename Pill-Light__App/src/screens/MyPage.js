@@ -4,9 +4,12 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useEffect, useState } from 'react';
+
 import NavigationBar from "../components/UI/NavigationBar";
 import { getUserInfo, logoutUser} from "../components/UserManger";
 import { AsyncStorage } from "react-native";
+import OnCamera from "../components/Search/OnCamera";
+import SearchResult from "../components/Search/SearchResult";
 
 const MyPage = ({ navigation }) => {
   const [userInfo, setUserInfo] = useState({});
@@ -83,12 +86,13 @@ const MyPage = ({ navigation }) => {
               >
                 <Text style={styles.buttonText}>알약 정보 페이지</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity style={styles.button}
+                onPress={() => navigation.navigate("FamilyInfo")}
+              >
                 <Text style={styles.buttonText}>가족 정보 페이지</Text>
               </TouchableOpacity>
-              <TouchableOpacity
+              <TouchableOpacity style={styles.logoutButton}
                 onPress={() => handleLogout(userInfo.username)}
-                style={styles.logoutButton}
               >
                 <Text style={styles.logoutButtonText}>로그아웃</Text>
               </TouchableOpacity>
