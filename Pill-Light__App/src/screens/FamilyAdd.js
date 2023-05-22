@@ -1,32 +1,53 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
-import { MaterialIcons } from '@expo/vector-icons';
+import { View, Text, TextInput, StyleSheet, SafeAreaView, TouchableOpacity,} from "react-native";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import NavigationBar from "../components/UI/NavigationBar";
 import Modal from "react-native-modal";
 import { NavigationContainer } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 
-const FamilyAdd = () =>{
+const FamilyAdd = ({ navigation }) =>{
   const [modalVisible, setModalVisible] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+
+ 
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+  const [familyRealtion, setFamilyRelation] = useState("");
+
+  const saveInfo = () => {
+    navigation.navigate('FamilyInfo',{
+       name: name,
+       age: age,
+      phoneNum:phoneNum, 
+      familyRealtion: familyRealtion, 
+    });
+  }
 
   const openModal = () => {
     setModalVisible(true);
   };
-
   const closeModal = () => {
     setModalVisible(false);
   };
 
   return(
     <NavigationContainer>
+    <StatusBar style="auto" />
     <SafeAreaView style={styles.container}>
         <View style={styles.header}>
           <View style={styles.searchBar}>
-            <TouchableOpacity style={styles.backButton}>
-              <MaterialIcons name="arrow-back" size={40} color="#159895" />
-            </TouchableOpacity>
+          <TouchableOpacity>
+          <Ionicons
+            name="ios-chevron-back-sharp"
+            size={50}
+            color="#57C5B6"
+            style={styles.backButton}
+            onPress={() => navigation.navigate("MyPage")}
+          />
+        </TouchableOpacity>
             <Text style={styles.guestName}>이성진님 (68세)</Text>
             <TouchableOpacity style={styles.searchButton}>
               <FontAwesome name="search" size={50} color="#57C5B6" />
@@ -39,20 +60,34 @@ const FamilyAdd = () =>{
                         placeholder='이름'
                         placeholderTextColor="lighterGrey"
                         style={styles.registerInput}
+                        value={name}
+                        onChangeText={text => setName(text)}
                     >
                     </TextInput>
                     <TextInput
                         placeholder='나이'
                         placeholderTextColor="lighterGrey"
                         style={styles.registerInput}
+                        value={age}
+                        onChangeText={text => setAge(text)}
                     >
                     </TextInput>
                     <TextInput
                         placeholder='전화번호'
                         placeholderTextColor="lighterGrey"
                         style={styles.registerInput}
+                        value={phoneNum}
+                        onChangeText={text => setPhoneNum(text)}
+                    >  
+                    </TextInput>                  
+                    <TextInput
+                      placeholder='가족관계'
+                      placeholderTextColor="lighterGrey"
+                      style={styles.registerInput}
+                      value={familyRealtion}
+                      onChangeText={text => setFamilyRelation(text)}
                     >
-                    </TextInput>                
+                    </TextInput>             
                 <View style={styles.checkboxContainer}>
                 <TouchableOpacity
                   style={[styles.checkbox, isChecked && styles.checkboxChecked]}
@@ -66,13 +101,8 @@ const FamilyAdd = () =>{
                     </View>
                   </Modal>
                 </View>
-                <ImageBackground
-                  style={styles.image}
-                  resizeMode="contain"
-                  source={require("../../assets/메인로고.png")}
-                />
                 <View style={styles.saveBtnContainer}>
-                  <TouchableOpacity onPress={openModal} style={styles.saveBtn}>
+                  <TouchableOpacity onPress={saveInfo} style={styles.saveBtn}>
                   <Text style={styles.saveInfo}>저장하기</Text>
                   </TouchableOpacity>
                 </View>
@@ -94,10 +124,8 @@ const FamilyAdd = () =>{
       backgroundColor: "white",
       flexDirection: "row",
     },
-    backButton:{
-      alignSelf: "inline-flex",
-      marginTop: "3%",
-      fontWeight: 500,
+    backButton: {
+      marginBottom: "5%",
     },
     searchBar: {
       flex: 1,
@@ -109,7 +137,7 @@ const FamilyAdd = () =>{
     },
     searchButton: {
       alignSelf: "inline-flex",
-      marginTop: "1%",
+      marginTop: "2%",
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -124,21 +152,13 @@ const FamilyAdd = () =>{
       fontSize: 25,
       fontWeight: 600,
       marginTop: "5%",
-      marginLeft: "15%",
-      marginRight: "12%",
+      marginLeft: "12%",
+      marginRight: "15%",
     },
     body: {
       flex: 6,
       backgroundColor: "white", 
-    },
-    imageContainer:{
-      flex: 1,
-    },
-    image: {
-    height: 200,
-    width: 200,
-    marginLeft: "25%",
-    },    
+    }, 
     checkboxContainer: {
       flexDirection: "row",
       marginVertical: "2%",
@@ -184,13 +204,13 @@ const FamilyAdd = () =>{
     },
     saveBtnContainer: {
       alignItems: 'center',
-      marginTop: "5%",
+      marginTop: "40%",
     },
     saveBtn: {
       backgroundColor: "#159895",
       width: "100%",
-      height: "25%",
-      marginBottom: "10%",
+      height: "30%",
+      marginBottom: "12%",
       justifyContent: "center",
       alignItems: "center",
       borderRadius: 10,
