@@ -16,10 +16,9 @@ import Welcome from './Welcome';
 import React from 'react';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// npm install @react-native-async-storage/async-storage
+import { registerUser } from '../components/UserManger';
 
 const Register = ({ navigation }) => {
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -45,50 +44,24 @@ const Register = ({ navigation }) => {
 
     const handleRegister = async () => {
         try {
-            if (!username || !password || !name || !gender || !birthYear || !birthMonth || !birthDay) {
-                Alert.alert('회원 가입 실패', '모든 항목을 입력해주세요.');
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                Alert.alert('회원 가입 실패', '비밀번호가 일치하는지 확인해주세요.');
-                return;
-            }
-
-            // 기존의 회원 정보 가져오기
-            const storedUsers = await AsyncStorage.getItem('registeredUsers');
-            const parsedUsers = storedUsers ? JSON.parse(storedUsers) : [];
-
-            // 아이디 중복 체크
-            const isUsernameExists = parsedUsers.some(user => user.username === username);
-            if (isUsernameExists) {
-                Alert.alert('회원 가입 실패', '이미 존재하는 아이디입니다.');
-                return;
-            }
-
-            // 새로운 회원 정보 생성
-            const newUser = {
+            const user = {
                 username,
                 password,
+                confirmPassword,
                 name,
                 gender,
                 birthYear,
                 birthMonth,
                 birthDay,
             };
-
-            // 기존 회원 정보에 새로운 회원 추가
-            const updatedUsers = [...parsedUsers, newUser];
-
-            // AsyncStorage에 회원 정보 저장 (key, value)
-            await AsyncStorage.setItem('registeredUsers', JSON.stringify(updatedUsers));
-
+            await registerUser(user);
             Alert.alert('회원 가입 성공');
             navigation.navigate('Welcome');
         } catch (error) {
-            Alert.alert('회원 가입 실패', '회원 가입 중에 오류가 발생했습니다.');
+            Alert.alert('회원 가입 실패', error.message);
         }
     };
+
 
 
     return (

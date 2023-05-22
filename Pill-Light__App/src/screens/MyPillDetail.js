@@ -2,11 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import { Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import { PillData } from '../store/PillData';
+import { Ionicons } from '@expo/vector-icons';
+import NavigationBar from '../components/UI/NavigationBar';
 
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height;
 
-const MyPillDetail = ({ route }) => {
+const MyPillDetail = ({ navigation, route }) => {
 
   const { pillKey } = route.params;
 
@@ -14,9 +16,19 @@ const MyPillDetail = ({ route }) => {
     <SafeAreaView style={styles.container}>
       {/* header */}
       <View style={styles.header}>
+        <TouchableOpacity>
+          <Ionicons
+            name="ios-chevron-back-sharp"
+            size={70}
+            color="#57C5B6"
+            style={styles.backButton}
+            onPress={() => navigation.navigate("MyPill")}
+          />
+        </TouchableOpacity>
         <View style={styles.mainTextWrapper}>
           <Text style={styles.mainText}>{PillData[pillKey - 1].name}</Text>
         </View>
+        <View style={{ width: 70.5, height: 70.5 }}></View>
       </View>
       {/* body */}
       <View style={styles.body}>
@@ -33,7 +45,7 @@ const MyPillDetail = ({ route }) => {
       </View>
 
       {/* footer */}
-      <View style={styles.footer}></View>
+      <NavigationBar />
 
     </SafeAreaView>
   );
@@ -45,21 +57,25 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    backgroundColor: "#57C5B6",
+    flexDirection: "row",
+    backgroundColor: "white",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    borderColor: "#57C5B6",
   },
   mainTextWrapper: {
   },
   mainText: {
-    fontSize: "50%",
-    color: "white",
+    fontSize: 35,
+    color: "#57C5B6",
   },
 
   body: {
-    flex: 4,
+    flex: 6,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "white",
   },
   pillDetailContainer: {
     width: "90%",
