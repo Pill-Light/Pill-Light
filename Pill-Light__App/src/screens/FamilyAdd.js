@@ -5,30 +5,26 @@ import NavigationBar from "../components/UI/NavigationBar";
 import Modal from "react-native-modal";
 import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 
-const FamilyAdd = () =>{
-  const navigation = useNavigation();
-
+const FamilyAdd = ({ navigation }) =>{
   const [modalVisible, setModalVisible] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
  
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [phoneNum, setPhoneNum] = useState('');
-  const [familyRealtion, setFamilyRelation] = useState('');
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+  const [familyRealtion, setFamilyRelation] = useState("");
 
-  const handleSave = () => {
-    navigation.navigate('FamilyInfo',{ name, age, phoneNum, familyRealtion });
+  const saveInfo = () => {
+    navigation.navigate('FamilyInfo',{
+       name: name,
+       age: age,
+      phoneNum:phoneNum, 
+      familyRealtion: familyRealtion, 
+    });
   }
-
-  const saveData = () => {
-    console.log('이름:',name);
-    console.log('나이:',age);
-    console.log('전하번호:',phoneNum);
-    console.log('가족관계:',familyRealtion);
-  };
-
 
   const openModal = () => {
     setModalVisible(true);
@@ -39,6 +35,7 @@ const FamilyAdd = () =>{
 
   return(
     <NavigationContainer>
+    <StatusBar style="auto" />
     <SafeAreaView style={styles.container}>
         <View style={styles.header}>
           <View style={styles.searchBar}>
@@ -90,7 +87,7 @@ const FamilyAdd = () =>{
                       value={familyRealtion}
                       onChangeText={text => setFamilyRelation(text)}
                     >
-                    </TextInput>                
+                    </TextInput>             
                 <View style={styles.checkboxContainer}>
                 <TouchableOpacity
                   style={[styles.checkbox, isChecked && styles.checkboxChecked]}
@@ -105,7 +102,7 @@ const FamilyAdd = () =>{
                   </Modal>
                 </View>
                 <View style={styles.saveBtnContainer}>
-                  <TouchableOpacity onPress={handleSave} style={styles.saveBtn}>
+                  <TouchableOpacity onPress={saveInfo} style={styles.saveBtn}>
                   <Text style={styles.saveInfo}>저장하기</Text>
                   </TouchableOpacity>
                 </View>
