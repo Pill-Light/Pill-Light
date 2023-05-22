@@ -1,14 +1,17 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground, } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import NavigationBar from "../components/UI/NavigationBar";
 import { NavigationContainer } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 
-const FamilyInfo = () => {
+const FamilyInfo = ({route}) => {
+  const { name, age, familyRelation } = route.params;
   return (
     <NavigationContainer>
+    <StatusBar style="auto" />
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.header}>
@@ -25,7 +28,7 @@ const FamilyInfo = () => {
       </View>
       <View style={styles.body}>
         <View style={styles.familyLine}>
-          <Text style={styles.familyName}>이숙자(32세) 자녀</Text>
+          <Text style={styles.familyName}>{name}({age}세) {familyRelation}</Text>
           <TouchableOpacity style={styles.minusButton}>
             <FontAwesome name="minus-square" size={40} color="#e6e9ed" />
           </TouchableOpacity>
