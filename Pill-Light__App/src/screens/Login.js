@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
 import React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { loginUser } from '../components/UserManger';
 
 const Login = ({ navigation }) => {
     const [username, setUsername] = useState('');
@@ -10,23 +11,17 @@ const Login = ({ navigation }) => {
 
     const handleLogin = async () => {
         try {
-            // AsyncStorage에서 저장된 회원 정보 가져오기
-            const storedUsers = await AsyncStorage.getItem('registeredUsers');
-            const parsedUsers = storedUsers ? JSON.parse(storedUsers) : [];
+            const user = await loginUser(username, password);
 
-            // 입력된 아이디와 비밀번호와 일치하는 회원 찾기
-            const user = parsedUsers.find(
-                (user) => user.username === username && user.password === password
-            );
-
-            if (user) {
+            if (!username || !password) {
+                Alert.alert('로그인 실패', '아이디 또는 비밀번호를 입력해주세요.');
+                return;
+            } else {
                 Alert.alert('로그인 성공', `사용자 명 : ${user.name}`);
                 navigation.navigate('MainPage');
-            } else {
-                Alert.alert('로그인 실패', '아이디 또는 비밀번호가 잘못되었습니다.');
             }
         } catch (error) {
-            Alert.alert('로그인 실패', '로그인 중에 오류가 발생했습니다.');
+            Alert.alert('로그인 실패', error.message);
         }
     };
 
@@ -49,20 +44,22 @@ const Login = ({ navigation }) => {
                             </Text>
                         </View>
                         <View style={{
-                            marginVertical: "10%",
+                            marginVertical: "6%",
                         }}
                         >
                             <TextInput
-                                placeholder='Enter id'
+                                placeholder='아이디 입력'
                                 placeholderTextColor="lighterGrey"
+                                autoCapitalize='none'
                                 value={username}
                                 onChangeText={setUsername}
                                 style={styles.textInput}
                             >
                             </TextInput>
                             <TextInput
-                                placeholder='Enter password'
+                                placeholder='비밀번호 입력'
                                 placeholderTextColor="lighterGrey"
+                                autoCapitalize='none'
                                 secureTextEntry={true}
                                 value={password}
                                 onChangeText={setPassword}
