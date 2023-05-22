@@ -5,12 +5,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 import NavigationBar from "../components/UI/NavigationBar";
 import { NavigationContainer } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 
-const FamilyInfo = () => {
-  const route = useRoute();
-  const { name, age, phoneNum, familyRelation } = route.params;
+const FamilyInfo = ({route}) => {
+  const { name, age, familyRelation } = route.params;
   return (
     <NavigationContainer>
+    <StatusBar style="auto" />
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.header}>
@@ -27,16 +28,10 @@ const FamilyInfo = () => {
       </View>
       <View style={styles.body}>
         <View style={styles.familyLine}>
-          <Text style={styles.familyName}>이숙자(32세) 자녀</Text>
+          <Text style={styles.familyName}>{name}({age}세) {familyRelation}</Text>
           <TouchableOpacity style={styles.minusButton}>
             <FontAwesome name="minus-square" size={40} color="#e6e9ed" />
           </TouchableOpacity>
-        </View>
-        <View style={styles.infoContainer}>
-          <Text>이름 : {name}</Text>
-          <Text>나이 : {age}</Text>
-          <Text>전화번호 : {phoneNum}</Text>
-          <Text>가족관계 : {familyRelation}</Text>
         </View>
         <View style={styles.subContainer}>
         <ImageBackground
@@ -124,11 +119,6 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-  },
-  infoContainer: {
-      flex: 0.25,
-      flexDirection: "row",
-      backgroundColor: "#57C5B6",
   },
     image: {
     height: 200,
