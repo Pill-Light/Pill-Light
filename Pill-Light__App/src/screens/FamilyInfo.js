@@ -1,12 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground, } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground, Alert, } from "react-native";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import NavigationBar from "../components/UI/NavigationBar";
 import { NavigationContainer } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import { useEffect, useState } from 'react';
-import { getUserInfo, getFamilyMember} from "../components/UserManger";
+import { getUserInfo, getFamilyMember, removeFamilyMember} from "../components/UserManger";
 import { StatusBar } from "expo-status-bar";
 
 const FamilyInfo = ({ navigation }) => {
@@ -18,6 +18,15 @@ const FamilyInfo = ({ navigation }) => {
     const currentYear = new Date().getFullYear();
     const age = currentYear - birthYear + 1;
     return age;
+  };
+
+  const handleRemoveFamilyMember = async (index) => {
+    try {
+      await removeFamilyMember(index); // 가족 정보 삭제
+      Alert.alert("가족회원 정보가 삭제되었습니다.")
+    } catch (error) {
+      console.log('Error removing family member:', error);
+    }
   };
 
   useEffect(() => {
@@ -71,7 +80,10 @@ const FamilyInfo = ({ navigation }) => {
               <Text style={styles.familyName}>
                 {member.name} {member.age}세 ({member.relationship})
               </Text>
-              <TouchableOpacity style={styles.minusButton}>
+              <TouchableOpacity
+                style={styles.minusButton}
+                onPress={() => handleRemoveFamilyMember(index)}
+              >
                 <FontAwesome name="minus-square" size={40} color="#e6e9ed" />
               </TouchableOpacity>
             </View>
