@@ -13,7 +13,10 @@ import NavigationBar from "../components/UI/NavigationBar";
 
 const MainPage = () => {
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [selectedTime, setSelectedTime] = useState(new Date());
+  const now = new Date();
+  const hours = now.getHours();
+  const min = now.getMinutes();
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/*modal*/}
@@ -31,7 +34,20 @@ const MainPage = () => {
             <Text>알림</Text>
           </View>
           <View style={styles.modalBody}>
-            <Text>복용을 완료하셨습니다!</Text>
+            {hours > 17 ? (
+              <Text>
+                {hours}시 {min}분 저녁약을 복용하셨습니다.
+              </Text>
+            ) : hours > 11 ? (
+              <Text>
+                {hours}시 {min}분 점심약을 복용하셨습니다.
+              </Text>
+            ) : (
+              <Text>
+                {hours}시 {min}분 아침약을 복용하셨습니다.
+              </Text>
+            )}
+            <Text></Text>
           </View>
           <View style={styles.modalFooter}>
             <TouchableOpacity
