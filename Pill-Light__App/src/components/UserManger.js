@@ -135,3 +135,15 @@ export const addFamilyMember = async (member) => {
     }
 };
 
+export const removeFamilyMember = async (index) => {
+    try {
+        const storedMembers = await AsyncStorage.getItem('familyMembers');
+        const parsedMembers = storedMembers ? JSON.parse(storedMembers) : [];
+
+        parsedMembers.splice(index, 1); // 해당 인덱스의 가족 정보 제거
+
+        await AsyncStorage.setItem('familyMembers', JSON.stringify(parsedMembers));
+    } catch (error) {
+        throw new Error('가족 멤버 삭제 실패: ' + error.message);
+    }
+};
