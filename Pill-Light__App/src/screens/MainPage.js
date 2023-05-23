@@ -31,11 +31,15 @@ const MainPage = () => {
       >
         <View style={styles.modalView}>
           <View style={styles.modalHeader}>
-            <Text>알림</Text>
+            <Text style={{ fontSize: 16, color: "white", fontWeight: "bold" }}>
+              알림
+            </Text>
           </View>
           <View style={styles.modalBody}>
+            <Text></Text>
+            <Text></Text>
             {hours > 17 ? (
-              <Text>
+              <Text style={{ fontSize: 16 }}>
                 {hours}시 {min}분 저녁약을 복용하셨습니다.
               </Text>
             ) : hours > 11 ? (
@@ -54,7 +58,11 @@ const MainPage = () => {
               style={styles.confirmButton}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={{ color: "#000" }}>확인!</Text>
+              <Text
+                style={{ color: "white", fontSize: "18", fontWeight: "bold" }}
+              >
+                확인!
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -180,18 +188,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  modalBody: { flex: 4 },
+  modalBody: { flex: 4, padding: "4%", margin: "5%", justifyContent: "center" },
   modalFooter: {
-    flex: 1,
+    flex: 1.8,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
   },
   confirmButton: {
     borderRadius: 20,
-    padding: "10%",
+    width: "50%",
+    padding: "5%",
     backgroundColor: "#57C5B6",
-    marginBottom: "10%",
+    margin: "1%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   body: {
     flex: 6,
