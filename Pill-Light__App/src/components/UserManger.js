@@ -100,3 +100,38 @@ export const logoutUser = async (username) => {
         throw new Error('로그아웃 실패: ' + error.message);
     }
 };
+
+export const getFamilyMember = async () => {
+    try {
+        const storedMembers = await AsyncStorage.getItem('familyMembers');
+        const parsedMembers = storedMembers ? JSON.parse(storedMembers) : [];
+        return parsedMembers;
+    } catch (error) {
+        throw new Error('가족 정보 가져오기 실패: ' + error.message);
+    }
+};
+
+export const addFamilyMember = async (member) => {
+    try {
+        const { name, age, relationship } = member;
+
+        if (!name || !age || !relationship) {
+            throw new Error('모든 항목을 입력해주세요.');
+        }
+
+        const storedMembers = await AsyncStorage.getItem('familyMembers');
+        const parsedMembers = storedMembers ? JSON.parse(storedMembers) : [];
+
+        const newMember = {
+            name,
+            age,
+            relationship,
+        };
+
+        const updatedMembers = [...parsedMembers, newMember];
+        await AsyncStorage.setItem('familyMembers', JSON.stringify(updatedMembers));
+    } catch (error) {
+        throw new Error('가족 멤버 추가 실패: ' + error.message);
+    }
+};
+
