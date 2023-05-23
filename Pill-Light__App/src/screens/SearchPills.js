@@ -7,24 +7,28 @@ import NavigationBar from "../components/UI/NavigationBar";
 
 const SearchPills = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.searchBar}>
-          <TextInput
-            placeholder="궁금하신 알약을 검색해주세요"
-            placeholderTextColor="grey"
-            style={styles.inputText}
-          ></TextInput>
-          <TouchableOpacity style={styles.searchButton}>
-            <FontAwesome name="search" size={56} color="#57C5B6" />
-          </TouchableOpacity>
+    <>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.header}>
+          <View style={styles.searchBar}>
+            <TextInput
+              placeholder="궁금하신 알약을 검색해주세요"
+              placeholderTextColor="grey"
+              style={styles.inputText}
+            ></TextInput>
+            <TouchableOpacity style={styles.searchButton}>
+              <FontAwesome name="search" size={56} color="#57C5B6" />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-      <View style={styles.body}>
-        <SearchResult />
-      </View>
-      <NavigationBar />
-    </SafeAreaView>
+        <View style={styles.body}>
+          <SearchResult />
+        </View>
+      </SafeAreaView>
+      <SafeAreaView style={{ flex: 0.15, backgroundColor: "#57C5B6" }}>
+        <NavigationBar />
+      </SafeAreaView>
+    </>
   );
 };
 
