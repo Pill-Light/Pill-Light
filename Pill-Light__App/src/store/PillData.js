@@ -6,3 +6,36 @@ export const PillData = [
   {name: '타미노펜', key: 5, image: require('../../assets/타미노펜.png'), notice: true, info: '효능 : 감기로 인한 발열 및 동통(통증), 두통, 신경통, 근육통, 월경통, 염좌통(삔 통증), 치통, 관절통, 류마티양 동통(통증) 등'},
   {name: '타이레놀', key: 6, image: require('../../assets/타이레놀.png'), notice: false, info: '효능 : 감기로 인한 발열 및 동통(통증), 두통, 신경통, 근육통, 월경통, 염좌통(삔 통증), 치통, 관절통, 류마티양 동통(통증) 등'},
 ]
+
+export function getPillName(key) {
+  const pill = PillData.find(item => item.key === key);
+  return pill ? pill.name : '';
+}
+
+export function setPillName(key, newName) {
+  const updatedPillData = PillData.map(item => {
+    if (item.key === key) {
+      return { ...item, name: newName };
+    }
+    return item;
+  });
+  PillData = updatedPillData;
+}
+
+/*
+getPillName으로 이름 가져오는 코드 예시
+
+const pillKey = 1;
+const pillName = getPillName(pillKey);
+console.log(pillName); // 해당 알약의 이름을 출력합니다.
+
+
+setPillName으로 알약의 이름 업데이트 코드 예시
+
+const pillKey = 1;
+const newPillName = '새로운 알약 이름';
+setPillName(pillKey, newPillName);
+console.log(PillData); // 업데이트된 알약 데이터를 출력합니다.
+
+
+*/ 
