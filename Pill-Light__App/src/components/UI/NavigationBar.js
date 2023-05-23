@@ -1,15 +1,20 @@
 import { StyleSheet, View, TouchableOpacity, Text, Modal } from "react-native";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
-import MainPage from "../../screens/MainPage";
-import SearchPills from "../../screens/SearchPills";
-import MyPage from "../../screens/MyPage";
-import { Entypo, Ionicons, FontAwesome } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  Entypo,
+  FontAwesome,
+  MaterialCommunityIcons,
+  AntDesign,
+} from "@expo/vector-icons";
 
 const NavigationBar = () => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
+
+  const hideModal = () => {
+    setModalVisible(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -24,6 +29,14 @@ const NavigationBar = () => {
         }}
       >
         <View style={styles.modalView}>
+          <TouchableOpacity onPress={hideModal}>
+            <AntDesign
+              name="close"
+              size={24}
+              color="black"
+              style={styles.closeButton}
+            />
+          </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, styles.buttonClose]}
             onPress={() => {
@@ -97,7 +110,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: "20%",
-    marginTop: "140%",
+    marginTop: "133%",
     backgroundColor: "white",
     borderRadius: 20,
     padding: "5%",
@@ -109,6 +122,10 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
+  },
+  closeButton: {
+    marginLeft: "90%",
+    color: "#808080",
   },
   button: {
     borderRadius: 20,
