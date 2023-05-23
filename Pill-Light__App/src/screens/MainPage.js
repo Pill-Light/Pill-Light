@@ -1,11 +1,73 @@
-import { Image, SafeAreaView, TouchableOpacity } from "react-native";
-import { TextInput } from "react-native";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+  Modal,
+  TextInput,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { useState } from "react";
 import NavigationBar from "../components/UI/NavigationBar";
 
 const MainPage = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedTime, setSelectedTime] = useState(new Date());
+  const now = new Date();
+  const hours = now.getHours();
+  const min = now.getMinutes();
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      {/*modal*/}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.modalView}>
+          <View style={styles.modalHeader}>
+            <Text style={{ fontSize: 16, color: "white", fontWeight: "bold" }}>
+              알림
+            </Text>
+          </View>
+          <View style={styles.modalBody}>
+            <Text></Text>
+            <Text></Text>
+            {hours > 17 ? (
+              <Text style={{ fontSize: 16 }}>
+                {hours}시 {min}분 저녁약을 복용하셨습니다.
+              </Text>
+            ) : hours > 11 ? (
+              <Text>
+                {hours}시 {min}분 점심약을 복용하셨습니다.
+              </Text>
+            ) : (
+              <Text>
+                {hours}시 {min}분 아침약을 복용하셨습니다.
+              </Text>
+            )}
+            <Text></Text>
+          </View>
+          <View style={styles.modalFooter}>
+            <TouchableOpacity
+              style={styles.confirmButton}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text
+                style={{ color: "white", fontSize: "18", fontWeight: "bold" }}
+              >
+                확인!
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
       <View style={{ flex: 1 }}>
         <View style={styles.head}>
           <Image
@@ -50,7 +112,10 @@ const MainPage = () => {
               </View>
             </View>
             <View style={styles.buttonbox}>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => setModalVisible(true)}
+              >
                 <Text style={styles.buttonText}>복용완료!</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.plus}>
@@ -96,6 +161,49 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: "3%",
     marginTop: "20%",
+  },
+  modalView: {
+    flex: 0.5,
+    width: "75%",
+    height: "100%",
+    marginTop: "60%",
+    backgroundColor: "white",
+    borderRadius: 20,
+    alignItems: "center",
+    alignSelf: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+  },
+  modalHeader: {
+    flex: 1,
+    width: "100%",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    backgroundColor: "#57C5B6",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalBody: { flex: 4, padding: "4%", margin: "5%", justifyContent: "center" },
+  modalFooter: {
+    flex: 1.8,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  confirmButton: {
+    borderRadius: 20,
+    width: "50%",
+    padding: "5%",
+    backgroundColor: "#57C5B6",
+    margin: "1%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   body: {
     flex: 6,

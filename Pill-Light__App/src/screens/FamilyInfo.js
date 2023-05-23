@@ -1,14 +1,17 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground, } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import NavigationBar from "../components/UI/NavigationBar";
 import { NavigationContainer } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 
-const FamilyInfo = () => {
+const FamilyInfo = ({route}) => {
+  const { name, age, familyRelation } = route.params;
   return (
     <NavigationContainer>
+    <StatusBar style="auto" />
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.header}>
@@ -25,20 +28,17 @@ const FamilyInfo = () => {
       </View>
       <View style={styles.body}>
         <View style={styles.familyLine}>
-          <Text style={styles.familyName}>이숙자(32세) 자녀</Text>
+          <Text style={styles.familyName}>{name}({age}세) {familyRelation}</Text>
           <TouchableOpacity style={styles.minusButton}>
             <FontAwesome name="minus-square" size={40} color="#e6e9ed" />
           </TouchableOpacity>
         </View>
         <View style={styles.subContainer}>
-          <ImageBackground
-            style={{
-              height: 200,
-              width: 200,
-            }}
-            resizeMode="contain"
-            source={require("../../assets/메인로고.png")}
-          />
+        <ImageBackground
+                  style={styles.image}
+                  resizeMode="contain"
+                  source={require("../../assets/메인로고.png")}
+                />
           <TouchableOpacity
             onPress={() => navigation.navigate("")}
             style={styles.addBtn}
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 23,
     fontWeight: 600,
-    marginLeft: "5%",
-    marginRight: "5%",
+    marginLeft: "15%",
+    marginRight: "12%",
   },
   body: {
     flex: 6,
@@ -106,19 +106,24 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     flexDirection: "row",
     alignItems: "center",
-    marginTop: "9%",
+    justifyContent: "center",
+    marginTop: "7%",
     marginLeft: "5%",
   },
   minusButton: {
     alignSelf: "flex-end",
-    marginBottom: "7%",
-    marginLeft: "26%",
-    shadowColor: "#000",
+    marginBottom: "5%",
+    marginLeft: "28%",
+    shadowColor: "white",
     shadowOffset: {
       width: 0,
       height: 2,
     },
   },
+    image: {
+    height: 200,
+    width: 200,
+    },
   subContainer: {
     marginTop: "15%",
     flex: 1,
@@ -131,7 +136,7 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "30%",
+    marginTop: "20%",
     borderRadius: 10,
   },
   add: {
