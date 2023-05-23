@@ -1,55 +1,99 @@
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground, } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import NavigationBar from "../components/UI/NavigationBar";
 import { NavigationContainer } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
+import { useEffect, useState } from 'react';
+import { getUserInfo, getFamilyMember} from "../components/UserManger";
 import { StatusBar } from "expo-status-bar";
 
-const FamilyInfo = ({route}) => {
-  const { name, age, familyRelation } = route.params;
+const FamilyInfo = ({ navigation }) => {
+  const [userInfo, setUserInfo] = useState({});
+  const [familyMembers, setFamilyMembers] = useState([]);
+  const { name, birthYear } = userInfo;
+
+  const calculateAge = (birthYear) => {
+    const currentYear = new Date().getFullYear();
+    const age = currentYear - birthYear + 1;
+    return age;
+  };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const loggedInUser = await getUserInfo();
+        setUserInfo(loggedInUser);
+      } catch (error) {
+        console.log('Error fetching user data:', error);
+      }
+    };
+
+    const fetchFamilyMembers = async () => {
+      try {
+        const members = await getFamilyMember();
+        setFamilyMembers(members);
+      } catch (error) {
+        console.log('Error fetching family members:', error);
+      }
+    };
+
+    fetchUserData();
+    fetchFamilyMembers();
+  }, []);
+
+
   return (
-    <NavigationContainer>
-    <StatusBar style="auto" />
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.container}>
+    <>
+      <SafeAreaView style={{ flex: 0, backgroundColor: 'white' }} />
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#57C5B6' }}>
         <View style={styles.header}>
           <View style={styles.searchBar}>
-            <TouchableOpacity style={styles.backButton}>
-              <MaterialIcons name="arrow-back" size={40} color="#159895" />
+            <TouchableOpacity>
+              <Ionicons
+                name="ios-chevron-back-sharp"
+                size={50}
+                color="#57C5B6"
+                style={styles.backButton}
+                onPress={() => navigation.navigate("MyPage")}
+              />
             </TouchableOpacity>
-            <Text style={styles.guestName}>이성진님 (68세)</Text>
+            <Text style={styles.guestName}>{name} 님 {calculateAge(birthYear)}세</Text>
             <TouchableOpacity style={styles.searchButton}>
               <FontAwesome name="search" size={50} color="#57C5B6" />
             </TouchableOpacity>
           </View>
         </View>
-      </View>
-      <View style={styles.body}>
-        <View style={styles.familyLine}>
-          <Text style={styles.familyName}>{name}({age}세) {familyRelation}</Text>
-          <TouchableOpacity style={styles.minusButton}>
-            <FontAwesome name="minus-square" size={40} color="#e6e9ed" />
-          </TouchableOpacity>
+        <View style={styles.body}>
+          {familyMembers.map((member, index) => (
+            <View key={index} style={styles.familyLine}>
+              <Text style={styles.familyName}>
+                {member.name} {member.age}세 ({member.relationship})
+              </Text>
+              <TouchableOpacity style={styles.minusButton}>
+                <FontAwesome name="minus-square" size={40} color="#e6e9ed" />
+              </TouchableOpacity>
+            </View>
+          ))}
+          <View style={styles.subContainer}>
+            <ImageBackground
+              style={styles.image}
+              resizeMode="contain"
+              source={require("../../assets/메인로고.png")}
+            />
+            <TouchableOpacity
+              onPress={() => navigation.navigate("FamilyAdd")}
+              style={styles.addBtn}
+            >
+              <Text style={styles.add}>가족추가하기</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.subContainer}>
-        <ImageBackground
-                  style={styles.image}
-                  resizeMode="contain"
-                  source={require("../../assets/메인로고.png")}
-                />
-          <TouchableOpacity
-            onPress={() => navigation.navigate("")}
-            style={styles.addBtn}
-          >
-            <Text style={styles.add}>가족추가하기</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    <NavigationBar />
-    </SafeAreaView>
-    </NavigationContainer>
+        <NavigationBar />
+      </SafeAreaView>
+    </>
+
   );
 };
 
@@ -58,7 +102,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flex: 2,
+    flex: 1,
     backgroundColor: "white",
     flexDirection: "row",
   },
@@ -120,10 +164,10 @@ const styles = StyleSheet.create({
       height: 2,
     },
   },
-    image: {
+  image: {
     height: 200,
     width: 200,
-    },
+  },
   subContainer: {
     marginTop: "15%",
     flex: 1,
@@ -146,3 +190,4 @@ const styles = StyleSheet.create({
   },
 });
 export default FamilyInfo;
+
