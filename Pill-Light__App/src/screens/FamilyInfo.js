@@ -69,8 +69,8 @@ const FamilyInfo = ({ navigation }) => {
               />
             </TouchableOpacity>
             <Text style={styles.guestName}>{name} 님 {calculateAge(birthYear)}세</Text>
-            <TouchableOpacity style={styles.searchButton}>
-              <FontAwesome name="search" size={50} color="#57C5B6" />
+            <TouchableOpacity style={styles.guestIcon}>
+              <FontAwesome name="user-circle" size={50} color="#57C5B6" />
             </TouchableOpacity>
           </View>
         </View>
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
   },
-  searchButton: {
+  guestIcon: {
     alignSelf: "flex-end",
     marginBottom: "5%",
     shadowColor: "#000",
@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
   },
   familyLine: {
     flex: 0.25,
+    alignItems: "center",
     flexDirection: "row",
     backgroundColor: "#57C5B6",
   },
@@ -161,15 +162,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "center",
-    marginTop: "7%",
     marginLeft: "5%",
   },
   minusButton: {
     alignSelf: "flex-end",
-    marginBottom: "5%",
-    marginLeft: "28%",
+    marginBottom: "6%",
+    marginLeft: "20%",
     shadowColor: "white",
     shadowOffset: {
       width: 0,
@@ -177,6 +176,8 @@ const styles = StyleSheet.create({
     },
   },
   image: {
+    position: "absolute",
+    bottom: 100,
     height: 200,
     width: 200,
   },
@@ -187,12 +188,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   addBtn: {
+    position: "absolute",
+    bottom: 20,
     backgroundColor: "#159895",
-    width: "100%",
-    height: 50,
+    width: "90%",
+    height: "10%",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "20%",
+    marginTop: "30%",
     borderRadius: 10,
   },
   add: {

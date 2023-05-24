@@ -60,8 +60,8 @@ const FamilyAdd = ({ navigation }) => {
               />
             </TouchableOpacity>
             <Text style={styles.guestName}>{name} 님 {calculateAge(birthYear)}세</Text>
-            <TouchableOpacity style={styles.searchButton}>
-              <FontAwesome name="search" size={50} color="#57C5B6" />
+            <TouchableOpacity style={styles.guestIcon}>
+              <FontAwesome name="user-circle" size={50} color="#57C5B6" />
             </TouchableOpacity>
           </View>
         </View>
@@ -106,7 +106,7 @@ const FamilyAdd = ({ navigation }) => {
                 onPress={() => setIsChecked(!isChecked)} >
                 {isChecked && <FontAwesome name="check" size={20} color="white" />}
               </TouchableOpacity>
-              <Text style={styles.checkboxLabel}>동의합니다.</Text>
+              <Text style={styles.checkboxLabel}>복약알림 전송에 동의합니다.</Text>
             </View>
             <View style={styles.saveBtnContainer}>
               <TouchableOpacity style={styles.saveBtn} onPress={handleSave}>
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
   },
-  searchButton: {
+  guestIcon: {
     alignSelf: "inline-flex",
     marginTop: "2%",
     shadowColor: "#000",
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 25,
     fontWeight: 600,
-    marginTop: "5%",
+    marginTop: "6%",
     marginLeft: "12%",
     marginRight: "15%",
   },
@@ -191,11 +191,12 @@ const styles = StyleSheet.create({
   },
   registerInput: {
     fontSize: 18,
-    width: 400,
+    width: "90%",
     backgroundColor: "#fafafa",
     padding: "4%",
     margin: "5%",
     marginVertical: "1%",
+    borderRadius: 10,
   },
   modalContainer: {
     width: 200,
@@ -216,9 +217,9 @@ const styles = StyleSheet.create({
   },
   saveBtn: {
     backgroundColor: "#159895",
-    width: "100%",
-    height: "30%",
-    marginBottom: "12%",
+    width: "90%",
+    height: "25%",
+    marginBottom: "20%",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
