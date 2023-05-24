@@ -134,7 +134,6 @@ const styles = StyleSheet.create({
     fontWeight: 600,
   },
   body: {
-    marginTop:'2%',
     flex: 6,
     backgroundColor: "#fafafa",
   },
@@ -158,12 +157,17 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     marginTop: '10%',
+    justifyContent: "center",
+    alignItems: "center",
   },
   button: {
     backgroundColor: "#57C5B6",
     padding: 15,
     borderRadius: 10,
     marginBottom: '3%',
+    width:'90%',
+    justifyContent: "center",
+    alignItems: "center",
   },
   buttonText: {
     color: "white",
@@ -176,17 +180,15 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginBottom: '3%',
+    width:'90%',
+    borderWidth: 2,
+    borderColor: "#57C5B6",
   },
   logoutButtonText: {
-    color: "red",
+    color: "#57C5B6",
     fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
-  },
-  footer: {
-    marginTop: "10%",
-    flex: 1,
-    backgroundColor: "#57C5B6",
   },
 });
 
