@@ -62,7 +62,6 @@ const MyPage = ({ navigation }) => {
               </TouchableOpacity>
           </View>
           <View style={styles.body}>
-            <View style={styles.details}>
               <View style={styles.detail}>
                 <Text style={styles.label}>아이디</Text>
                 <Text style={styles.value}>{username}</Text>
@@ -79,7 +78,6 @@ const MyPage = ({ navigation }) => {
                 <Text style={styles.label}>생년월일</Text>
                 <Text style={styles.value}>{birthYear}년 {birthMonth}월 {birthDay}일</Text>
               </View>
-            </View>
             <View style={styles.buttonsContainer}>
               <TouchableOpacity style={styles.button}
                 onPress={() => navigation.navigate("MyPill")}
@@ -122,6 +120,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: 'center',
     justifyContent: "space-between",
+    borderWidth: 2,
+    borderColor: '#rgb(87,197,182)',
   },
   searchButton: {
     width: 70.5,
@@ -136,30 +136,23 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 6,
-    padding: 20,
     backgroundColor: "white",
   },
-  details: {
-    borderWidth: 5,
-    borderColor: '#rgb(87,197,182)',
-    borderRadius: 10,
-    padding: 5,
-  },
   detail: {
-    borderWidth: 2,
-    borderColor: '#rgb(87,197,182)',
+    borderWidth: 1,
+    borderColor: "gray",
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 20,
   },
   label: {
     flex: 1,
-    fontSize: 22,
+    fontSize: 30,
     fontWeight: 'bold',
   },
   value: {
     flex: 2,
-    fontSize: 20,
+    fontSize: 30,
     marginLeft: 5,
   },
   buttonsContainer: {
@@ -178,12 +171,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   logoutButton: {
-    backgroundColor: "red",
+    backgroundColor: "white",
     padding: 15,
     borderRadius: 5,
+    borderWidth:3,
+    borderColor: "#57C5B6",
   },
   logoutButtonText: {
-    color: "white",
+    color: "red",
     fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
