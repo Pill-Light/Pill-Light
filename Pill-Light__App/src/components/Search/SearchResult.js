@@ -1,63 +1,29 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { Image, TouchableOpacity } from "react-native";
+import { PillData } from "../../store/PillData";
+import { useNavigation } from "@react-navigation/native";
 
-const SearchResult = () => {
+const SearchResult = ({ results }) => {
+  const navigation = useNavigation();
+
+  const navigateToDetail = (key) => {
+    navigation.navigate("MyPillDetail", { pillKey: key });
+  };
+
   return (
     <ScrollView>
-      <TouchableOpacity style={styles.searchResult}>
-        <Image
-          style={styles.pillsImage}
-          source={require("../../../assets/타이레놀.png")}
-        ></Image>
-        <View style={styles.pillName}>
-          <Text style={styles.font}>타이레놀</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.searchResult}>
-        <Image
-          style={styles.pillsImage}
-          source={require("../../../assets/사리돈.png")}
-        ></Image>
-        <View style={styles.pillName}>
-          <Text style={styles.font}>사리돈</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.searchResult}>
-        <Image
-          style={styles.pillsImage}
-          source={require("../../../assets/타미노펜.png")}
-        ></Image>
-        <View style={styles.pillName}>
-          <Text style={styles.font}>타미노펜</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.searchResult}>
-        <Image
-          style={styles.pillsImage}
-          source={require("../../../assets/써스펜.png")}
-        ></Image>
-        <View style={styles.pillName}>
-          <Text style={styles.font}>써스펜</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.searchResult}>
-        <Image
-          style={styles.pillsImage}
-          source={require("../../../assets/아스피린.png")}
-        ></Image>
-        <View style={styles.pillName}>
-          <Text style={styles.font}>아스피린</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.searchResult}>
-        <Image
-          style={styles.pillsImage}
-          source={require("../../../assets/인데놀정.png")}
-        ></Image>
-        <View style={styles.pillName}>
-          <Text style={styles.font}>인데놀정</Text>
-        </View>
-      </TouchableOpacity>
+      {results.map((item, index) => (
+        <TouchableOpacity
+          style={styles.searchResult}
+          key={item.key}
+          onPress={() => navigateToDetail(item.key)}
+        >
+          <Image style={styles.pillsImage} source={item.image} />
+          <View style={styles.pillName}>
+            <Text style={styles.font}>{item.name}</Text>
+          </View>
+        </TouchableOpacity>
+      ))}
     </ScrollView>
   );
 };

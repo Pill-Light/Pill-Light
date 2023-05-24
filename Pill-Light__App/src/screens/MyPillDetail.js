@@ -1,15 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
-import { PillData } from '../store/PillData';
-import { Ionicons } from '@expo/vector-icons';
-import NavigationBar from '../components/UI/NavigationBar';
+import { StatusBar } from "expo-status-bar";
+import {
+  Dimensions,
+  Image,
+  ImageBackground,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Switch,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React, { useState } from "react";
+import { PillData } from "../store/PillData";
+import { Ionicons } from "@expo/vector-icons";
+import NavigationBar from "../components/UI/NavigationBar";
 
-const windowWidth = Dimensions.get('window').width;
-const windowheight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get("window").width;
+const windowheight = Dimensions.get("window").height;
 
 const MyPillDetail = ({ navigation, route }) => {
-
   const { pillKey } = route.params;
 
   return (
@@ -22,7 +32,7 @@ const MyPillDetail = ({ navigation, route }) => {
             size={70}
             color="#57C5B6"
             style={styles.backButton}
-            onPress={() => navigation.navigate("MyPill")}
+            onPress={() => navigation.goBack()}
           />
         </TouchableOpacity>
         <View style={styles.mainTextWrapper}>
@@ -33,23 +43,31 @@ const MyPillDetail = ({ navigation, route }) => {
       {/* body */}
       <View style={styles.body}>
         <View style={styles.pillDetailContainer}>
-          <ImageBackground style={styles.pillImage}
-          resizeMode="stretch"
-          source={PillData[pillKey - 1].image}>
-          </ImageBackground>
+          <View style={styles.pillImageWrapper}>
+            <ImageBackground
+              style={styles.pillImage}
+              resizeMode="stretch"
+              source={PillData[pillKey - 1].image}
+            ></ImageBackground>
+          </View>
           <View style={styles.pillInfoWrapper}>
-            <Text style={styles.pillInfoText}>{PillData[pillKey - 1].info}</Text>
+            <Text style={styles.pillInfoText}>
+              {PillData[pillKey - 1].info}
+            </Text>
           </View>
         </View>
-
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.addPillButton}>
+            <Text style={styles.addPillButtonText}>나의 약에 추가하기</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* footer */}
       <NavigationBar />
-
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -61,11 +79,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "space-between",
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     borderColor: "#57C5B6",
   },
-  mainTextWrapper: {
-  },
+  mainTextWrapper: {},
   mainText: {
     fontSize: 35,
     color: "#57C5B6",
@@ -74,24 +91,54 @@ const styles = StyleSheet.create({
   body: {
     flex: 6,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
     backgroundColor: "white",
   },
   pillDetailContainer: {
     width: "90%",
-    flex: 0.8,
+    flex: 0.75,
     padding: "3%",
+    borderWidth: 2,
+    borderColor: "#97DEFF",
+    borderRadius: "15%",
+  },
+  pillImageWrapper: {
+    flex: 0.5,
+    borderRadius: "15%",
+    overflow: "hidden",
+    marginBottom: "5%",
   },
   pillImage: {
-    flex: 0.5,
+    width: "100%",
+    height: "100%",
   },
   pillInfoWrapper: {
     flex: 0.5,
+    padding: "3%",
+    borderRadius: "15%",
+    backgroundColor: "#C9EEFF",
   },
   pillInfoText: {
     fontSize: 18,
     lineHeight: 30,
     marginTop: "2%",
+  },
+
+  buttonContainer: {
+    flex: 0.15,
+    width: "90%",
+  },
+  addPillButton: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#57C5B6",
+    borderRadius: "10%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  addPillButtonText: {
+    fontSize: "30%",
+    color: "white",
   },
 
   footer: {
@@ -100,4 +147,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyPillDetail
+export default MyPillDetail;

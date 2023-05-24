@@ -4,9 +4,12 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useEffect, useState } from 'react';
+
 import NavigationBar from "../components/UI/NavigationBar";
 import { getUserInfo, logoutUser} from "../components/UserManger";
 import { AsyncStorage } from "react-native";
+import OnCamera from "../components/Search/OnCamera";
+import SearchResult from "../components/Search/SearchResult";
 
 const MyPage = ({ navigation }) => {
   const [userInfo, setUserInfo] = useState({});
@@ -55,11 +58,10 @@ const MyPage = ({ navigation }) => {
                 <Text style={styles.guestName}>{name} 님</Text>
               </View>
               <TouchableOpacity style={styles.searchButton}>
-                <FontAwesome name="search" size={50} color="#57C5B6" />
+                <FontAwesome name="user-circle" size={50} color="#57C5B6" />
               </TouchableOpacity>
           </View>
           <View style={styles.body}>
-            <View style={styles.details}>
               <View style={styles.detail}>
                 <Text style={styles.label}>아이디</Text>
                 <Text style={styles.value}>{username}</Text>
@@ -76,19 +78,19 @@ const MyPage = ({ navigation }) => {
                 <Text style={styles.label}>생년월일</Text>
                 <Text style={styles.value}>{birthYear}년 {birthMonth}월 {birthDay}일</Text>
               </View>
-            </View>
             <View style={styles.buttonsContainer}>
               <TouchableOpacity style={styles.button}
                 onPress={() => navigation.navigate("MyPill")}
               >
                 <Text style={styles.buttonText}>알약 정보 페이지</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity style={styles.button}
+                onPress={() => navigation.navigate("FamilyInfo")}
+              >
                 <Text style={styles.buttonText}>가족 정보 페이지</Text>
               </TouchableOpacity>
-              <TouchableOpacity
+              <TouchableOpacity style={styles.logoutButton}
                 onPress={() => handleLogout(userInfo.username)}
-                style={styles.logoutButton}
               >
                 <Text style={styles.logoutButtonText}>로그아웃</Text>
               </TouchableOpacity>
@@ -118,6 +120,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: 'center',
     justifyContent: "space-between",
+    borderColor: '#rgb(87,197,182)',
   },
   searchButton: {
     width: 70.5,
@@ -126,46 +129,45 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   guestName: {
-    color: "#57C5B6",
+    color: "black",
     fontSize: 35,
     fontWeight: 600,
   },
   body: {
     flex: 6,
-    padding: 20,
-    backgroundColor: "white",
-  },
-  details: {
-    borderWidth: 5,
-    borderColor: '#rgb(87,197,182)',
-    borderRadius: 10,
-    padding: 5,
+    backgroundColor: "#fafafa",
   },
   detail: {
-    borderWidth: 2,
-    borderColor: '#rgb(87,197,182)',
+    backgroundColor:'white',
+    borderWidth: 3,
+    borderColor: "#fafafa",
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    padding: '4%'
   },
   label: {
-    flex: 1,
-    fontSize: 22,
+    flex: 2,
+    fontSize: 30,
     fontWeight: 'bold',
   },
   value: {
-    flex: 2,
-    fontSize: 20,
-    marginLeft: 5,
+    flex: 3.5,
+    fontSize: 25,
+    marginLeft: 45,
   },
   buttonsContainer: {
-    marginTop: 30,
+    marginTop: '10%',
+    justifyContent: "center",
+    alignItems: "center",
   },
   button: {
     backgroundColor: "#57C5B6",
     padding: 15,
-    borderRadius: 5,
-    marginBottom: 15,
+    borderRadius: 10,
+    marginBottom: '3%',
+    width:'90%',
+    justifyContent: "center",
+    alignItems: "center",
   },
   buttonText: {
     color: "white",
@@ -174,20 +176,19 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   logoutButton: {
-    backgroundColor: "red",
+    backgroundColor: "white",
     padding: 15,
-    borderRadius: 5,
+    borderRadius: 10,
+    marginBottom: '3%',
+    width:'90%',
+    borderWidth: 2,
+    borderColor: "#57C5B6",
   },
   logoutButtonText: {
-    color: "white",
+    color: "#57C5B6",
     fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
-  },
-  footer: {
-    marginTop: "10%",
-    flex: 1,
-    backgroundColor: "#57C5B6",
   },
 });
 

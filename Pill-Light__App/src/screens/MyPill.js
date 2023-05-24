@@ -13,11 +13,12 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const MyPill = ({ navigation }) => {
-  const [pillData, setPillData] = useState(PillData);
+  const MyPillData = [...PillData];
+  const [MypillData, setMyPillData] = useState(PillData);
   const toggleSwitch = (index) => {
-    const updatedPillData = [...PillData];
+    const updatedPillData = [...myPillData];
     updatedPillData[index].notice = !updatedPillData[index].notice;
-    setPillData(updatedPillData);
+    setMyPillData(updatedPillData);
   };
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -62,7 +63,7 @@ const MyPill = ({ navigation }) => {
           }}
           scrollEventThrottle={200}
         >
-          {PillData.map((item, index) => {
+          {MyPillData.map((item, index) => {
             return (
               <View style={styles.slide} key={item.key}>
                 {/* 시간이랑 스위치 들어가는 부분인 pillOption */}
@@ -82,11 +83,13 @@ const MyPill = ({ navigation }) => {
                   onPress={() => handleSlidePress(item.key)}
                   style={styles.pillImageWrapper}
                 >
-                  <ImageBackground
-                    style={styles.pillImage}
-                    resizeMode="stretch"
-                    source={item.image}
-                  />
+                  <View style={styles.pillImageView}>
+                    <ImageBackground
+                      style={styles.pillImage}
+                      resizeMode="stretch"
+                      source={item.image}
+                    />
+                  </View>
                 </TouchableOpacity>
               </View>
             );
@@ -95,7 +98,7 @@ const MyPill = ({ navigation }) => {
 
         {/* dots */}
         <View style={styles.dotsContainer}>
-          {PillData.map((_, index) => (
+          {MyPillData.map((_, index) => (
             <TouchableOpacity
               key={index}
               style={[
@@ -124,7 +127,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: 'center',
     justifyContent: "space-between",
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     borderColor: "#57C5B6",
   },
   backButton: {
@@ -162,10 +165,18 @@ const styles = StyleSheet.create({
     marginLeft: "10%",
     marginRight: "10%",
   },
+  pillImageView: {
+    borderRadius: "15%",
+    width: "100%",
+    height: "100%",
+    overflow: "hidden",
+    borderWidth: 2,
+    borderColor: "#97DEFF",
+    padding: "3%"
+  },
   pillImage: {
     width: "100%",
     height: "100%",
-    alignItems: "center",
   },
 
   dotsContainer: {
