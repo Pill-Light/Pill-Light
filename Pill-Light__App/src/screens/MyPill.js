@@ -82,11 +82,13 @@ const MyPill = ({ navigation }) => {
                   onPress={() => handleSlidePress(item.key)}
                   style={styles.pillImageWrapper}
                 >
-                  <ImageBackground
-                    style={styles.pillImage}
-                    resizeMode="stretch"
-                    source={item.image}
-                  />
+                  <View style={styles.pillImageView}>
+                    <ImageBackground
+                      style={styles.pillImage}
+                      resizeMode="stretch"
+                      source={item.image}
+                    />
+                  </View>
                 </TouchableOpacity>
               </View>
             );
@@ -124,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: 'center',
     justifyContent: "space-between",
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     borderColor: "#57C5B6",
   },
   backButton: {
@@ -162,10 +164,18 @@ const styles = StyleSheet.create({
     marginLeft: "10%",
     marginRight: "10%",
   },
+  pillImageView: {
+    borderRadius: "15%",
+    width: "100%",
+    height: "100%",
+    overflow: "hidden",
+    borderWidth: 2,
+    borderColor: "#97DEFF",
+    padding: "3%"
+  },
   pillImage: {
     width: "100%",
     height: "100%",
-    alignItems: "center",
   },
 
   dotsContainer: {

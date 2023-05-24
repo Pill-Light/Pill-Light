@@ -43,11 +43,13 @@ const MyPillDetail = ({ navigation, route }) => {
       {/* body */}
       <View style={styles.body}>
         <View style={styles.pillDetailContainer}>
-          <ImageBackground
-            style={styles.pillImage}
-            resizeMode="stretch"
-            source={PillData[pillKey - 1].image}
-          ></ImageBackground>
+          <View style={styles.pillImageWrapper}>
+            <ImageBackground
+              style={styles.pillImage}
+              resizeMode="stretch"
+              source={PillData[pillKey - 1].image}
+            ></ImageBackground>
+          </View>
           <View style={styles.pillInfoWrapper}>
             <Text style={styles.pillInfoText}>
               {PillData[pillKey - 1].info}
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "space-between",
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     borderColor: "#57C5B6",
   },
   mainTextWrapper: {},
@@ -91,12 +93,25 @@ const styles = StyleSheet.create({
     width: "90%",
     flex: 0.8,
     padding: "3%",
+    borderWidth: 2,
+    borderColor: "#97DEFF",
+    borderRadius: "15%",
+  },
+  pillImageWrapper: {
+    flex: 0.5,
+    borderRadius: "15%",
+    overflow: "hidden",
+    marginBottom: "5%",
   },
   pillImage: {
-    flex: 0.5,
+    width: "100%",
+    height: "100%",
   },
   pillInfoWrapper: {
     flex: 0.5,
+    padding: "3%",
+    borderRadius: "15%",
+    backgroundColor: "#C9EEFF",
   },
   pillInfoText: {
     fontSize: 18,
