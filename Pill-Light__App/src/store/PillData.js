@@ -21,7 +21,6 @@ export function setPillName(key, newName) {
   });
   PillData = updatedPillData;
 }
-
 /*
 getPillName으로 이름 가져오는 코드 예시
 
