@@ -1,43 +1,23 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { Image, TouchableOpacity } from "react-native";
+import { PillData } from "../../store/PillData";
+import { useNavigation } from "@react-navigation/native";
 
-const SearchResult = () => {
-  const pillsList = [
-    {
-      key: 1,
-      image: require("../../../assets/타이레놀.png"),
-      name: "타이레놀",
-    },
-    {
-      key: 2,
-      image: require("../../../assets/사리돈.png"),
-      name: "사리돈",
-    },
-    {
-      key: 3,
-      image: require("../../../assets/타미노펜.png"),
-      name: "타미노펜",
-    },
-    {
-      key: 4,
-      image: require("../../../assets/써스펜.png"),
-      name: "써스펜",
-    },
-    {
-      key: 5,
-      image: require("../../../assets/아스피린.png"),
-      name: "아스피린",
-    },
-    {
-      key: 6,
-      image: require("../../../assets/인데놀정.png"),
-      name: "인데놀정",
-    },
-  ];
+const SearchResult = ({ results }) => {
+  const navigation = useNavigation();
+
+  const navigateToDetail = (key) => {
+    navigation.navigate("MyPillDetail", { pillKey: key });
+  };
+
   return (
     <ScrollView>
-      {pillsList.map((item, index) => (
-        <TouchableOpacity style={styles.searchResult} key={index}>
+      {results.map((item, index) => (
+        <TouchableOpacity
+          style={styles.searchResult}
+          key={item.key}
+          onPress={() => navigateToDetail(item.key)}
+        >
           <Image style={styles.pillsImage} source={item.image} />
           <View style={styles.pillName}>
             <Text style={styles.font}>{item.name}</Text>

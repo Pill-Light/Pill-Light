@@ -40,7 +40,7 @@ const OnCamera = ({ navigation }) => {
             size={70}
             color="#57C5B6"
             style={styles.backButton}
-            onPress={() => navigation.navigate("SearchPills")}
+            onPress={() => navigation.goBack()}
           />
         </TouchableOpacity>
         <Text style={styles.text}>알약 이미지 검색</Text>

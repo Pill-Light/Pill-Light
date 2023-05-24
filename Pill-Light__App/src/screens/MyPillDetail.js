@@ -1,15 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
-import { PillData } from '../store/PillData';
-import { Ionicons } from '@expo/vector-icons';
-import NavigationBar from '../components/UI/NavigationBar';
+import { StatusBar } from "expo-status-bar";
+import {
+  Dimensions,
+  Image,
+  ImageBackground,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Switch,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React, { useState } from "react";
+import { PillData } from "../store/PillData";
+import { Ionicons } from "@expo/vector-icons";
+import NavigationBar from "../components/UI/NavigationBar";
 
-const windowWidth = Dimensions.get('window').width;
-const windowheight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get("window").width;
+const windowheight = Dimensions.get("window").height;
 
 const MyPillDetail = ({ navigation, route }) => {
-
   const { pillKey } = route.params;
 
   return (
@@ -22,7 +32,7 @@ const MyPillDetail = ({ navigation, route }) => {
             size={70}
             color="#57C5B6"
             style={styles.backButton}
-            onPress={() => navigation.navigate("MyPill")}
+            onPress={() => navigation.goBack()}
           />
         </TouchableOpacity>
         <View style={styles.mainTextWrapper}>
@@ -33,23 +43,24 @@ const MyPillDetail = ({ navigation, route }) => {
       {/* body */}
       <View style={styles.body}>
         <View style={styles.pillDetailContainer}>
-          <ImageBackground style={styles.pillImage}
-          resizeMode="stretch"
-          source={PillData[pillKey - 1].image}>
-          </ImageBackground>
+          <ImageBackground
+            style={styles.pillImage}
+            resizeMode="stretch"
+            source={PillData[pillKey - 1].image}
+          ></ImageBackground>
           <View style={styles.pillInfoWrapper}>
-            <Text style={styles.pillInfoText}>{PillData[pillKey - 1].info}</Text>
+            <Text style={styles.pillInfoText}>
+              {PillData[pillKey - 1].info}
+            </Text>
           </View>
         </View>
-
       </View>
 
       {/* footer */}
       <NavigationBar />
-
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -64,8 +75,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: "#57C5B6",
   },
-  mainTextWrapper: {
-  },
+  mainTextWrapper: {},
   mainText: {
     fontSize: 35,
     color: "#57C5B6",
@@ -100,4 +110,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyPillDetail
+export default MyPillDetail;
