@@ -39,6 +39,7 @@ const SearchPills = () => {
               placeholderTextColor="grey"
               value={searchText}
               onChangeText={inputTextHandler}
+              onSubmitEditing={searchHandler}
               style={styles.inputText}
             ></TextInput>
             <TouchableOpacity style={styles.searchButton}>
