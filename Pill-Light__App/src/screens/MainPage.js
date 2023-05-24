@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 import NavigationBar from "../components/UI/NavigationBar";
+import { getPillName } from "../store/PillData";
 
 const MainPage = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -88,7 +89,7 @@ const MainPage = () => {
                   <Text style={{ fontSize: 25 }}>아침</Text>
                 </View>
                 <View style={styles.TextList}>
-                  <Text style={{ fontSize: 18 }}>타이레놀</Text>
+                  <Text style={{ fontSize: 18 }}>{getPillName(1)}</Text>
                   <Text style={{ fontSize: 18 }}></Text>
                 </View>
               </View>
@@ -97,7 +98,7 @@ const MainPage = () => {
                   <Text style={{ fontSize: 25 }}>점심</Text>
                 </View>
                 <View style={styles.TextList}>
-                  <Text style={{ fontSize: 18 }}>타이레놀</Text>
+                  <Text style={{ fontSize: 18 }}>{getPillName(2)}</Text>
                   <Text style={{ fontSize: 18 }}></Text>
                 </View>
               </View>
@@ -106,7 +107,7 @@ const MainPage = () => {
                   <Text style={{ fontSize: 25 }}>저녁</Text>
                 </View>
                 <View style={styles.TextList}>
-                  <Text style={{ fontSize: 18 }}>타이레놀</Text>
+                  <Text style={{ fontSize: 18 }}>{getPillName(3)}, {getPillName(4)}</Text>
                   <Text style={{ fontSize: 18 }}></Text>
                 </View>
               </View>
