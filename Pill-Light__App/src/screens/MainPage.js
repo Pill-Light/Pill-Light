@@ -3,23 +3,38 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Modal,
-  TextInput,
   StyleSheet,
   Text,
   View,
 } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NavigationBar from "../components/UI/NavigationBar";
 import { getPillName } from "../store/PillData";
+import { getUserInfo } from "../components/UserManger";
 
 const MainPage = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const loggedInUser = await getUserInfo();
+        setUserInfo(loggedInUser);
+      } catch (error) {
+        console.log("Error fetching user data:", error);
+      }
+    };
+    fetchUserData();
+  }, []);
+
+  const { name } = userInfo;
+
   const now = new Date();
   const hours = now.getHours();
   const min = now.getMinutes();
   return (
     <>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
         {/*modal*/}
         <Modal
           animationType="slide"
@@ -77,11 +92,8 @@ const MainPage = () => {
               style={styles.logo}
               source={require("../../assets/메인로고.png")}
             />
-            <TextInput
-              placeholder="약 검색"
-              placeholderTextColor="grey"
-              style={styles.inputText}
-            ></TextInput>
+            <View style={{ flex: 0.5 }}></View>
+            <Text style={styles.inputText}>{name}님, 반갑습니다.</Text>
           </View>
           <View style={styles.body}>
             <View style={styles.page}>
@@ -123,17 +135,6 @@ const MainPage = () => {
                 >
                   <Text style={styles.buttonText}>복용완료!</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.plus}>
-                  <Text
-                    style={{
-                      fontSize: 30,
-                      fontWeight: "bold",
-                      color: "#57C5B6",
-                    }}
-                  >
-                    +
-                  </Text>
-                </TouchableOpacity>
               </View>
             </View>
           </View>
@@ -155,20 +156,21 @@ const styles = StyleSheet.create({
   logo: {
     margin: "3%",
     padding: "3%",
-    flex: 1,
+    flex: 1.3,
     width: "30%",
     height: "80%",
   },
   inputText: {
-    flex: 2.1,
+    flex: 2,
     fontSize: 18,
-    width: "30%",
+    fontWeight: "500",
+    width: "35%",
     height: "40%",
-    backgroundColor: "#DCDCDC",
     alignSelf: "flex-end",
-    padding: "2%",
-    margin: "5%",
-    marginBottom: "5%",
+    justifyContent: "flex-start",
+    padding: "3%",
+    paddingTop: "4%",
+    margin: "3%",
     borderRadius: 10,
     marginVertical: "3%",
     marginTop: "20%",
