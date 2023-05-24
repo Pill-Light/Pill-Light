@@ -3,7 +3,7 @@ import { Image, TouchableOpacity } from "react-native";
 import { PillData } from "../../store/PillData";
 import { useNavigation } from "@react-navigation/native";
 
-const SearchResult = () => {
+const SearchResult = ({ results }) => {
   const navigation = useNavigation();
 
   const navigateToDetail = (key) => {
@@ -12,7 +12,7 @@ const SearchResult = () => {
 
   return (
     <ScrollView>
-      {PillData.map((item, index) => (
+      {results.map((item, index) => (
         <TouchableOpacity
           style={styles.searchResult}
           key={item.key}
