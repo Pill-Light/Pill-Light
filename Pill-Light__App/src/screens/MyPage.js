@@ -58,7 +58,7 @@ const MyPage = ({ navigation }) => {
                 <Text style={styles.guestName}>{name} 님</Text>
               </View>
               <TouchableOpacity style={styles.searchButton}>
-                <FontAwesome name="search" size={50} color="#57C5B6" />
+                <FontAwesome name="user-circle" size={50} color="#57C5B6" />
               </TouchableOpacity>
           </View>
           <View style={styles.body}>
@@ -120,7 +120,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: 'center',
     justifyContent: "space-between",
-    borderWidth: 2,
     borderColor: '#rgb(87,197,182)',
   },
   searchButton: {
@@ -130,39 +129,45 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   guestName: {
-    color: "#57C5B6",
+    color: "black",
     fontSize: 35,
     fontWeight: 600,
   },
   body: {
     flex: 6,
-    backgroundColor: "white",
+    backgroundColor: "#fafafa",
   },
   detail: {
-    borderWidth: 1,
-    borderColor: "gray",
+    backgroundColor:'white',
+    borderWidth: 3,
+    borderColor: "#fafafa",
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    padding: '4%'
   },
   label: {
-    flex: 1,
+    flex: 2,
     fontSize: 30,
     fontWeight: 'bold',
   },
   value: {
-    flex: 2,
-    fontSize: 30,
-    marginLeft: 5,
+    flex: 3.5,
+    fontSize: 25,
+    marginLeft: 45,
   },
   buttonsContainer: {
-    marginTop: 30,
+    marginTop: '10%',
+    justifyContent: "center",
+    alignItems: "center",
   },
   button: {
     backgroundColor: "#57C5B6",
     padding: 15,
-    borderRadius: 5,
-    marginBottom: 15,
+    borderRadius: 10,
+    marginBottom: '3%',
+    width:'90%',
+    justifyContent: "center",
+    alignItems: "center",
   },
   buttonText: {
     color: "white",
@@ -173,20 +178,17 @@ const styles = StyleSheet.create({
   logoutButton: {
     backgroundColor: "white",
     padding: 15,
-    borderRadius: 5,
-    borderWidth:3,
+    borderRadius: 10,
+    marginBottom: '3%',
+    width:'90%',
+    borderWidth: 2,
     borderColor: "#57C5B6",
   },
   logoutButtonText: {
-    color: "red",
+    color: "#57C5B6",
     fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
-  },
-  footer: {
-    marginTop: "10%",
-    flex: 1,
-    backgroundColor: "#57C5B6",
   },
 });
 

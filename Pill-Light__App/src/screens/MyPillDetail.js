@@ -56,6 +56,11 @@ const MyPillDetail = ({ navigation, route }) => {
             </Text>
           </View>
         </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.addPillButton}>
+            <Text style={styles.addPillButtonText}>나의 약에 추가하기</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* footer */}
@@ -86,12 +91,12 @@ const styles = StyleSheet.create({
   body: {
     flex: 6,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
     backgroundColor: "white",
   },
   pillDetailContainer: {
     width: "90%",
-    flex: 0.8,
+    flex: 0.75,
     padding: "3%",
     borderWidth: 2,
     borderColor: "#97DEFF",
@@ -117,6 +122,23 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 30,
     marginTop: "2%",
+  },
+
+  buttonContainer: {
+    flex: 0.15,
+    width: "90%",
+  },
+  addPillButton: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#57C5B6",
+    borderRadius: "10%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  addPillButtonText: {
+    fontSize: "30%",
+    color: "white",
   },
 
   footer: {
