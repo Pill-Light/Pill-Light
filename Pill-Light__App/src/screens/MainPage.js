@@ -3,136 +3,147 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Modal,
-  TextInput,
   StyleSheet,
   Text,
   View,
 } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NavigationBar from "../components/UI/NavigationBar";
 import { getPillName } from "../store/PillData";
+import { getUserInfo } from "../components/UserManger";
 
 const MainPage = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedTime, setSelectedTime] = useState(new Date());
+  const [userInfo, setUserInfo] = useState({});
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const loggedInUser = await getUserInfo();
+        setUserInfo(loggedInUser);
+      } catch (error) {
+        console.log("Error fetching user data:", error);
+      }
+    };
+    fetchUserData();
+  }, []);
+
+  const { name } = userInfo;
+
   const now = new Date();
   const hours = now.getHours();
   const min = now.getMinutes();
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      {/*modal*/}
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.modalView}>
-          <View style={styles.modalHeader}>
-            <Text style={{ fontSize: 16, color: "white", fontWeight: "bold" }}>
-              알림
-            </Text>
-          </View>
-          <View style={styles.modalBody}>
-            <Text></Text>
-            <Text></Text>
-            {hours > 17 ? (
-              <Text style={{ fontSize: 16 }}>
-                {hours}시 {min}분 저녁약을 복용하셨습니다.
-              </Text>
-            ) : hours > 11 ? (
-              <Text>
-                {hours}시 {min}분 점심약을 복용하셨습니다.
-              </Text>
-            ) : (
-              <Text>
-                {hours}시 {min}분 아침약을 복용하셨습니다.
-              </Text>
-            )}
-            <Text></Text>
-          </View>
-          <View style={styles.modalFooter}>
-            <TouchableOpacity
-              style={styles.confirmButton}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
+    <>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+        {/*modal*/}
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.modalView}>
+            <View style={styles.modalHeader}>
               <Text
-                style={{ color: "white", fontSize: "18", fontWeight: "bold" }}
+                style={{ fontSize: 16, color: "white", fontWeight: "bold" }}
               >
-                확인!
+                알림
               </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
-      <View style={{ flex: 1 }}>
-        <View style={styles.head}>
-          <Image
-            style={styles.logo}
-            source={require("../../assets/메인로고.png")}
-          />
-          <TextInput
-            placeholder="약 검색"
-            placeholderTextColor="grey"
-            style={styles.inputText}
-          ></TextInput>
-        </View>
-        <View style={styles.body}>
-          <View style={styles.page}>
-            <View style={styles.list}>
-              <View style={styles.morning}>
-                <View style={styles.TextList}>
-                  <Text style={{ fontSize: 25 }}>아침</Text>
-                </View>
-                <View style={styles.TextList}>
-                  <Text style={{ fontSize: 18 }}>{getPillName(1)}</Text>
-                  <Text style={{ fontSize: 18 }}></Text>
-                </View>
-              </View>
-              <View style={styles.morning}>
-                <View style={styles.TextList}>
-                  <Text style={{ fontSize: 25 }}>점심</Text>
-                </View>
-                <View style={styles.TextList}>
-                  <Text style={{ fontSize: 18 }}>{getPillName(2)}</Text>
-                  <Text style={{ fontSize: 18 }}></Text>
-                </View>
-              </View>
-              <View style={styles.morning}>
-                <View style={styles.TextList}>
-                  <Text style={{ fontSize: 25 }}>저녁</Text>
-                </View>
-                <View style={styles.TextList}>
-                  <Text style={{ fontSize: 18 }}>{getPillName(3)}, {getPillName(4)}</Text>
-                  <Text style={{ fontSize: 18 }}></Text>
-                </View>
-              </View>
             </View>
-            <View style={styles.buttonbox}>
+            <View style={styles.modalBody}>
+              <Text></Text>
+              <Text></Text>
+              {hours > 17 ? (
+                <Text style={{ fontSize: 16 }}>
+                  {hours}시 {min}분 저녁약을 복용하셨습니다.
+                </Text>
+              ) : hours > 11 ? (
+                <Text>
+                  {hours}시 {min}분 점심약을 복용하셨습니다.
+                </Text>
+              ) : (
+                <Text>
+                  {hours}시 {min}분 아침약을 복용하셨습니다.
+                </Text>
+              )}
+              <Text></Text>
+            </View>
+            <View style={styles.modalFooter}>
               <TouchableOpacity
-                style={styles.button}
-                onPress={() => setModalVisible(true)}
+                style={styles.confirmButton}
+                onPress={() => setModalVisible(!modalVisible)}
               >
-                <Text style={styles.buttonText}>복용완료!</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.plus}>
                 <Text
-                  style={{ fontSize: 30, fontWeight: "bold", color: "#57C5B6" }}
+                  style={{ color: "white", fontSize: "18", fontWeight: "bold" }}
                 >
-                  +
+                  확인!
                 </Text>
               </TouchableOpacity>
             </View>
           </View>
-        </View>
+        </Modal>
 
+        <View style={{ flex: 1 }}>
+          <View style={styles.head}>
+            <Image
+              style={styles.logo}
+              source={require("../../assets/메인로고.png")}
+            />
+            <View style={{ flex: 0.5 }}></View>
+            <Text style={styles.inputText}>{name}님, 반갑습니다.</Text>
+          </View>
+          <View style={styles.body}>
+            <View style={styles.page}>
+              <View style={styles.list}>
+                <View style={styles.morning}>
+                  <View style={styles.TextList}>
+                    <Text style={{ fontSize: 25 }}>아침</Text>
+                  </View>
+                  <View style={styles.TextList}>
+                    <Text style={{ fontSize: 18 }}>{getPillName(1)}</Text>
+                    <Text style={{ fontSize: 18 }}></Text>
+                  </View>
+                </View>
+                <View style={styles.morning}>
+                  <View style={styles.TextList}>
+                    <Text style={{ fontSize: 25 }}>점심</Text>
+                  </View>
+                  <View style={styles.TextList}>
+                    <Text style={{ fontSize: 18 }}>{getPillName(2)}</Text>
+                    <Text style={{ fontSize: 18 }}></Text>
+                  </View>
+                </View>
+                <View style={styles.morning}>
+                  <View style={styles.TextList}>
+                    <Text style={{ fontSize: 25 }}>저녁</Text>
+                  </View>
+                  <View style={styles.TextList}>
+                    <Text style={{ fontSize: 18 }}>
+                      {getPillName(3)}, {getPillName(4)}
+                    </Text>
+                    <Text style={{ fontSize: 18 }}></Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.buttonbox}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => setModalVisible(true)}
+                >
+                  <Text style={styles.buttonText}>복용완료!</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </View>
+      </SafeAreaView>
+      <SafeAreaView style={{ flex: 0.15, backgroundColor: "#57C5B6" }}>
         <NavigationBar />
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   );
 };
 const styles = StyleSheet.create({
@@ -145,20 +156,21 @@ const styles = StyleSheet.create({
   logo: {
     margin: "3%",
     padding: "3%",
-    flex: 1,
+    flex: 1.3,
     width: "30%",
     height: "80%",
   },
   inputText: {
-    flex: 2.1,
+    flex: 2,
     fontSize: 18,
-    width: "30%",
+    fontWeight: "500",
+    width: "35%",
     height: "40%",
-    backgroundColor: "#DCDCDC",
     alignSelf: "flex-end",
-    padding: "2%",
-    margin: "5%",
-    marginBottom: "5%",
+    justifyContent: "flex-start",
+    padding: "3%",
+    paddingTop: "4%",
+    margin: "3%",
     borderRadius: 10,
     marginVertical: "3%",
     marginTop: "20%",
@@ -229,7 +241,6 @@ const styles = StyleSheet.create({
     margin: "5%",
     width: "90%",
     height: "20%",
-    padding: "5%",
     justifyContent: "center",
     alignItems: "center",
     borderWidth: "3%",
@@ -243,7 +254,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "center",
     margin: "8%",
-    marginRight: "15%",
     padding: "5%",
   },
   TextList: {
