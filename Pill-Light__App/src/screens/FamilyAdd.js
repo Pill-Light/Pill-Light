@@ -66,7 +66,7 @@ const FamilyAdd = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.body}>
-          <View>
+          <View style={styles.container}>
             <TextInput
               placeholder='이름'
               placeholderTextColor="lighterGrey"
@@ -100,20 +100,20 @@ const FamilyAdd = ({ navigation }) => {
               onChangeText={setRelationship}
             >
             </TextInput>
-            <View style={styles.checkboxContainer}>
+          </View>
+          <View style={styles.checkboxContainer}>
               <TouchableOpacity
                 style={[styles.checkbox, isChecked && styles.checkboxChecked]}
                 onPress={() => setIsChecked(!isChecked)} >
-                {isChecked && <FontAwesome name="check" size={20} color="white" />}
+                {isChecked && <FontAwesome name="check" size={22} color="white" />}
               </TouchableOpacity>
-              <Text style={styles.checkboxLabel}>동의합니다.</Text>
+              <Text style={isChecked ? styles.checkboxLabel : styles.uncheckboxLabel}>동의합니다.</Text>
             </View>
-            <View style={styles.saveBtnContainer}>
-              <TouchableOpacity style={styles.saveBtn} onPress={handleSave}>
-                <Text style={styles.saveInfo}> 저장하기</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+        </View>
+        <View style={styles.saveBtnContainer}>
+          <TouchableOpacity style={styles.saveBtn} onPress={handleSave}>
+            <Text style={styles.saveInfo}>저장하기</Text>
+          </TouchableOpacity>
         </View>
         <NavigationBar />
       </SafeAreaView>
@@ -124,9 +124,6 @@ const FamilyAdd = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
   header: {
     flex: 1,
     backgroundColor: "white",
@@ -167,35 +164,46 @@ const styles = StyleSheet.create({
     flex: 6,
     backgroundColor: "white",
   },
+  container: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+  },
   checkboxContainer: {
+    flex: 0.8,
     flexDirection: "row",
-    marginVertical: "2%",
     marginLeft: "5%",
   },
   checkbox: {
-    width: 20,
-    height: 20,
+    width: 28,
+    height: 28,
     borderRadius: 5,
     borderWidth: 2,
-    borderColor: "#159895",
+    borderColor: "gray",
     justifyContent: "center",
     alignItems: "center",
   },
   checkboxChecked: {
     backgroundColor: "#159895",
+    borderColor: "#159895",
   },
   checkboxLabel: {
     marginLeft: "2%",
-    fontSize: 18,
+    fontSize: 25,
     color: "#159895",
   },
+  uncheckboxLabel: {
+    marginLeft: "2%",
+    fontSize: 25,
+    color: "gray",
+  },
   registerInput: {
-    fontSize: 18,
-    width: 400,
+    fontSize: 20,
+    width: "95%",
     backgroundColor: "#fafafa",
-    padding: "4%",
-    margin: "5%",
-    marginVertical: "1%",
+    padding: "5%",
+    margin: "1%",
   },
   modalContainer: {
     width: 200,
@@ -211,17 +219,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   saveBtnContainer: {
-    alignItems: 'center',
-    marginTop: "40%",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white"
   },
   saveBtn: {
     backgroundColor: "#159895",
-    width: "100%",
-    height: "30%",
-    marginBottom: "12%",
+    width: "90%",
+    height: 50,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
   },
   saveInfo: {
     fontSize: 24,
