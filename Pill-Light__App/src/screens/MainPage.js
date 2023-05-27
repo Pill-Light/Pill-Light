@@ -15,9 +15,6 @@ import { getUserInfo } from "../components/UserManger";
 const MainPage = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [userInfo, setUserInfo] = useState({});
-
-  const [selectedTime, setSelectedTime] = useState(""); // 새로운 상태 변수 추가
-
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -35,18 +32,6 @@ const MainPage = () => {
   const now = new Date();
   const hours = now.getHours();
   const min = now.getMinutes();
-
-  useEffect(() => {
-    // 시간 변경에 따라 선택된 시간 업데이트
-    if (hours > 17) {
-      setSelectedTime("evening");
-    } else if (hours > 11) {
-      setSelectedTime("afternoon");
-    } else {
-      setSelectedTime("morning");
-    }
-  }, [hours]);
-
   return (
     <>
       <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
@@ -121,17 +106,7 @@ const MainPage = () => {
                     <Text style={{ fontSize: 18 }}>{getPillName(1)}</Text>
                     <Text style={{ fontSize: 18 }}></Text>
                   </View>
-                  <View style={styles.checkbox}>
-                    {/* 아침 체크 박스 */}
-                    {selectedTime === "morning" && ( // 선택된 시간에 따라 체크박스 표시
-                      <TouchableOpacity style={styles.checkboxButton}>
-                        {/* 체크 아이콘 */}
-                        <Text style={styles.check}>✓</Text>
-                      </TouchableOpacity>
-                    )}</View>
                 </View>
-
-
                 <View style={styles.morning}>
                   <View style={styles.TextList}>
                     <Text style={{ fontSize: 25 }}>점심</Text>
@@ -140,16 +115,6 @@ const MainPage = () => {
                     <Text style={{ fontSize: 18 }}>{getPillName(2)}</Text>
                     <Text style={{ fontSize: 18 }}></Text>
                   </View>
-                  <View style={styles.checkbox}>
-                    {/* 점심 체크 박스 */}
-                    {/* 점심 체크 박스 */}
-                    {selectedTime === "afternoon" && ( // 선택된 시간에 따라 체크박스 표시
-                      <TouchableOpacity style={styles.checkboxButton}>
-                        {/* 체크 아이콘 */}
-                        <Text style={styles.check}>✓</Text>
-                      </TouchableOpacity>
-                    )}
-                  </View>
                 </View>
                 <View style={styles.morning}>
                   <View style={styles.TextList}>
@@ -157,18 +122,9 @@ const MainPage = () => {
                   </View>
                   <View style={styles.TextList}>
                     <Text style={{ fontSize: 18 }}>
-                      {getPillName(3)},    {getPillName(4)}
+                      {getPillName(3)}, {getPillName(4)}
                     </Text>
                     <Text style={{ fontSize: 18 }}></Text>
-                    <View style={styles.checkbox}>
-                      {/* 저녁 체크 박스 */}
-                      {selectedTime === "evening" && ( // 선택된 시간에 따라 체크박스 표시
-                        <TouchableOpacity style={styles.checkboxButton}>
-                          {/* 체크 아이콘 */}
-                          <Text style={styles.check}>✓</Text>
-                        </TouchableOpacity>
-                      )}
-                    </View>
                   </View>
                 </View>
               </View>
@@ -364,8 +320,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
   },
-  check: {
-    fontSize: 24, color: "#57C5B6"
-  }
 });
 export default MainPage;
