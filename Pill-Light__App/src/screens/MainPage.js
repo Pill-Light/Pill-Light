@@ -15,6 +15,9 @@ import { getUserInfo } from "../components/UserManger";
 const MainPage = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [userInfo, setUserInfo] = useState({});
+
+  const [selectedTime, setSelectedTime] = useState(""); // 새로운 상태 변수 추가
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -32,6 +35,18 @@ const MainPage = () => {
   const now = new Date();
   const hours = now.getHours();
   const min = now.getMinutes();
+
+  useEffect(() => {
+    // 시간 변경에 따라 선택된 시간 업데이트
+    if (hours > 17) {
+      setSelectedTime("evening");
+    } else if (hours > 11) {
+      setSelectedTime("afternoon");
+    } else {
+      setSelectedTime("morning");
+    }
+  }, [hours]);
+
   return (
     <>
       <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
@@ -98,33 +113,72 @@ const MainPage = () => {
           <View style={styles.body}>
             <View style={styles.page}>
               <View style={styles.list}>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: "bold",
+                    paddingBottom: "5%",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  복용 목록
+                </Text>
                 <View style={styles.morning}>
                   <View style={styles.TextList}>
-                    <Text style={{ fontSize: 25 }}>아침</Text>
+                    <Text style={{ fontSize: 23 }}>아침</Text>
                   </View>
-                  <View style={styles.TextList}>
-                    <Text style={{ fontSize: 18 }}>{getPillName(1)}</Text>
+                  <View style={styles.PillList}>
+                    <Text style={{ fontSize: 14 }}>{getPillName(1)}</Text>
                     <Text style={{ fontSize: 18 }}></Text>
+                  </View>
+                  <View style={styles.checkbox}>
+                    {/* 아침 체크 박스 */}
+                    {selectedTime === "morning" && ( // 선택된 시간에 따라 체크박스 표시
+                      <TouchableOpacity style={styles.checkboxButton}>
+                        {/* 체크 아이콘 */}
+                        <Text style={styles.check}>✓</Text>
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                </View>
+
+                <View style={styles.morning}>
+                  <View style={styles.TextList}>
+                    <Text style={{ fontSize: 23 }}>점심</Text>
+                  </View>
+                  <View style={styles.PillList}>
+                    <Text style={{ fontSize: 14 }}>{getPillName(2)}</Text>
+                    <Text style={{ fontSize: 18 }}></Text>
+                  </View>
+                  <View style={styles.checkbox}>
+                    {/* 점심 체크 박스 */}
+                    {/* 점심 체크 박스 */}
+                    {selectedTime === "afternoon" && ( // 선택된 시간에 따라 체크박스 표시
+                      <TouchableOpacity style={styles.checkboxButton}>
+                        {/* 체크 아이콘 */}
+                        <Text style={styles.check}>✓</Text>
+                      </TouchableOpacity>
+                    )}
                   </View>
                 </View>
                 <View style={styles.morning}>
                   <View style={styles.TextList}>
-                    <Text style={{ fontSize: 25 }}>점심</Text>
+                    <Text style={{ fontSize: 23 }}>저녁</Text>
                   </View>
-                  <View style={styles.TextList}>
-                    <Text style={{ fontSize: 18 }}>{getPillName(2)}</Text>
-                    <Text style={{ fontSize: 18 }}></Text>
-                  </View>
-                </View>
-                <View style={styles.morning}>
-                  <View style={styles.TextList}>
-                    <Text style={{ fontSize: 25 }}>저녁</Text>
-                  </View>
-                  <View style={styles.TextList}>
-                    <Text style={{ fontSize: 18 }}>
+                  <View style={styles.PillList}>
+                    <Text style={{ fontSize: 14 }}>
                       {getPillName(3)}, {getPillName(4)}
                     </Text>
                     <Text style={{ fontSize: 18 }}></Text>
+                    <View style={styles.checkbox}>
+                      {/* 저녁 체크 박스 */}
+                      {selectedTime === "evening" && ( // 선택된 시간에 따라 체크박스 표시
+                        <TouchableOpacity style={styles.checkboxButton}>
+                          {/* 체크 아이콘 */}
+                          <Text style={styles.check}>✓</Text>
+                        </TouchableOpacity>
+                      )}
+                    </View>
                   </View>
                 </View>
               </View>
@@ -235,35 +289,52 @@ const styles = StyleSheet.create({
     borderWidth: "3%",
     borderColor: "#57C5B6",
     borderRadius: 10,
+
+    backgroundColor: "#FAFAFA",
   },
   list: {
-    flex: 3,
+    flex: 4,
     margin: "5%",
-    width: "90%",
+    width: "95%",
     height: "20%",
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: "3%",
-    borderColor: "#57C5B6",
-    borderRadius: 10,
   },
   morning: {
+    flex: 1.5,
     borderColor: "black",
     flexDirection: "row",
-    width: "100%",
-    alignItems: "flex-start",
+    width: "99%",
+    alignItems: "center",
     justifyContent: "center",
-    margin: "8%",
+    margin: "3%",
     padding: "5%",
+    borderWidth: "0.5%",
+    borderRadius: 4,
+    borderColor: "white",
+    shadowColor: "#000",
+    backgroundColor: "white",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
   },
   TextList: {
     flex: 1,
     flexDirection: "row",
-    margin: "3%",
-    padding: "2%",
-    alignItems: "center",
     justifyContent: "center",
+    margin: "2%",
+    padding: "1%",
   },
+  PillList: {
+    flex: 1.5,
+    flexDirection: "row",
+    margin: "2%",
+    padding: "1%",
+  },
+
   buttonbox: {
     width: "100%",
     flex: 1,
@@ -287,38 +358,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
   },
-  plus: {
-    flex: "1",
-    backgroundColor: "white",
-    width: "60%",
-    height: 60,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-    borderColor: "#57C5B6",
-    borderWidth: "3%",
-    margin: "3%",
-  },
-  camera: {
-    flex: 1,
-    width: "50%",
-  },
-  mypage: {
-    flex: 1,
-    width: "50%",
-  },
-  pic: {
-    alignSelf: "center",
-    margin: "2%",
-    padding: "5%",
-    color: "black",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+
+  check: {
+    fontSize: 24,
+    color: "#57C5B6",
   },
 });
 export default MainPage;
