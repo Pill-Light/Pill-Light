@@ -115,7 +115,7 @@ const MainPage = () => {
               <View style={styles.list}>
                 <Text
                   style={{
-                    fontSize: 18,
+                    fontSize: 30,
                     fontWeight: "bold",
                     paddingBottom: "5%",
                     justifyContent: "flex-start",
@@ -123,13 +123,12 @@ const MainPage = () => {
                 >
                   복용 목록
                 </Text>
-                <View style={styles.morning}>
+                <View style={styles.listContainer}>
                   <View style={styles.TextList}>
-                    <Text style={{ fontSize: 23 }}>아침</Text>
+                    <Text style={styles.listTitleText}>아침</Text>
                   </View>
                   <View style={styles.PillList}>
-                    <Text style={{ fontSize: 14 }}>{getPillName(1)}</Text>
-                    <Text style={{ fontSize: 18 }}></Text>
+                    <Text style={styles.pillNameText}>{getPillName(1)}</Text>
                   </View>
                   <View style={styles.checkbox}>
                     {/* 아침 체크 박스 */}
@@ -142,13 +141,12 @@ const MainPage = () => {
                   </View>
                 </View>
 
-                <View style={styles.morning}>
+                <View style={styles.listContainer}>
                   <View style={styles.TextList}>
-                    <Text style={{ fontSize: 23 }}>점심</Text>
+                    <Text style={styles.listTitleText}>점심</Text>
                   </View>
                   <View style={styles.PillList}>
-                    <Text style={{ fontSize: 14 }}>{getPillName(2)}</Text>
-                    <Text style={{ fontSize: 18 }}></Text>
+                    <Text style={styles.pillNameText}>{getPillName(2)}</Text>
                   </View>
                   <View style={styles.checkbox}>
                     {/* 점심 체크 박스 */}
@@ -161,16 +159,17 @@ const MainPage = () => {
                     )}
                   </View>
                 </View>
-                <View style={styles.morning}>
+
+                <View style={styles.listContainer}>
                   <View style={styles.TextList}>
-                    <Text style={{ fontSize: 23 }}>저녁</Text>
+                    <Text style={styles.listTitleText}>저녁</Text>
                   </View>
                   <View style={styles.PillList}>
-                    <Text style={{ fontSize: 14 }}>
+                    <Text style={styles.pillNameText}>
                       {getPillName(3)}, {getPillName(4)}
                     </Text>
-                    <Text style={{ fontSize: 18 }}></Text>
-                    <View style={styles.checkbox}>
+                  </View>
+                  <View style={styles.checkbox}>
                       {/* 저녁 체크 박스 */}
                       {selectedTime === "evening" && ( // 선택된 시간에 따라 체크박스 표시
                         <TouchableOpacity style={styles.checkboxButton}>
@@ -178,16 +177,16 @@ const MainPage = () => {
                           <Text style={styles.check}>✓</Text>
                         </TouchableOpacity>
                       )}
-                    </View>
                   </View>
                 </View>
               </View>
-              <View style={styles.buttonbox}>
+
+              <View style={styles.completeButtonbox}>
                 <TouchableOpacity
-                  style={styles.button}
+                  style={styles.completeButton}
                   onPress={() => setModalVisible(true)}
                 >
-                  <Text style={styles.buttonText}>복용완료!</Text>
+                  <Text style={styles.completeButtonText}>복용완료!</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -300,20 +299,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  morning: {
+  listContainer: {
     flex: 1.5,
     borderColor: "black",
     flexDirection: "row",
-    width: "99%",
     alignItems: "center",
-    justifyContent: "center",
     margin: "3%",
-    padding: "5%",
+    paddingLeft: "8%",
+    paddingRight: "8%",
     borderWidth: "0.5%",
-    borderRadius: 4,
+    borderRadius: 15,
     borderColor: "white",
-    shadowColor: "#000",
     backgroundColor: "white",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -322,28 +320,51 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   TextList: {
-    flex: 1,
+    flex: 1.8,
     flexDirection: "row",
-    justifyContent: "center",
-    margin: "2%",
-    padding: "1%",
   },
-  PillList: {
-    flex: 1.5,
-    flexDirection: "row",
-    margin: "2%",
-    padding: "1%",
+  listTitleText: {
+    fontSize: 23,
+    fontWeight: 600,
+  },
+  pillNameText: {
+    fontSize: 18,
   },
 
-  buttonbox: {
+  PillList: {
+    flex: 5,
+    alignItems: "center",
+    flexDirection: "row",
+  },
+
+  checkbox: {
+    flex: 1,
+  },
+  checkboxButton: {
+  },
+  check: {
+    marginLeft: "auto",
+    fontSize: 30,
+    color: "#57C5B6",
+    fontWeight: 600
+  },
+
+  completeButtonbox: {
     width: "100%",
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
   },
 
-  button: {
+  completeButton: {
     flex: "3",
     backgroundColor: "#57C5B6",
     width: "60%",
@@ -353,15 +374,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     margin: "3%",
   },
-  buttonText: {
+  completeButtonText: {
     fontSize: 22,
     fontWeight: "bold",
     color: "white",
-  },
-
-  check: {
-    fontSize: 24,
-    color: "#57C5B6",
   },
 });
 export default MainPage;

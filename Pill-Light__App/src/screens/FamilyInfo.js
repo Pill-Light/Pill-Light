@@ -62,7 +62,7 @@ const FamilyInfo = ({ navigation }) => {
             <TouchableOpacity>
               <Ionicons
                 name="ios-chevron-back-sharp"
-                size={50}
+                size={70}
                 color="#57C5B6"
                 style={styles.backButton}
                 onPress={() => navigation.navigate("MyPage")}
@@ -74,6 +74,15 @@ const FamilyInfo = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
+        {familyMembers.length === 0 ?
+        <View style={styles.imageWrapper}>
+          <ImageBackground
+              style={styles.image}
+              resizeMode="contain"
+              source={require("../../assets/메인로고.png")}
+            />
+        </View>
+        :
         <View style={styles.body}>
           {familyMembers.map((member, index) => (
             <View key={index} style={styles.familyLine}>
@@ -84,24 +93,20 @@ const FamilyInfo = ({ navigation }) => {
                 style={styles.minusButton}
                 onPress={() => handleRemoveFamilyMember(index)}
               >
-                <FontAwesome name="minus-square" size={40} color="#e6e9ed" />
+                <FontAwesome name="minus-square" size={50} color="#e6e9ed" />
               </TouchableOpacity>
             </View>
           ))}
+        </View>
+        }
           <View style={styles.subContainer}>
-            <ImageBackground
-              style={styles.image}
-              resizeMode="contain"
-              source={require("../../assets/메인로고.png")}
-            />
             <TouchableOpacity
               onPress={() => navigation.navigate("FamilyAdd")}
               style={styles.addBtn}
             >
-              <Text style={styles.add}>가족추가하기</Text>
+              <Text style={styles.add}>가족 추가하기</Text>
             </TouchableOpacity>
           </View>
-        </View>
         <NavigationBar />
       </SafeAreaView>
     </>
@@ -123,15 +128,17 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     flex: 1,
-    heighft: "70%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
     flexDirection: "row",
+    backgroundColor: "white",
+    alignItems: 'center',
+    justifyContent: "space-between",
+    borderColor: '#rgb(87,197,182)',
   },
   searchButton: {
-    alignSelf: "flex-end",
-    marginBottom: "5%",
+    width: 70.5,
+    height: 70.5,
+    alignItems: "center",
+    justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -142,34 +149,38 @@ const styles = StyleSheet.create({
   },
   guestName: {
     color: "black",
-    fontSize: 23,
+    fontSize: 35,
     fontWeight: 600,
-    marginLeft: "15%",
-    marginRight: "12%",
+  },
+
+  imageWrapper: {
+    flex: 6,
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
   },
   body: {
     flex: 6,
     backgroundColor: "white",
   },
   familyLine: {
-    flex: 0.25,
+    flex: 0.2,
+    alignItems: "center",
+    paddingLeft: "5%",
+    paddingRight: "5%",
     flexDirection: "row",
     backgroundColor: "#57C5B6",
+    borderWidth: 1.5,
+    borderColor: "#fafafa",
   },
   familyName: {
     color: "white",
     fontSize: 25,
     fontWeight: "bold",
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: "7%",
-    marginLeft: "5%",
   },
   minusButton: {
-    alignSelf: "flex-end",
-    marginBottom: "5%",
-    marginLeft: "28%",
+    marginLeft: "auto",
     shadowColor: "white",
     shadowOffset: {
       width: 0,
@@ -181,19 +192,25 @@ const styles = StyleSheet.create({
     width: 200,
   },
   subContainer: {
-    marginTop: "15%",
     flex: 1,
+    backgroundColor: "white",
     justifyContent: "center",
     alignItems: "center",
   },
   addBtn: {
     backgroundColor: "#159895",
-    width: "100%",
+    width: "90%",
     height: 50,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: "20%",
     borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
   },
   add: {
     fontSize: 24,
