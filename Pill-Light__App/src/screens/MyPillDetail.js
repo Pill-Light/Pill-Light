@@ -4,13 +4,12 @@ import {
   Image,
   ImageBackground,
   SafeAreaView,
-  ScrollView,
   StyleSheet,
-  Switch,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+
 import React, { useState } from "react";
 import { PillData } from "../store/PillData";
 import { Ionicons } from "@expo/vector-icons";

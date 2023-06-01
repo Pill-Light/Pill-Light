@@ -108,7 +108,7 @@ const MainPage = () => {
               source={require("../../assets/메인로고.png")}
             />
             <View style={{ flex: 0.5 }}></View>
-            <Text style={styles.inputText}>{name}님, 반갑습니다.</Text>
+            <Text style={styles.inputText}>{name}님, 반갑습니다</Text>
           </View>
           <View style={styles.body}>
             <View style={styles.page}>
@@ -170,13 +170,13 @@ const MainPage = () => {
                     </Text>
                   </View>
                   <View style={styles.checkbox}>
-                      {/* 저녁 체크 박스 */}
-                      {selectedTime === "evening" && ( // 선택된 시간에 따라 체크박스 표시
-                        <TouchableOpacity style={styles.checkboxButton}>
-                          {/* 체크 아이콘 */}
-                          <Text style={styles.check}>✓</Text>
-                        </TouchableOpacity>
-                      )}
+                    {/* 저녁 체크 박스 */}
+                    {selectedTime === "evening" && ( // 선택된 시간에 따라 체크박스 표시
+                      <TouchableOpacity style={styles.checkboxButton}>
+                        {/* 체크 아이콘 */}
+                        <Text style={styles.check}>✓</Text>
+                      </TouchableOpacity>
+                    )}
                   </View>
                 </View>
               </View>
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
   inputText: {
     flex: 2,
     fontSize: 18,
-    fontWeight: "500",
+    fontWeight: "bold",
     width: "35%",
     height: "40%",
     alignSelf: "flex-end",
@@ -340,13 +340,12 @@ const styles = StyleSheet.create({
   checkbox: {
     flex: 1,
   },
-  checkboxButton: {
-  },
+  checkboxButton: {},
   check: {
     marginLeft: "auto",
     fontSize: 30,
     color: "#57C5B6",
-    fontWeight: 600
+    fontWeight: 600,
   },
 
   completeButtonbox: {

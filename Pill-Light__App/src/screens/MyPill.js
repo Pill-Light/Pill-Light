@@ -16,7 +16,6 @@ import { PillData } from "../store/PillData";
 //timePicker
 import TimePickerExample from "../components/TimePickerExample";
 //하단바
-import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import NavigationBar from "../components/UI/NavigationBar";
 
