@@ -1,13 +1,23 @@
 import React from "react";
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground, Alert, } from "react-native";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import NavigationBar from "../components/UI/NavigationBar";
-import { NavigationContainer } from "@react-navigation/native";
-import { useRoute } from "@react-navigation/native";
-import { useEffect, useState } from 'react';
-import { getUserInfo, getFamilyMember, removeFamilyMember} from "../components/UserManger";
 import { StatusBar } from "expo-status-bar";
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
+  ImageBackground,
+  Alert,
+} from "react-native";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { useEffect, useState } from "react";
+
+import {
+  getUserInfo,
+  getFamilyMember,
+  removeFamilyMember,
+} from "../components/UserManger";
+import NavigationBar from "../components/UI/NavigationBar";
 
 const FamilyInfo = ({ navigation }) => {
   const [userInfo, setUserInfo] = useState({});
@@ -23,9 +33,9 @@ const FamilyInfo = ({ navigation }) => {
   const handleRemoveFamilyMember = async (index) => {
     try {
       await removeFamilyMember(index); // 가족 정보 삭제
-      Alert.alert("가족회원 정보가 삭제되었습니다.")
+      Alert.alert("가족회원 정보가 삭제되었습니다.");
     } catch (error) {
-      console.log('Error removing family member:', error);
+      console.log("Error removing family member:", error);
     }
   };
 
@@ -35,7 +45,7 @@ const FamilyInfo = ({ navigation }) => {
         const loggedInUser = await getUserInfo();
         setUserInfo(loggedInUser);
       } catch (error) {
-        console.log('Error fetching user data:', error);
+        console.log("Error fetching user data:", error);
       }
     };
 
@@ -44,7 +54,7 @@ const FamilyInfo = ({ navigation }) => {
         const members = await getFamilyMember();
         setFamilyMembers(members);
       } catch (error) {
-        console.log('Error fetching family members:', error);
+        console.log("Error fetching family members:", error);
       }
     };
 
@@ -52,11 +62,10 @@ const FamilyInfo = ({ navigation }) => {
     fetchFamilyMembers();
   }, []);
 
-
   return (
     <>
-      <SafeAreaView style={{ flex: 0, backgroundColor: 'white' }} />
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#57C5B6' }}>
+      <SafeAreaView style={{ flex: 0, backgroundColor: "white" }} />
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#57C5B6" }}>
         <View style={styles.header}>
           <View style={styles.searchBar}>
             <TouchableOpacity>
@@ -68,49 +77,50 @@ const FamilyInfo = ({ navigation }) => {
                 onPress={() => navigation.navigate("MyPage")}
               />
             </TouchableOpacity>
-            <Text style={styles.guestName}>{name} 님 {calculateAge(birthYear)}세</Text>
+            <Text style={styles.guestName}>
+              {name} 님 {calculateAge(birthYear)}세
+            </Text>
             <TouchableOpacity style={styles.searchButton}>
               <FontAwesome name="search" size={50} color="#57C5B6" />
             </TouchableOpacity>
           </View>
         </View>
-        {familyMembers.length === 0 ?
-        <View style={styles.imageWrapper}>
-          <ImageBackground
+        {familyMembers.length === 0 ? (
+          <View style={styles.imageWrapper}>
+            <ImageBackground
               style={styles.image}
               resizeMode="contain"
               source={require("../../assets/메인로고.png")}
             />
-        </View>
-        :
-        <View style={styles.body}>
-          {familyMembers.map((member, index) => (
-            <View key={index} style={styles.familyLine}>
-              <Text style={styles.familyName}>
-                {member.name} {member.age}세 ({member.relationship})
-              </Text>
-              <TouchableOpacity
-                style={styles.minusButton}
-                onPress={() => handleRemoveFamilyMember(index)}
-              >
-                <FontAwesome name="minus-square" size={50} color="#e6e9ed" />
-              </TouchableOpacity>
-            </View>
-          ))}
-        </View>
-        }
-          <View style={styles.subContainer}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("FamilyAdd")}
-              style={styles.addBtn}
-            >
-              <Text style={styles.add}>가족 추가하기</Text>
-            </TouchableOpacity>
           </View>
+        ) : (
+          <View style={styles.body}>
+            {familyMembers.map((member, index) => (
+              <View key={index} style={styles.familyLine}>
+                <Text style={styles.familyName}>
+                  {member.name} {member.age}세 ({member.relationship})
+                </Text>
+                <TouchableOpacity
+                  style={styles.minusButton}
+                  onPress={() => handleRemoveFamilyMember(index)}
+                >
+                  <FontAwesome name="minus-square" size={50} color="#e6e9ed" />
+                </TouchableOpacity>
+              </View>
+            ))}
+          </View>
+        )}
+        <View style={styles.subContainer}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("FamilyAdd")}
+            style={styles.addBtn}
+          >
+            <Text style={styles.add}>가족 추가하기</Text>
+          </TouchableOpacity>
+        </View>
         <NavigationBar />
       </SafeAreaView>
     </>
-
   );
 };
 
@@ -130,9 +140,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     backgroundColor: "white",
-    alignItems: 'center',
+    alignItems: "center",
     justifyContent: "space-between",
-    borderColor: '#rgb(87,197,182)',
+    borderColor: "#rgb(87,197,182)",
   },
   searchButton: {
     width: 70.5,
@@ -219,4 +229,3 @@ const styles = StyleSheet.create({
   },
 });
 export default FamilyInfo;
-
