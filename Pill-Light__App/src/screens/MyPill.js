@@ -26,7 +26,7 @@ const MyPill = ({ navigation }) => {
   const MyPillData = [...PillData];
   const [MypillData, setMyPillData] = useState(PillData);
   const toggleSwitch = (index) => {
-    const updatedPillData = [...myPillData];
+    const updatedPillData = [...MyPillData];
     updatedPillData[index].notice = !updatedPillData[index].notice;
     setMyPillData(updatedPillData);
   };

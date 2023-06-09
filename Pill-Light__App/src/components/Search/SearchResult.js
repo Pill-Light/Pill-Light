@@ -18,7 +18,10 @@ const SearchResult = ({ results }) => {
           key={item.key}
           onPress={() => navigateToDetail(item.key)}
         >
-          <Image style={styles.pillsImage} source={item.image} />
+          <View style={styles.imageContainer}>
+            <Image style={styles.pillsImage} source={item.image} />
+          </View>
+
           <View style={styles.pillName}>
             <Text style={styles.font}>{item.name}</Text>
           </View>
@@ -37,11 +40,18 @@ const styles = StyleSheet.create({
     borderBottomWidth: "2%",
     borderBottomColor: "#57C5B6",
   },
-  pillsImage: {
+  imageContainer: {
     flex: 1,
-    width: "30%",
+    height: "100%",
+    borderRightColor: "#57C5B6",
+    borderRightWidth: 2,
+    marginRight: 10,
+  },
+  pillsImage: {
+    width: "100%",
     height: "100%",
   },
+
   pillName: {
     flex: 2,
     color: "#000",

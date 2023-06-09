@@ -1,5 +1,5 @@
 import { Camera, CameraType } from "expo-camera";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Button,
   SafeAreaView,
@@ -7,12 +7,26 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Modal,
 } from "react-native";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
 const OnCamera = ({ navigation }) => {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    let timer;
+    if (showModal) {
+      timer = setTimeout(() => {
+        setShowModal(false);
+        navigation.navigate("Recognition");
+      }, 1300);
+    }
+
+    return () => clearTimeout(timer);
+  }, [showModal]);
 
   if (!permission) {
     // Camera permissions are still loading
@@ -31,6 +45,10 @@ const OnCamera = ({ navigation }) => {
     );
   }
 
+  const handleCameraButtonPress = () => {
+    setShowModal(true);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topBar}>
@@ -47,11 +65,17 @@ const OnCamera = ({ navigation }) => {
       </View>
       <Camera style={styles.camera} type={type}>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("Recognition")}>
+          <TouchableOpacity onPress={handleCameraButtonPress}>
             <FontAwesome name="camera" style={styles.snapButton} size={60} />
           </TouchableOpacity>
         </View>
       </Camera>
+
+      <Modal visible={showModal} transparent={true}>
+        <View style={styles.modalContainer}>
+          <Text style={styles.modalText}>알약을 인식 중입니다..</Text>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -75,7 +99,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 25,
-    fontWeight: 800,
+    fontWeight: "800",
     color: "#57C5B6",
     marginLeft: "12%",
     marginTop: "5%",
@@ -94,6 +118,17 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 5,
     borderColor: "#57C5B6",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#fff",
   },
 });
 

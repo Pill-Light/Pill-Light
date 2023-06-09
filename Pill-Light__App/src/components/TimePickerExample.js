@@ -1,35 +1,36 @@
-import React, { useState } from 'react';
-import { View, Button, DatePickerIOS, Text } from 'react-native';
+import React, { useState } from "react";
+import { View, Button, Text } from "react-native";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 const TimePickerExample = () => {
-  const [selectedTime, setSelectedTime] = useState(new Date());
-  const [showPicker, setShowPicker] = useState(false);
+  const [time, settime] = useState(new Date(1598051730000));
+  const [show, setShow] = useState(false);
 
-  const onTimeChange = (time) => {
-    setSelectedTime(time);
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setShow(false);
+    setDate(currentDate);
   };
 
   const showTimePicker = () => {
-    setShowPicker(true);
-  };
-
-  const hideTimePicker = () => {
-    setShowPicker(false);
+    setShow(true);
   };
 
   return (
     <View>
-      <Button title="Select Time" onPress={showTimePicker} />
-      {showPicker && (
-        <DatePickerIOS
-          date={selectedTime}
+      <Button title="복용시간 선택" onPress={showTimePicker} />
+      {show && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={time}
           mode="time"
-          onDateChange={onTimeChange}
-          onCancel={hideTimePicker}
-          onConfirm={hideTimePicker}
+          is24Hour={true}
+          onChange={onChange}
         />
       )}
-      <Text>{selectedTime.toLocaleTimeString()}</Text>
+      <Text style={{ margin: 8, fontSize: 18 }}>
+        {time.toLocaleTimeString()}
+      </Text>
     </View>
   );
 };
