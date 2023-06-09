@@ -4,6 +4,7 @@ import {
   TextInput,
   StyleSheet,
   View,
+  ImageBackground,
 } from "react-native";
 import { useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
@@ -53,7 +54,17 @@ const SearchPills = () => {
           </View>
         </View>
         <View style={styles.body}>
-          <SearchResult results={searchResults} />
+          {searchResults.length === 0 ? (
+            <View style={styles.imageWrapper}>
+              <ImageBackground
+                style={styles.image}
+                resizeMode="contain"
+                source={require("../../assets/메인로고.png")}
+              />
+            </View>
+          ) : (
+            <SearchResult results={searchResults} />
+          )}
         </View>
       </SafeAreaView>
       <SafeAreaView style={{ flex: 0.15, backgroundColor: "#57C5B6" }}>
@@ -110,6 +121,16 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 6,
+  },
+  imageWrapper: {
+    flex: 6,
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  image: {
+    height: 200,
+    width: 200,
   },
   footer: {
     flex: 1,

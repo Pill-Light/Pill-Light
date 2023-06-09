@@ -1,16 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { Dimensions, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
-import React, { Fragment, useState } from 'react';
-import { PillData } from '../store/PillData';
+import { StatusBar } from "expo-status-bar";
+import {
+  Dimensions,
+  Image,
+  ImageBackground,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Switch,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React, { Fragment, useState } from "react";
+import { PillData } from "../store/PillData";
 //timePicker
-import TimePickerExample from '../components/TimePickerExample';
+import TimePickerExample from "../components/TimePickerExample";
 //하단바
-import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import NavigationBar from '../components/UI/NavigationBar';
+import NavigationBar from "../components/UI/NavigationBar";
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 const MyPill = ({ navigation }) => {
   const MyPillData = [...PillData];
@@ -29,7 +39,7 @@ const MyPill = ({ navigation }) => {
 
   return (
     <Fragment style={styles.container}>
-      <SafeAreaView style={{ flex: 0, backgroundColor: "white"}} />
+      <SafeAreaView style={{ flex: 0, backgroundColor: "white" }} />
       <StatusBar />
       {/* header */}
       <View style={styles.header}>
@@ -69,7 +79,9 @@ const MyPill = ({ navigation }) => {
                 {/* 시간이랑 스위치 들어가는 부분인 pillOption */}
                 <View style={styles.pillOption}>
                   <View>
-                    <TimePickerExample style={{ transform: [{ scaleX: 4 }, { scaleY: 4 }] }} />
+                    <TimePickerExample
+                      style={{ transform: [{ scaleX: 4 }, { scaleY: 4 }] }}
+                    />
                   </View>
                   <Switch
                     style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }] }}
@@ -90,6 +102,7 @@ const MyPill = ({ navigation }) => {
                       source={item.image}
                     />
                   </View>
+                  <Text style={styles.pillName}>{item.name}</Text>
                 </TouchableOpacity>
               </View>
             );
@@ -125,15 +138,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     backgroundColor: "white",
-    alignItems: 'center',
+    alignItems: "center",
     justifyContent: "space-between",
     borderBottomWidth: 2,
     borderColor: "#57C5B6",
   },
-  backButton: {
-  },
-  mainTextWrapper: {
-  },
+  backButton: {},
+  mainTextWrapper: {},
   mainText: {
     fontSize: 35,
     color: "#57C5B6",
@@ -144,8 +155,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignContent: "center",
   },
-  scrollWrapper: {
-  },
+  scrollWrapper: {},
   slide: {
     backgroundColor: "white",
     width: windowWidth,
@@ -172,17 +182,22 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderWidth: 2,
     borderColor: "#97DEFF",
-    padding: "3%"
+    padding: "3%",
   },
   pillImage: {
     width: "100%",
     height: "100%",
   },
-
+  pillName: {
+    marginTop: "4%",
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "#0",
+  },
   dotsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     marginBottom: 15,
   },
   dot: {
@@ -192,11 +207,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   activeDot: {
-    backgroundColor: 'skyblue', // 현재 페이지 dot의 색상을 설정합니다.
+    backgroundColor: "skyblue", // 현재 페이지 dot의 색상을 설정합니다.
   },
   inactiveDot: {
-    backgroundColor: '#e9e9e9', // 비활성화된 dot의 색상을 설정합니다.
+    backgroundColor: "#e9e9e9", // 비활성화된 dot의 색상을 설정합니다.
   },
 });
 
-export default MyPill
+export default MyPill;

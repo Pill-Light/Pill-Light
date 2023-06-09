@@ -4,13 +4,12 @@ import {
   Image,
   ImageBackground,
   SafeAreaView,
-  ScrollView,
   StyleSheet,
-  Switch,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+
 import React, { useState } from "react";
 import { PillData } from "../store/PillData";
 import { Ionicons } from "@expo/vector-icons";
@@ -23,55 +22,58 @@ const MyPillDetail = ({ navigation, route }) => {
   const { pillKey } = route.params;
 
   return (
-    <SafeAreaView style={styles.container}>
-      {/* header */}
-      <View style={styles.header}>
-        <TouchableOpacity>
-          <Ionicons
-            name="ios-chevron-back-sharp"
-            size={70}
-            color="#57C5B6"
-            style={styles.backButton}
-            onPress={() => navigation.goBack()}
-          />
-        </TouchableOpacity>
-        <View style={styles.mainTextWrapper}>
-          <Text style={styles.mainText}>{PillData[pillKey - 1].name}</Text>
-        </View>
-        <View style={{ width: 70.5, height: 70.5 }}></View>
-      </View>
-      {/* body */}
-      <View style={styles.body}>
-        <View style={styles.pillDetailContainer}>
-          <View style={styles.pillImageWrapper}>
-            <ImageBackground
-              style={styles.pillImage}
-              resizeMode="stretch"
-              source={PillData[pillKey - 1].image}
-            ></ImageBackground>
-          </View>
-          <View style={styles.pillInfoWrapper}>
-            <Text style={styles.pillInfoText}>
-              {PillData[pillKey - 1].info}
-            </Text>
-          </View>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.addPillButton}>
-            <Text style={styles.addPillButtonText}>나의 약에 추가하기</Text>
+    <>
+      <SafeAreaView style={styles.container}>
+        {/* header */}
+        <View style={styles.header}>
+          <TouchableOpacity>
+            <Ionicons
+              name="ios-chevron-back-sharp"
+              size={70}
+              color="#57C5B6"
+              style={styles.backButton}
+              onPress={() => navigation.goBack()}
+            />
           </TouchableOpacity>
+          <View style={styles.mainTextWrapper}>
+            <Text style={styles.mainText}>{PillData[pillKey - 1].name}</Text>
+          </View>
+          <View style={{ width: 70.5, height: 70.5 }}></View>
         </View>
-      </View>
-
-      {/* footer */}
-      <NavigationBar />
-    </SafeAreaView>
+        {/* body */}
+        <View style={styles.body}>
+          <View style={styles.pillDetailContainer}>
+            <View style={styles.pillImageWrapper}>
+              <ImageBackground
+                style={styles.pillImage}
+                resizeMode="stretch"
+                source={PillData[pillKey - 1].image}
+              ></ImageBackground>
+            </View>
+            <View style={styles.pillInfoWrapper}>
+              <Text style={styles.pillInfoText}>
+                {PillData[pillKey - 1].info}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.addPillButton}>
+              <Text style={styles.addPillButtonText}>나의 약에 추가하기</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </SafeAreaView>
+      <SafeAreaView style={{ flex: 0.15, backgroundColor: "#57C5B6" }}>
+        <NavigationBar />
+      </SafeAreaView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#fff",
   },
   header: {
     flex: 1,
@@ -85,6 +87,7 @@ const styles = StyleSheet.create({
   mainTextWrapper: {},
   mainText: {
     fontSize: 35,
+    fontWeight: "bold",
     color: "#57C5B6",
   },
 

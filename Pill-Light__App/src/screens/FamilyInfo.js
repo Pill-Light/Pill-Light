@@ -1,13 +1,23 @@
 import React from "react";
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ImageBackground, Alert, } from "react-native";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import NavigationBar from "../components/UI/NavigationBar";
-import { NavigationContainer } from "@react-navigation/native";
-import { useRoute } from "@react-navigation/native";
-import { useEffect, useState } from 'react';
-import { getUserInfo, getFamilyMember, removeFamilyMember} from "../components/UserManger";
 import { StatusBar } from "expo-status-bar";
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
+  ImageBackground,
+  Alert,
+} from "react-native";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { useEffect, useState } from "react";
+
+import {
+  getUserInfo,
+  getFamilyMember,
+  removeFamilyMember,
+} from "../components/UserManger";
+import NavigationBar from "../components/UI/NavigationBar";
 
 const FamilyInfo = ({ navigation }) => {
   const [userInfo, setUserInfo] = useState({});
@@ -23,9 +33,9 @@ const FamilyInfo = ({ navigation }) => {
   const handleRemoveFamilyMember = async (index) => {
     try {
       await removeFamilyMember(index); // 가족 정보 삭제
-      Alert.alert("가족회원 정보가 삭제되었습니다.")
+      Alert.alert("가족회원 정보가 삭제되었습니다.");
     } catch (error) {
-      console.log('Error removing family member:', error);
+      console.log("Error removing family member:", error);
     }
   };
 
@@ -35,7 +45,7 @@ const FamilyInfo = ({ navigation }) => {
         const loggedInUser = await getUserInfo();
         setUserInfo(loggedInUser);
       } catch (error) {
-        console.log('Error fetching user data:', error);
+        console.log("Error fetching user data:", error);
       }
     };
 
@@ -44,7 +54,7 @@ const FamilyInfo = ({ navigation }) => {
         const members = await getFamilyMember();
         setFamilyMembers(members);
       } catch (error) {
-        console.log('Error fetching family members:', error);
+        console.log("Error fetching family members:", error);
       }
     };
 
@@ -52,60 +62,71 @@ const FamilyInfo = ({ navigation }) => {
     fetchFamilyMembers();
   }, []);
 
-
   return (
     <>
-      <SafeAreaView style={{ flex: 0, backgroundColor: 'white' }} />
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#57C5B6' }}>
+      <SafeAreaView style={{ flex: 0, backgroundColor: "white" }} />
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#57C5B6" }}>
         <View style={styles.header}>
           <View style={styles.searchBar}>
             <TouchableOpacity>
               <Ionicons
                 name="ios-chevron-back-sharp"
-                size={50}
+                size={70}
                 color="#57C5B6"
                 style={styles.backButton}
                 onPress={() => navigation.navigate("MyPage")}
               />
             </TouchableOpacity>
+<<<<<<< HEAD
             <Text style={styles.guestName}>{name} 님 {calculateAge(birthYear)}세</Text>
             <TouchableOpacity style={styles.guestIcon}>
               <FontAwesome name="user-circle" size={50} color="#57C5B6" />
+=======
+            <Text style={styles.guestName}>
+              {name} 님 {calculateAge(birthYear)}세
+            </Text>
+            <TouchableOpacity style={styles.searchButton}>
+              <FontAwesome name="search" size={50} color="#57C5B6" />
+>>>>>>> 6826128589e2cce333d841a9dd4b9576b5af06bb
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.body}>
-          {familyMembers.map((member, index) => (
-            <View key={index} style={styles.familyLine}>
-              <Text style={styles.familyName}>
-                {member.name} {member.age}세 ({member.relationship})
-              </Text>
-              <TouchableOpacity
-                style={styles.minusButton}
-                onPress={() => handleRemoveFamilyMember(index)}
-              >
-                <FontAwesome name="minus-square" size={40} color="#e6e9ed" />
-              </TouchableOpacity>
-            </View>
-          ))}
-          <View style={styles.subContainer}>
+        {familyMembers.length === 0 ? (
+          <View style={styles.imageWrapper}>
             <ImageBackground
               style={styles.image}
               resizeMode="contain"
               source={require("../../assets/메인로고.png")}
             />
-            <TouchableOpacity
-              onPress={() => navigation.navigate("FamilyAdd")}
-              style={styles.addBtn}
-            >
-              <Text style={styles.add}>가족추가하기</Text>
-            </TouchableOpacity>
           </View>
+        ) : (
+          <View style={styles.body}>
+            {familyMembers.map((member, index) => (
+              <View key={index} style={styles.familyLine}>
+                <Text style={styles.familyName}>
+                  {member.name} {member.age}세 ({member.relationship})
+                </Text>
+                <TouchableOpacity
+                  style={styles.minusButton}
+                  onPress={() => handleRemoveFamilyMember(index)}
+                >
+                  <FontAwesome name="minus-square" size={50} color="#e6e9ed" />
+                </TouchableOpacity>
+              </View>
+            ))}
+          </View>
+        )}
+        <View style={styles.subContainer}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("FamilyAdd")}
+            style={styles.addBtn}
+          >
+            <Text style={styles.add}>가족 추가하기</Text>
+          </TouchableOpacity>
         </View>
         <NavigationBar />
       </SafeAreaView>
     </>
-
   );
 };
 
@@ -123,15 +144,23 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     flex: 1,
-    heighft: "70%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
     flexDirection: "row",
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderColor: "#rgb(87,197,182)",
   },
+<<<<<<< HEAD
   guestIcon: {
     alignSelf: "flex-end",
     marginBottom: "5%",
+=======
+  searchButton: {
+    width: 70.5,
+    height: 70.5,
+    alignItems: "center",
+    justifyContent: "center",
+>>>>>>> 6826128589e2cce333d841a9dd4b9576b5af06bb
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -142,26 +171,41 @@ const styles = StyleSheet.create({
   },
   guestName: {
     color: "black",
-    fontSize: 23,
+    fontSize: 35,
     fontWeight: 600,
-    marginLeft: "15%",
-    marginRight: "12%",
+  },
+
+  imageWrapper: {
+    flex: 6,
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
   },
   body: {
     flex: 6,
     backgroundColor: "white",
   },
   familyLine: {
+<<<<<<< HEAD
     flex: 0.25,
     alignItems: "center",
+=======
+    flex: 0.2,
+    alignItems: "center",
+    paddingLeft: "5%",
+    paddingRight: "5%",
+>>>>>>> 6826128589e2cce333d841a9dd4b9576b5af06bb
     flexDirection: "row",
     backgroundColor: "#57C5B6",
+    borderWidth: 1.5,
+    borderColor: "#fafafa",
   },
   familyName: {
     color: "white",
     fontSize: 25,
     fontWeight: "bold",
     flexDirection: "row",
+<<<<<<< HEAD
     justifyContent: "center",
     marginLeft: "5%",
   },
@@ -169,6 +213,11 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     marginBottom: "6%",
     marginLeft: "20%",
+=======
+  },
+  minusButton: {
+    marginLeft: "auto",
+>>>>>>> 6826128589e2cce333d841a9dd4b9576b5af06bb
     shadowColor: "white",
     shadowOffset: {
       width: 0,
@@ -182,8 +231,8 @@ const styles = StyleSheet.create({
     width: 200,
   },
   subContainer: {
-    marginTop: "15%",
     flex: 1,
+    backgroundColor: "white",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -192,11 +241,24 @@ const styles = StyleSheet.create({
     bottom: 20,
     backgroundColor: "#159895",
     width: "90%",
+<<<<<<< HEAD
     height: "10%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: "30%",
+=======
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+>>>>>>> 6826128589e2cce333d841a9dd4b9576b5af06bb
     borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
   },
   add: {
     fontSize: 24,
@@ -205,4 +267,3 @@ const styles = StyleSheet.create({
   },
 });
 export default FamilyInfo;
-
