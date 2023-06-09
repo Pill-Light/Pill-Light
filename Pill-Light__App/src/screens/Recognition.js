@@ -21,18 +21,21 @@ const Recognition = () => {
     navigation.navigate("MyPillDetail", { pillKey: key });
   };
 
+  // 필터링된 알약 데이터 가져오기
+  const filteredPillData = PillData.filter((item) => item.notice === true);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.circle}>
-          <Text style={styles.countPill}>{PillData.length}</Text>
+          <Text style={styles.countPill}>{filteredPillData.length}</Text>
         </View>
         <Text style={styles.context}>개의 약이 인식되었습니다.</Text>
       </View>
       <View style={styles.body}>
         <View style={{ width: 350, height: 500, backgroundColor: "#57C5B6" }}>
           <ScrollView>
-            {PillData.map((item, index) => (
+            {filteredPillData.map((item, index) => (
               <>
                 <TouchableOpacity
                   style={styles.layout}
