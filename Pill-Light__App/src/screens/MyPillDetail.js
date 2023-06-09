@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   addPillButtonText: {
-    fontSize: "30%",
+    fontSize: 30,
     color: "white",
   },
 

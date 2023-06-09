@@ -92,7 +92,7 @@ const MainPage = () => {
                 onPress={() => setModalVisible(!modalVisible)}
               >
                 <Text
-                  style={{ color: "white", fontSize: "18", fontWeight: "bold" }}
+                  style={{ color: "white", fontSize: 18, fontWeight: "bold" }}
                 >
                   확인!
                 </Text>

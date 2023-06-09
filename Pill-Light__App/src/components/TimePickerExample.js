@@ -3,13 +3,13 @@ import { View, Button, Text } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 const TimePickerExample = () => {
-  const [time, settime] = useState(new Date(1598051730000));
+  const [time, setTime] = useState(new Date(1598051730000));
   const [show, setShow] = useState(false);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setShow(false);
-    setDate(currentDate);
+    setTime(currentDate);
   };
 
   const showTimePicker = () => {

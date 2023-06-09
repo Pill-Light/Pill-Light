@@ -3,6 +3,9 @@
     "name": "Pill-Light__App",
     "slug": "Pill-Light__App",
     "version": "1.0.0",
+    "developer": {
+      "tooltips": false
+    },
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

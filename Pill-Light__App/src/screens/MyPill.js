@@ -38,7 +38,7 @@ const MyPill = ({ navigation }) => {
   };
 
   return (
-    <Fragment style={styles.container}>
+    <View style={styles.container}>
       <SafeAreaView style={{ flex: 0, backgroundColor: "white" }} />
       <StatusBar />
       {/* header */}
@@ -128,7 +128,7 @@ const MyPill = ({ navigation }) => {
       <SafeAreaView style={{ flex: 1, backgroundColor: "#57C5B6" }}>
         <NavigationBar />
       </SafeAreaView>
-    </Fragment>
+    </View>
   );
 };
 

@@ -63,7 +63,7 @@ const Login = ({ navigation }) => {
             >
               <TextInput
                 placeholder="아이디 입력"
-                placeholderTextColor="lighterGrey"
+                placeholderTextColor="#d9d9d9"
                 autoCapitalize="none"
                 value={username}
                 onChangeText={setUsername}
@@ -71,7 +71,7 @@ const Login = ({ navigation }) => {
               ></TextInput>
               <TextInput
                 placeholder="비밀번호 입력"
-                placeholderTextColor="lighterGrey"
+                placeholderTextColor="#d9d9d9"
                 autoCapitalize="none"
                 secureTextEntry={true}
                 value={password}

@@ -147,7 +147,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   searchButton: {
-    alignSelf: "inline-flex",
     marginTop: "2%",
     shadowColor: "#000",
     shadowOffset: {
