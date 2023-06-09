@@ -125,7 +125,9 @@ const MyPill = ({ navigation }) => {
       </View>
 
       {/* 하단바 */}
-      <NavigationBar />
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#57C5B6" }}>
+        <NavigationBar />
+      </SafeAreaView>
     </Fragment>
   );
 };
