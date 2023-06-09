@@ -33,8 +33,11 @@ const Recognition = () => {
         <Text style={styles.context}>개의 약이 인식되었습니다.</Text>
       </View>
       <View style={styles.body}>
-        <View style={{ width: 350, height: 500, backgroundColor: "#57C5B6" }}>
-          <ScrollView>
+        <View style={styles.scrollViewContainer}>
+          <ScrollView
+            contentContainerStyle={styles.scrollViewContent}
+            showsVerticalScrollIndicator={false}
+          >
             {filteredPillData.map((item, index) => (
               <>
                 <TouchableOpacity
@@ -98,6 +101,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  scrollViewContainer: {
+    width: 350,
+    height: 500,
+    backgroundColor: "#57C5B6",
+    borderRadius: 20,
+    overflow: "hidden",
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    paddingVertical: 20,
+  },
   layout: {
     flexDirection: "row",
   },
@@ -114,6 +128,8 @@ const styles = StyleSheet.create({
     height: 100,
     marginTop: 22,
     marginLeft: 20,
+    borderRadius: 10,
+    overflow: "hidden",
   },
   pillName: {
     flex: 2,
