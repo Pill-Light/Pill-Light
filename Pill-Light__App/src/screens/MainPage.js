@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     margin: "3%",
     borderRadius: 10,
     marginVertical: "3%",
-    marginTop: "20%",
+    marginTop: "15%",
   },
   modalView: {
     flex: 0.5,
